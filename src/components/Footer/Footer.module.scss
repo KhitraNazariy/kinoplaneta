@@ -8,9 +8,26 @@
   color: #FFFFFF;
   margin-top: auto;
 
+  @media (max-width: 1200px) {
+    padding: 0 40px;
+  }
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+    height: 160px;
+    justify-content: center;
+    row-gap: 25px;
+  }
+
   &_logo {
     img {
       height: 60px;
+
+      @media (max-width: 800px) {
+        height: 40px;
+      }
+
     }
   }
 

@@ -7,7 +7,7 @@ import scss from './Header.module.scss';
 import {DropdownMenu} from "../DropdownMenu/DropdownMenu";
 import {NavLink} from "react-router-dom";
 
-const Header: FC = () => {
+const Header: FC<any> = ({active, setActive}) => {
     return (
         <header className={scss.header}>
             <div className={scss.header__leftContent}>
@@ -17,14 +17,12 @@ const Header: FC = () => {
                 <DropdownMenu/>
             </div>
             <div className={scss.header__rightContent}>
-                <NavLink to={''}></NavLink>
+                <NavLink to={''}>Ввійти</NavLink>
                 <div className={scss.header__rightContent_mobile}>
-                    <div>
-                        <img src={menuIcon} alt="menu-icon"/>
+                    <div onClick={() => setActive(!active)} className={scss.header__rightContent_mobile_burgerMenu}>
+                        <span></span>
                     </div>
-                    <div>
-                        <img src={loginIcon} alt="login-icon"/>
-                    </div>
+                    <img className={scss.header__rightContent_mobile_login} src={loginIcon} alt="login-icon"/>
                 </div>
             </div>
         </header>

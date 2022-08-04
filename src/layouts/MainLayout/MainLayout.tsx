@@ -1,64 +1,15 @@
-import React, {FC} from 'react';
-import {Header} from "../../components";
-import {Footer} from "../../components/Footer/Footer";
+import React, {FC, useState} from 'react';
+import {Footer, Header, MobileMenu} from "../../components";
+
 
 const MainLayout: FC = () => {
+
+    const [menuActive, setMenuActive] = useState(false);
+
     return (
         <>
-            <Header/>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
-            <div>MainLayout: FC</div>
+            <Header active={menuActive} setActive={setMenuActive}/>
+            <MobileMenu active={menuActive} setActive={setMenuActive}/>
             <Footer/>
         </>
     );
