@@ -2,7 +2,11 @@ import React, {FC} from 'react';
 
 import scss from './MobileMenu.module.scss';
 
-const MobileMenu: FC<any> = ({active, setActive}) => {
+interface MobileMenuProps {
+    active: boolean
+}
+
+const MobileMenu: FC<MobileMenuProps> = ({active}) => {
     return (
         <div className={active ? scss.active : scss.menu}>
             <div className={scss.menu__content}>

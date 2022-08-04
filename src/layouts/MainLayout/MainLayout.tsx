@@ -1,4 +1,5 @@
 import React, {FC, useState} from 'react';
+
 import {Footer, Header, MobileMenu} from "../../components";
 
 
@@ -9,7 +10,7 @@ const MainLayout: FC = () => {
     return (
         <>
             <Header active={menuActive} setActive={setMenuActive}/>
-            <MobileMenu active={menuActive} setActive={setMenuActive}/>
+            <MobileMenu active={menuActive}/>
             <Footer/>
         </>
     );
