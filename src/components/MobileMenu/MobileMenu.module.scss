@@ -4,8 +4,10 @@
   height: 0;
   top: 70px;
   left: 0;
-  transform: translateX(-100%);
+  transform: translateX(-110%);
   transition: all .3s;
+  z-index: 4;
+
 
   &__content {
     width: 100%;
@@ -45,4 +47,9 @@
   left: 0;
   transition: all .3s;
   transform: translateX(0);
+  z-index: 4;
+
+  @media (min-width: 950px) {
+    display: none;
+  }
 }

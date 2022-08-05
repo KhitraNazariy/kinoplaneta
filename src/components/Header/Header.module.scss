@@ -16,6 +16,10 @@
     padding: 0 40px;
   }
 
+  @media (max-width: 700px) {
+    padding: 0 20px;
+  }
+
   &__leftContent {
     display: flex;
     align-items: center;
