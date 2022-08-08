@@ -28,6 +28,28 @@
 
     }
 
+    button {
+      background-color: #005382;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 600;
+      padding: 14px;
+      border-radius: 5px;
+      transition: 0.3s;
+
+      @media (max-width: 700px) {
+        font-size: 15px;
+        padding: 11px;
+      }
+
+      &:hover {
+        background-color: #003F63;
+      }
+
+    }
+
   }
 
   &_movies {
@@ -50,28 +72,6 @@
   &_bottomButton {
     display: flex;
     justify-content: center;
-  }
-
-}
-
-button {
-  background-color: #005382;
-  border: none;
-  color: #FFFFFF;
-  cursor: pointer;
-  font-size: 17px;
-  font-weight: 600;
-  padding: 14px;
-  border-radius: 5px;
-  transition: 0.3s;
-
-  @media (max-width: 700px) {
-    font-size: 15px;
-    padding: 11px;
-  }
-
-  &:hover {
-    background-color: #003F63;
   }
 
 }

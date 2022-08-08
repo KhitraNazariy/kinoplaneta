@@ -27,9 +27,6 @@ const PopularMovieSection: FC = () => {
                     responsePopularMovie.results.slice(0, 10).map(movie => <MovieMainBlock key={movie.id} {...movie}/>)
                 }
             </div>
-            <div className={scss.popularMovieSection_bottomButton}>
-                <button>Дивитись всі</button>
-            </div>
         </section>
     );
 };
