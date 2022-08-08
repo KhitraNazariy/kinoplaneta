@@ -1,17 +1,20 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 import {INowPlayingMovie} from "../../../types/INowPlayingMovie";
-import {fetchNowPlayingMovie} from "./asyncActions";
+import {fetchNowPlayingMovie, fetchPopularMovie} from "./asyncActions";
+import {IPopularMovie} from "../../../types/IPopularMovie";
 
 
 interface MovieSliceState {
-    data: INowPlayingMovie;
+    responseNowPlayingMovie: INowPlayingMovie;
+    responsePopularMovie: IPopularMovie;
     status: string;
     error: string | null
 }
 
 const initialState: MovieSliceState = {
-    data: {} as INowPlayingMovie,
+    responseNowPlayingMovie: {} as INowPlayingMovie,
+    responsePopularMovie: {} as IPopularMovie,
     status: '',
     error: null
 }
@@ -26,9 +29,23 @@ const movieSlice = createSlice({
         });
         builder.addCase(fetchNowPlayingMovie.fulfilled, (state, action: PayloadAction<INowPlayingMovie>) => {
             state.status = 'success'
-            state.data = action.payload
+            state.responseNowPlayingMovie = action.payload
         });
         builder.addCase(fetchNowPlayingMovie.rejected, (state, {payload}) => {
+            state.status = 'error'
+            if (payload) {
+                state.error = payload.message
+            }
+        });
+
+        builder.addCase(fetchPopularMovie.pending, (state) => {
+            state.status = 'loading'
+        });
+        builder.addCase(fetchPopularMovie.fulfilled, (state, action: PayloadAction<IPopularMovie>) => {
+            state.status = 'success'
+            state.responsePopularMovie = action.payload
+        });
+        builder.addCase(fetchPopularMovie.rejected, (state, {payload}) => {
             state.status = 'error'
             if (payload) {
                 state.error = payload.message

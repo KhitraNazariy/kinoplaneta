@@ -10,7 +10,7 @@ import {fetchNowPlayingMovie} from "../../store/slices/movie/asyncActions";
 
 const SliderNowPlayingMovie: FC = () => {
 
-    const {data} = useSelector((state: RootState) => state.movie);
+    const {responseNowPlayingMovie} = useSelector((state: RootState) => state.movie);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -25,8 +25,8 @@ const SliderNowPlayingMovie: FC = () => {
             </div>
             <Slider {...settings}>
                 {
-                    Array.isArray(data.results) &&
-                    data.results.map(movie => <MovieForSlider key={movie.id} {...movie}/>)
+                    Array.isArray(responseNowPlayingMovie.results) &&
+                    responseNowPlayingMovie.results.map(movie => <MovieForSlider key={movie.id} {...movie}/>)
                 }
             </Slider>
         </section>

@@ -18,7 +18,12 @@ const MovieForSlider: FC<IMovie> = (
 
     return (
         <div className={scss.movieSliderCard}>
-            <p className={scss.movieSliderCard_voteAverage} style={{backgroundColor: `${getColorForRating(vote_average)}`}}>{vote_average}</p>
+            <p
+                className={scss.movieSliderCard_voteAverage}
+                style={{backgroundColor: `${getColorForRating(vote_average)}`}}
+            >
+                {vote_average}
+            </p>
             <img src={`${URL_IMG}${poster_path}`} alt={title}/>
             <div className={scss.movieSliderCard_description}>
                 <h3>{title}</h3>

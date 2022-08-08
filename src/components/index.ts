@@ -3,5 +3,7 @@ export * from './Footer/Footer';
 export * from './Header/Header';
 export * from './MobileMenu/MobileMenu';
 export * from './MovieForSlider/MovieForSlider';
+export * from './MovieMainBlock/MovieMainBlock';
+export * from './PopularMovieSection/PopularMovieSection';
 export * from './Poster/Poster';
 export * from './SliderNowPlayingMovie/SliderNowPlayingMovie';

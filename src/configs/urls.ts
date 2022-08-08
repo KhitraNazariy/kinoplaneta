@@ -4,7 +4,8 @@ export const API_KEY = '78944b79c48d0b33ca2920b8c5d42439';
 export const URL_IMG = 'https://image.tmdb.org/t/p/original'
 
 export const urls = {
-    nowPlayingMovie: '/movie/now_playing'
+    nowPlayingMovie: '/movie/now_playing',
+    popularMovie: '/movie/popular'
 }
 
 export default baseURL

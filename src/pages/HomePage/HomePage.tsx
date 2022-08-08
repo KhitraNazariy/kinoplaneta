@@ -1,7 +1,11 @@
 import React, {FC} from 'react';
 
 import scss from './HomePage.module.scss';
-import {Poster, SliderNowPlayingMovie} from "../../components";
+import {
+    PopularMovieSection,
+    Poster,
+    SliderNowPlayingMovie
+} from "../../components";
 
 const HomePage: FC = () => {
 
@@ -10,6 +14,7 @@ const HomePage: FC = () => {
             <Poster/>
             <div className={scss.mainContent}>
                 <SliderNowPlayingMovie/>
+                <PopularMovieSection/>
             </div>
         </>
     );
