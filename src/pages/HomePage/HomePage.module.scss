@@ -1,0 +1,12 @@
+.mainContent {
+  padding: 0 150px;
+
+  @media (max-width: 1200px) {
+    padding: 0 40px;
+  }
+
+  @media (max-width: 700px) {
+    padding: 0 20px;
+  }
+
+}

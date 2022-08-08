@@ -62,16 +62,16 @@
     &_mobile {
       display: none;
       align-items: center;
-      column-gap: 20px;
+      column-gap: 14px;
 
       &_login {
-        height: 34px;
+        height: 26px;
       }
 
       &_burgerMenu {
 
         width: 28px;
-        height: 22px;
+        height: 18px;
         position: relative;
         cursor: pointer;
 
@@ -79,7 +79,7 @@
           content: '';
           position: absolute;
           top: 0;
-          width: 28px;
+          width: 24px;
           background-color: #FFFFFF;
           height: 2px;
           border-radius: 10px;
@@ -87,10 +87,10 @@
 
         span {
           position: absolute;
-          top: 10px;
-          width: 28px;
+          top: 8px;
+          width: 24px;
           background-color: #FFFFFF;
-          height: 3px;
+          height: 2px;
           border-radius: 10px;
         }
 
@@ -98,7 +98,7 @@
           content: '';
           position: absolute;
           bottom: 0;
-          width: 28px;
+          width: 24px;
           background-color: #FFFFFF;
           height: 2px;
           border-radius: 10px;

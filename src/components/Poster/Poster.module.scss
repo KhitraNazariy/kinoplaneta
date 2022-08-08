@@ -1,4 +1,4 @@
-section {
+.poster {
   position: relative;
   background-repeat: no-repeat;
   background-size: cover;
@@ -20,7 +20,7 @@ section {
     z-index: 2;
   }
 
-  .inner {
+  &_inner {
     position: relative;
     z-index: 3;
     color: #fff;
@@ -82,7 +82,7 @@ section {
       }
 
       @media (max-width: 700px) {
-        padding: 12px;
+        padding: 11px;
         font-size: 16px;
       }
 

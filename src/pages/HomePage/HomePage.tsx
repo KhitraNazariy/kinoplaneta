@@ -1,27 +1,16 @@
 import React, {FC} from 'react';
-import {Poster} from "../../components";
+
+import scss from './HomePage.module.scss';
+import {Poster, SliderNowPlayingMovie} from "../../components";
 
 const HomePage: FC = () => {
+
     return (
         <>
             <Poster/>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
-            <div>dsd</div>
+            <div className={scss.mainContent}>
+                <SliderNowPlayingMovie/>
+            </div>
         </>
     );
 };

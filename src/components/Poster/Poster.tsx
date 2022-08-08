@@ -6,8 +6,8 @@ import scss from './Poster.module.scss';
 
 const Poster: FC = () => {
     return (
-        <section style={{backgroundImage: `url(${backgroundImg})`}}>
-            <div className={scss.inner}>
+        <section className={scss.poster} style={{backgroundImage: `url(${backgroundImg})`}}>
+            <div className={scss.poster_inner}>
                 <h2 className={scss.poster_title}>Тор: Любовь и гром</h2>
                 <p>
                     Джейн Фостер берет на себя обязанности Бога-громовержца и становится обладательницей молота
