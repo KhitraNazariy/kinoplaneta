@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 
-import scss from './MovieForSlider.module.scss';
+import scss from './SliderCard.module.scss';
 import {IMovie} from "../../types/IMovie";
 import {URL_IMG} from "../../configs";
 import {getDate} from "../../utils/getDate";
@@ -17,15 +17,15 @@ const MovieForSlider: FC<IMovie> = (
 
 
     return (
-        <div className={scss.movieSliderCard}>
+        <div className={scss.sliderCard}>
             <p
-                className={scss.movieSliderCard_voteAverage}
+                className={scss.sliderCard_voteAverage}
                 style={{backgroundColor: `${getColorForRating(vote_average)}`}}
             >
                 {vote_average}
             </p>
             <img src={`${URL_IMG}${poster_path}`} alt={title}/>
-            <div className={scss.movieSliderCard_description}>
+            <div className={scss.sliderCard_description}>
                 <h3>{title}</h3>
                 <p>{getDate(release_date)}</p>
             </div>

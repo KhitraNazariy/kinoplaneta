@@ -4,7 +4,8 @@ import scss from './HomePage.module.scss';
 import {
     PopularMovieSection,
     Poster,
-    SliderNowPlayingMovie
+    SliderNowPlayingMovie,
+    SliderTopRatedTv
 } from "../../components";
 
 const HomePage: FC = () => {
@@ -15,6 +16,7 @@ const HomePage: FC = () => {
             <div className={scss.mainContent}>
                 <SliderNowPlayingMovie/>
                 <PopularMovieSection/>
+                <SliderTopRatedTv/>
             </div>
         </>
     );

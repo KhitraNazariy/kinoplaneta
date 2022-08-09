@@ -2,10 +2,12 @@ import {configureStore} from "@reduxjs/toolkit";
 import {useDispatch} from "react-redux";
 
 import movie from "./slices/movie/movieSlice";
+import tv from "./slices/tv/tvSlice";
 
 const store = configureStore({
     reducer: {
-        movie
+        movie,
+        tv
     }
 });
 

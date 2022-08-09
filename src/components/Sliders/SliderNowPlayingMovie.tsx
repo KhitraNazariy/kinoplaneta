@@ -2,9 +2,9 @@ import React, {FC, useEffect} from 'react';
 import Slider from "react-slick";
 import {useSelector} from "react-redux";
 
-import scss from './SliderNowPlayingMovie.module.scss';
+import scss from './Sliders.module.scss';
 import {settings} from "../../utils/SettingForSlider";
-import {MovieForSlider} from "../MovieForSlider/MovieForSlider";
+import {MovieForSlider} from "../ItemForSlider/MovieForSlider";
 import {RootState, useAppDispatch} from "../../store/store";
 import {fetchNowPlayingMovie} from "../../store/slices/movie/asyncActions";
 
@@ -18,8 +18,8 @@ const SliderNowPlayingMovie: FC = () => {
     }, [])
 
     return (
-        <section className={scss.sliderNowPlayingMovie}>
-            <div className={scss.sliderNowPlayingMovie_title}>
+        <section className={scss.slider}>
+            <div className={scss.slider_title}>
                 <h2>Фільми в кінотеатрах</h2>
                 <button>Дивитись всі</button>
             </div>
