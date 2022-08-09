@@ -8,8 +8,6 @@ import {getColorForRating} from "../../utils/getColorForRating";
 
 const MovieMainCard: FC<IMovie> = ({title, release_date, vote_average, poster_path}) => {
 
-    console.log(release_date)
-
     return (
         <div className={scss.movieCard}>
             <p className={scss.movieCard_voteAverage} style={{backgroundColor: `${getColorForRating(vote_average)}`}}>{vote_average}</p>
