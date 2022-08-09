@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 
 import scss from './HomePage.module.scss';
 import {
-    PopularMovieSection,
+    PopularMovieSection, PopularTvSection,
     Poster,
     SliderNowPlayingMovie,
     SliderTopRatedTv
@@ -17,6 +17,7 @@ const HomePage: FC = () => {
                 <SliderNowPlayingMovie/>
                 <PopularMovieSection/>
                 <SliderTopRatedTv/>
+                <PopularTvSection/>
             </div>
         </>
     );

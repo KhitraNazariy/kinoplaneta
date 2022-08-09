@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
 
-import scss from './MovieMainBlock.module.scss';
+import scss from './MainCard.module.scss';
 import {IMovie} from "../../types/IMovie";
 import {URL_IMG} from "../../configs";
 import {getDate} from "../../utils/getDate";
 import {getColorForRating} from "../../utils/getColorForRating";
 
-const MovieMainBlock: FC<IMovie> = ({title, release_date, vote_average, poster_path}) => {
+const MovieMainCard: FC<IMovie> = ({title, release_date, vote_average, poster_path}) => {
 
     console.log(release_date)
 
@@ -22,4 +22,4 @@ const MovieMainBlock: FC<IMovie> = ({title, release_date, vote_average, poster_p
     );
 };
 
-export {MovieMainBlock};
+export {MovieMainCard};

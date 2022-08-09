@@ -1,4 +1,4 @@
-.popularMovieSection {
+.section {
   margin-top: 40px;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 2px solid silver;
+    padding-bottom: 10px;
 
     @media (max-width: 700px) {
       flex-wrap: wrap;

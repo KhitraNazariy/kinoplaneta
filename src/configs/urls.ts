@@ -6,7 +6,9 @@ export const URL_IMG = 'https://image.tmdb.org/t/p/original'
 export const urls = {
     nowPlayingMovie: '/movie/now_playing',
     popularMovie: '/movie/popular',
-    topRatedTv: '/tv/top_rated'
+
+    topRatedTv: '/tv/top_rated',
+    popularTv: '/tv/popular'
 }
 
 export default baseURL

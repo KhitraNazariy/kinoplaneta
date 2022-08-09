@@ -1,10 +1,10 @@
 import React, {FC, useEffect} from 'react';
-
-import scss from './PopularMovieSection.module.scss';
 import {useSelector} from "react-redux";
+import scss from './MainSections.module.scss';
+
 import {RootState, useAppDispatch} from "../../store/store";
 import {fetchPopularMovie} from "../../store/slices/movie/asyncActions";
-import {MovieMainBlock} from "../MovieMainBlock/MovieMainBlock";
+import {MovieMainCard} from "../MainCards";
 
 const PopularMovieSection: FC = () => {
 
@@ -16,15 +16,15 @@ const PopularMovieSection: FC = () => {
     }, [])
 
     return (
-        <section className={scss.popularMovieSection}>
-            <div className={scss.popularMovieSection_title}>
+        <section className={scss.section}>
+            <div className={scss.section_title}>
                 <h2>Популярні фільми</h2>
                 <button>Дивитись всі</button>
             </div>
-            <div className={scss.popularMovieSection_movies}>
+            <div className={scss.section_movies}>
                 {
                     Array.isArray(responsePopularMovie.results) &&
-                    responsePopularMovie.results.slice(0, 10).map(movie => <MovieMainBlock key={movie.id} {...movie}/>)
+                    responsePopularMovie.results.slice(0, 10).map(movie => <MovieMainCard key={movie.id} {...movie}/>)
                 }
             </div>
         </section>

@@ -11,9 +11,11 @@
 
   &_title {
 
-    display: flex;
     justify-content: space-between;
+    display: flex;
     align-items: center;
+    border-bottom: 2px solid silver;
+    padding-bottom: 10px;
 
     @media (max-width: 700px) {
       flex-wrap: wrap;

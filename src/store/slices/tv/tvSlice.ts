@@ -1,16 +1,19 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 import {ITopRatedTv} from "../../../types/ITopRatedTv";
-import {fetchTopRatedTv} from "./asyncActions";
+import {fetchPopularTv, fetchTopRatedTv} from "./asyncActions";
+import {IPopularTv} from "../../../types/IPopularTv";
 
 interface TvSliceState {
     responseTopRatedTv: ITopRatedTv;
+    responsePopularTv: IPopularTv;
     status: string;
     error: string | null;
 }
 
 const initialState: TvSliceState = {
     responseTopRatedTv: {} as ITopRatedTv,
+    responsePopularTv: {} as IPopularTv,
     status: '',
     error: null
 }
@@ -28,6 +31,20 @@ const tvSlice = createSlice({
             state.responseTopRatedTv = action.payload
         });
         builder.addCase(fetchTopRatedTv.rejected, (state, {payload}) => {
+            state.status = 'error';
+            if (payload) {
+                state.error = payload.message
+            }
+        })
+
+        builder.addCase(fetchPopularTv.pending, (state) => {
+            state.status = 'loading';
+        });
+        builder.addCase(fetchPopularTv.fulfilled, (state, action: PayloadAction<IPopularTv>) => {
+            state.status = 'success';
+            state.responsePopularTv = action.payload
+        });
+        builder.addCase(fetchPopularTv.rejected, (state, {payload}) => {
             state.status = 'error';
             if (payload) {
                 state.error = payload.message
