@@ -1,0 +1,28 @@
+.wrap {
+  background-color: #F4F4F4;
+  padding: 0 150px;
+
+  .content {
+    display: flex;
+    column-gap: 60px;
+    background-color: #FFFFFF;
+    padding: 50px;
+
+    &_title {
+
+      min-width: fit-content;
+
+      h2 {
+        font-size: 34px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-weight: 300;
+      }
+
+    }
+
+  }
+}

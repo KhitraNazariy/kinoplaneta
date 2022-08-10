@@ -1,5 +1,5 @@
 import React, {Dispatch, FC, SetStateAction} from 'react';
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 import logoIcon from '../../assets/img/logo.png'
 import loginIcon from '../../assets/img/login.png';
@@ -16,7 +16,9 @@ const Header: FC<HeaderProps> = ({active, setActive}) => {
         <header className={scss.header}>
             <div className={scss.header__leftContent}>
                 <div className={scss.header__leftContent_logo}>
-                    <img src={logoIcon} alt="icon-logo"/>
+                    <Link to={'/'}>
+                        <img src={logoIcon} alt="icon-logo"/>
+                    </Link>
                 </div>
                 <DropdownMenu/>
             </div>

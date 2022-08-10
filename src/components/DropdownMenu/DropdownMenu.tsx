@@ -7,9 +7,11 @@ const DropdownMenu: FC = () => {
     return (
         <nav className={scss.menu}>
             <ul>
-                <li>
-                    Головна
-                </li>
+                <NavLink to={'/'}>
+                    <li>
+                        Головна
+                    </li>
+                </NavLink>
                 <li>
                     Фільми
                     <ul>
