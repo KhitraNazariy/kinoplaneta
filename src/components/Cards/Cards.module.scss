@@ -7,6 +7,12 @@
   margin-bottom: 30px;
   transition: 0.4s;
 
+  @media (max-width: 800px) {
+    padding-top: 10px;
+    margin-bottom: 10px;
+    column-gap: 10px;
+  }
+
   &:hover {
     transform: translateX(10px);
 
@@ -17,6 +23,11 @@
     width: 100px;
     height: 150px;
     border-radius: 5px;
+    
+    @media (max-width: 800px) {
+      width: 70px;
+      height: 100px;
+    }
 
   }
 
@@ -26,6 +37,10 @@
     column-gap: 70px;
     justify-content: space-between;
 
+    @media (max-width: 800px) {
+      column-gap: 10px;
+    }
+
     &_description {
 
       margin-top: 5px;
@@ -33,14 +48,28 @@
       flex-direction: column;
       row-gap: 10px;
 
+      @media (max-width: 800px) {
+        row-gap: 7px;
+      }
+
       h3 {
         font-size: 20px;
         font-weight: 600;
+
+        @media (max-width: 800px) {
+          font-size: 15px;
+        }
+
       }
 
       .date {
         font-size: 17px;
         font-weight: 300;
+
+        @media (max-width: 800px) {
+          font-size: 14px;
+        }
+
       }
 
       .overview {
@@ -58,6 +87,14 @@
         box-orient: vertical;
         font-size: 15px;
         line-height: 19px;
+
+        @media (max-width: 800px) {
+          -ms-line-clamp: 2;
+          -webkit-line-clamp: 2;
+          line-clamp: 2;
+          font-size: 14px;
+        }
+
       }
 
       &_additional {
@@ -65,9 +102,28 @@
         align-items: center;
         column-gap: 30px;
 
+        @media (max-width: 800px) {
+          column-gap: 15px;
+        }
+
         &_rating {
           font-size: 22px;
           font-weight: 600;
+
+          @media (max-width: 800px) {
+            font-size: 17px;
+          }
+
+        }
+
+        .mobileBtn {
+          display: none;
+          width: 34px;
+          height: 34px;
+
+          @media (max-width: 800px) {
+            display: block;
+          }
         }
 
         button {
@@ -84,6 +140,10 @@
           height: 36px;
           cursor: pointer;
           transition: .4s;
+
+          @media (max-width: 800px) {
+           display: none;
+          }
 
           &:hover {
             background-color: #E5E5E5;

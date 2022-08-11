@@ -1,12 +1,30 @@
 .wrap {
   background-color: #F4F4F4;
   padding: 0 150px;
+  
+  @media (max-width: 1200px) {
+    padding: 0 40px;
+  }
+
+  @media (max-width: 700px) {
+    background-color: #FFFFFF;
+    padding: 0 20px;
+  }
 
   .content {
     display: flex;
     column-gap: 60px;
     background-color: #FFFFFF;
     padding: 50px;
+
+    @media (max-width: 1400px) {
+      flex-wrap: wrap;
+      row-gap: 30px;
+    }
+
+    @media (max-width: 700px) {
+      padding: 0;
+    }
 
     &_title {
 
@@ -16,10 +34,20 @@
         font-size: 34px;
         font-weight: 600;
         margin-bottom: 20px;
+
+        @media (max-width: 800px) {
+          font-size: 28px;
+        }
+
       }
 
       p {
         font-weight: 300;
+
+        @media (max-width: 800px) {
+          font-size: 15px;
+        }
+
       }
 
     }

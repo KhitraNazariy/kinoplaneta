@@ -26,6 +26,7 @@ const MovieCard: FC<IMovie> = ({poster_path, title, release_date, overview, vote
                         {vote_average}
                     </div>
                     <button><MdOutlineBookmarkAdded size={17}/>Буду дивитись</button>
+                    <button className={scss.mobileBtn}><MdOutlineBookmarkAdded size={17}/></button>
                 </div>
             </div>
         </div>
