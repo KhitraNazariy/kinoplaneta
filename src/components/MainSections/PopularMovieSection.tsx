@@ -1,7 +1,8 @@
 import React, {FC, useEffect} from 'react';
 import {useSelector} from "react-redux";
-import scss from './MainSections.module.scss';
+import {Link} from "react-router-dom";
 
+import scss from './MainSections.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
 import {fetchPopularMovie} from "../../store/slices/movie/asyncActions";
 import {MovieMainCard} from "../MainCards";
@@ -19,7 +20,9 @@ const PopularMovieSection: FC = () => {
         <section className={scss.section}>
             <div className={scss.section_title}>
                 <h2>Популярні фільми</h2>
-                <button>Дивитись всі</button>
+                <Link to={'movie-popular'}>
+                    <button>Дивитись всі</button>
+                </Link>
             </div>
             <div className={scss.section_movies}>
                 {

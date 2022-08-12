@@ -19,6 +19,14 @@ const PopularMoviePage: FC = () => {
         window.scrollTo(0, 0)
     }, [page])
 
+    const totalPages = () => {
+        if (responsePopularMovie.total_pages < 500) {
+            return responsePopularMovie.total_pages
+        } else {
+            return 500
+        }
+    }
+
     if (error) {
         return <BadRequestPage/>
     }
@@ -69,7 +77,7 @@ const PopularMoviePage: FC = () => {
                         }
                     </div>
                 </div>
-                <Pagination totalPages={500} page={page} setPage={setPage}/>
+                <Pagination totalPages={totalPages()} page={page} setPage={setPage}/>
             </div>
         </div>
     );

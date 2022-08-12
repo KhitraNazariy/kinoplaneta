@@ -15,13 +15,6 @@ const Pagination: FC<PaginationProps> = ({totalPages, setPage, page}) => {
     const isFirstPage = page === 1;
     const isLastPage = page === totalPages;
 
-    const setLastPage = (page: number) => {
-      if (page > 400) {
-          setPage(500)
-      } else {
-          setPage(page + 100)
-      }
-    }
 
     return (
         <div className={scss.pagination}>
@@ -53,7 +46,7 @@ const Pagination: FC<PaginationProps> = ({totalPages, setPage, page}) => {
 
             <button
                 className={scss.doubleRight}
-                onClick={() => setLastPage(page)}
+                onClick={() => setPage(totalPages)}
                 disabled={isLastPage}
             >
                 <AiOutlineDoubleRight size={14}/>

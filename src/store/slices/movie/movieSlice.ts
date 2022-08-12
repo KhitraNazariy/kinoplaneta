@@ -1,13 +1,17 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 import {INowPlayingMovie} from "../../../types/INowPlayingMovie";
-import {fetchNowPlayingMovie, fetchPopularMovie} from "./asyncActions";
+import {fetchNowPlayingMovie, fetchPopularMovie, fetchTopRatedMovie, fetchUpcomingMovie} from "./asyncActions";
 import {IPopularMovie} from "../../../types/IPopularMovie";
+import {IUpcomingMovie} from "../../../types/IUpcomingMovie";
+import {ITopRatedMovie} from "../../../types/ITopRatedMovie";
 
 
 interface MovieSliceState {
     responseNowPlayingMovie: INowPlayingMovie;
     responsePopularMovie: IPopularMovie;
+    responseUpcomingMovie: IUpcomingMovie;
+    responseTopRatedMovie: ITopRatedMovie;
     status: string;
     error: string | null
 }
@@ -15,6 +19,8 @@ interface MovieSliceState {
 const initialState: MovieSliceState = {
     responseNowPlayingMovie: {} as INowPlayingMovie,
     responsePopularMovie: {} as IPopularMovie,
+    responseUpcomingMovie: {} as IUpcomingMovie,
+    responseTopRatedMovie: {} as ITopRatedMovie,
     status: '',
     error: null
 }
@@ -34,21 +40,55 @@ const movieSlice = createSlice({
             state.responseNowPlayingMovie = action.payload
         });
         builder.addCase(fetchNowPlayingMovie.rejected, (state, {payload}) => {
-            state.status = 'error'
+            state.status = 'error';
             if (payload) {
                 state.error = payload.message
             }
         });
 
         builder.addCase(fetchPopularMovie.pending, (state) => {
-            state.status = 'loading'
+            state.error = null;
+            state.status = 'loading';
         });
         builder.addCase(fetchPopularMovie.fulfilled, (state, action: PayloadAction<IPopularMovie>) => {
+            state.error = null;
             state.status = 'success'
             state.responsePopularMovie = action.payload
         });
         builder.addCase(fetchPopularMovie.rejected, (state, {payload}) => {
-            state.status = 'error'
+            state.status = 'error';
+            if (payload) {
+                state.error = payload.message
+            }
+        });
+
+        builder.addCase(fetchUpcomingMovie.pending, (state) => {
+            state.error = null;
+            state.status = 'loading';
+        });
+        builder.addCase(fetchUpcomingMovie.fulfilled, (state, action: PayloadAction<IUpcomingMovie>) => {
+            state.error = null;
+            state.status = 'success'
+            state.responseUpcomingMovie = action.payload
+        });
+        builder.addCase(fetchUpcomingMovie.rejected, (state, {payload}) => {
+            state.status = 'error';
+            if (payload) {
+                state.error = payload.message
+            }
+        });
+
+        builder.addCase(fetchTopRatedMovie.pending, (state) => {
+            state.error = null;
+            state.status = 'loading';
+        });
+        builder.addCase(fetchTopRatedMovie.fulfilled, (state, action: PayloadAction<ITopRatedMovie>) => {
+            state.error = null;
+            state.status = 'success'
+            state.responseTopRatedMovie = action.payload
+        });
+        builder.addCase(fetchTopRatedMovie.rejected, (state, {payload}) => {
+            state.status = 'error';
             if (payload) {
                 state.error = payload.message
             }
