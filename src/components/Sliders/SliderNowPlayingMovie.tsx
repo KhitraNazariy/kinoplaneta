@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 
 import scss from './Sliders.module.scss';
 import {settings} from "../../utils/SettingForSlider";
-import {MovieForSlider} from "../ItemForSlider/MovieForSlider";
+import {MovieForSlider} from "../ItemForSlider";
 import {RootState, useAppDispatch} from "../../store/store";
 import {fetchNowPlayingMovie} from "../../store/slices/movie/asyncActions";
 

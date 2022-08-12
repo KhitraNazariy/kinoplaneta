@@ -7,7 +7,7 @@ export const movieService = {
     getNowPlaying: () => axiosService.get<INowPlayingMovie>
     (`${urls.nowPlayingMovie}?api_key=${API_KEY}&language=uk`)
         .then(value => value.data),
-    getPopularMovie: () => axiosService.get<IPopularMovie>
-    (`${urls.popularMovie}?api_key=${API_KEY}&language=uk&`)
+    getPopularMovie: (page: number) => axiosService.get<IPopularMovie>
+    (`${urls.popularMovie}?api_key=${API_KEY}&language=uk&page=${page}`)
         .then(value => value.data)
 }

@@ -8,6 +8,10 @@ type FetchTodosError = {
     message: string;
 };
 
+type PopularMovieProps = {
+    page: number
+}
+
 export const fetchNowPlayingMovie = createAsyncThunk<INowPlayingMovie, undefined, {rejectValue: FetchTodosError}>(
     'movie/fetchNowPlayingMovie',
     async (_, {rejectWithValue}) => {
@@ -20,11 +24,11 @@ export const fetchNowPlayingMovie = createAsyncThunk<INowPlayingMovie, undefined
 );
 
 
-export const fetchPopularMovie = createAsyncThunk<IPopularMovie, undefined, {rejectValue: FetchTodosError}>(
+export const fetchPopularMovie = createAsyncThunk<IPopularMovie, PopularMovieProps, {rejectValue: FetchTodosError}>(
     'movie/fetchPopularMovie',
-    async (_, {rejectWithValue}) => {
+    async ({page}, {rejectWithValue}) => {
         try {
-            return await movieService.getPopularMovie()
+            return await movieService.getPopularMovie(page)
         } catch (e) {
             return rejectWithValue({message: 'Error'})
         }

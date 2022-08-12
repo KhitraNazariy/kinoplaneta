@@ -12,7 +12,7 @@ const PopularMovieSection: FC = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(fetchPopularMovie())
+        dispatch(fetchPopularMovie({page: 1}))
     }, [])
 
     return (
