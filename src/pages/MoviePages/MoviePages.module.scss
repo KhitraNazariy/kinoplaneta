@@ -13,10 +13,10 @@
 
   .content {
     background-color: #FFFFFF;
-    padding: 50px 50px 0;
+    padding: 50px 50px 80px;
 
     @media (max-width: 700px) {
-      padding: 0;
+      padding: 0 0 40px;
     }
 
     &_wrap {

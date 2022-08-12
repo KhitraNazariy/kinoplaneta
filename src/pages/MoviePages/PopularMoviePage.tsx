@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 
 import scss from './MoviePages.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
-import {MovieCard, Pagination} from "../../components";
+import {Loader, MovieCard, Pagination} from "../../components";
 import {fetchPopularMovie} from "../../store/slices/movie/asyncActions";
 import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
 
@@ -21,6 +21,10 @@ const PopularMoviePage: FC = () => {
 
     if (error) {
         return <BadRequestPage/>
+    }
+
+    if (status === 'loading') {
+        return <Loader/>
     }
 
     return (
