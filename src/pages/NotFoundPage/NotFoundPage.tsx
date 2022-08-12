@@ -1,7 +1,8 @@
 import React, {FC} from 'react';
+import {Link} from "react-router-dom";
 
 import scss from './NotFoundPage.module.scss';
-import {Link} from "react-router-dom";
+import {ButtonReturn} from "../../components";
 
 const NotFoundPage: FC = () => {
     return (
@@ -9,7 +10,7 @@ const NotFoundPage: FC = () => {
             <h2>404. Сторінка не знайдена</h2>
             <p>Можливо, вона була переміщена, або ви просто невірно вказали адрес сторінки</p>
             <Link to={'/'}>
-                <button>Повернутись на головну</button>
+                <ButtonReturn/>
             </Link>
         </div>
     );

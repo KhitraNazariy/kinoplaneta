@@ -1,0 +1,21 @@
+.btn {
+  border: none;
+  background-color: #005382;
+  color: #FFFFFF;
+  transition: .3s;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 12px 15px;
+  font-weight: 600;
+  font-size: 17px;
+  
+  @media (max-width: 900px) {
+    font-size: 15px;
+    padding: 10px 12px;
+  }
+
+  &:hover {
+    background-color: #003F63;
+  }
+
+}

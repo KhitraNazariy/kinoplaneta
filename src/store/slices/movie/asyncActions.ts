@@ -18,7 +18,7 @@ export const fetchNowPlayingMovie = createAsyncThunk<INowPlayingMovie, undefined
         try {
             return await movieService.getNowPlaying()
         } catch (e) {
-            return rejectWithValue({message: 'Errrrorrr'})
+            return rejectWithValue({message: 'Сервер не відповідає'})
         }
     }
 );
@@ -30,7 +30,7 @@ export const fetchPopularMovie = createAsyncThunk<IPopularMovie, PopularMoviePro
         try {
             return await movieService.getPopularMovie(page)
         } catch (e) {
-            return rejectWithValue({message: 'Error'})
+            return rejectWithValue({message: 'Сервер не відповідає'})
         }
     }
 );

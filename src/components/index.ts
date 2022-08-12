@@ -9,3 +9,4 @@ export * from './MobileMenu/MobileMenu';
 export * from './Pagination/Pagination';
 export * from './Poster/Poster';
 export * from './Sliders/index';
+export * from './UI/index';

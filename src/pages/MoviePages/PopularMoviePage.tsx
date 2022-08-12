@@ -5,10 +5,11 @@ import scss from './MoviePages.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
 import {MovieCard, Pagination} from "../../components";
 import {fetchPopularMovie} from "../../store/slices/movie/asyncActions";
+import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
 
 const PopularMoviePage: FC = () => {
 
-    const {responsePopularMovie} = useSelector((state: RootState) => state.movie);
+    const {responsePopularMovie, error, status} = useSelector((state: RootState) => state.movie);
     const dispatch = useAppDispatch();
 
     const [page, setPage] = useState(1);
@@ -17,6 +18,10 @@ const PopularMoviePage: FC = () => {
         dispatch(fetchPopularMovie({page: page}))
         window.scrollTo(0, 0)
     }, [page])
+
+    if (error) {
+        return <BadRequestPage/>
+    }
 
     return (
         <div className={scss.wrap}>
@@ -33,7 +38,7 @@ const PopularMoviePage: FC = () => {
                         }
                     </div>
                 </div>
-                <Pagination totalPages={responsePopularMovie.total_pages} page={page} setPage={setPage}/>
+                <Pagination totalPages={500} page={page} setPage={setPage}/>
             </div>
         </div>
     );

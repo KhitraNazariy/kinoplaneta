@@ -4,33 +4,30 @@
   text-align: center;
   margin: 100px auto 0;
 
+  @media (max-width: 900px) {
+      width: 300px;
+  }
+
   h2 {
     font-weight: 700;
     font-size: 60px;
     line-height: 70px;
+
+    @media (max-width: 900px) {
+      font-size: 30px;
+      line-height: 40px;
+    }
+
   }
 
   p {
     font-weight: 300;
     margin: 30px 0;
     line-height: 26px;
-  }
 
-  button {
-    border: none;
-    background-color: #005382;
-    color: #FFFFFF;
-    transition: .3s;
-    cursor: pointer;
-    border-radius: 5px;
-    padding: 12px 15px;
-    font-weight: 600;
-    font-size: 17px;
-
-    &:hover {
-      background-color: #003F63;
+    @media (max-width: 900px) {
+      font-size: 15px;
     }
-
   }
 
 }

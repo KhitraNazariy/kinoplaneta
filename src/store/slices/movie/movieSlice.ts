@@ -25,10 +25,12 @@ const movieSlice = createSlice({
     reducers:{},
     extraReducers: (builder) => {
         builder.addCase(fetchNowPlayingMovie.pending, (state) => {
-            state.status = 'loading'
+            state.error = null;
+            state.status = 'loading';
         });
         builder.addCase(fetchNowPlayingMovie.fulfilled, (state, action: PayloadAction<INowPlayingMovie>) => {
-            state.status = 'success'
+            state.error = null;
+            state.status = 'success';
             state.responseNowPlayingMovie = action.payload
         });
         builder.addCase(fetchNowPlayingMovie.rejected, (state, {payload}) => {

@@ -1,0 +1,22 @@
+.wrap {
+
+  width: 390px;
+  margin: 100px auto 0;
+  text-align: center;
+
+  @media (max-width: 900px) {
+    width: 350px;
+  }
+
+  h2 {
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 60px;
+
+    @media (max-width: 900px) {
+      font-size: 40px;
+    }
+
+  }
+
+}
