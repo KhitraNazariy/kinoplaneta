@@ -35,6 +35,28 @@
       min-width: fit-content;
       margin-bottom: 20px;
 
+      &_facts {
+        margin-top: 40px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+
+        @media (max-width: 1400px) {
+          display: none;
+        }
+
+      p {
+        background-color: #005382;
+        color: #FFFFFF;
+        padding: 20px;
+        border-radius: 5px;
+        line-height: 20px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+      }
+
+      }
+
       h2 {
         font-size: 34px;
         font-weight: 600;

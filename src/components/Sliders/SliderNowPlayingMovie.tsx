@@ -14,7 +14,7 @@ const SliderNowPlayingMovie: FC = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(fetchNowPlayingMovie())
+        dispatch(fetchNowPlayingMovie({page: 1}))
     }, [])
 
     return (

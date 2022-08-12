@@ -4,19 +4,23 @@ import {movieService} from "../../../services";
 import {INowPlayingMovie} from "../../../types/INowPlayingMovie";
 import {IPopularMovie} from "../../../types/IPopularMovie";
 
-type FetchTodosError = {
+interface FetchTodosError {
     message: string;
-};
+}
 
-type PopularMovieProps = {
+interface PopularMovieProps {
     page: number
 }
 
-export const fetchNowPlayingMovie = createAsyncThunk<INowPlayingMovie, undefined, {rejectValue: FetchTodosError}>(
+interface NowPlayingMovieProps {
+    page: number;
+}
+
+export const fetchNowPlayingMovie = createAsyncThunk<INowPlayingMovie, NowPlayingMovieProps, {rejectValue: FetchTodosError}>(
     'movie/fetchNowPlayingMovie',
-    async (_, {rejectWithValue}) => {
+    async ({page}, {rejectWithValue}) => {
         try {
-            return await movieService.getNowPlaying()
+            return await movieService.getNowPlaying(page)
         } catch (e) {
             return rejectWithValue({message: 'Сервер не відповідає'})
         }
