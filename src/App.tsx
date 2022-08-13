@@ -7,9 +7,10 @@ import {
     NotFoundPage,
     NowPlayingMoviePage,
     PopularMoviePage,
+    PopularTvPage,
+    TopRatedMoviePage,
     UpcomingMoviePage
 } from "./pages";
-import {TopRatedMoviePage} from "./pages/MoviePages/TopRatedMoviePage";
 
 const App: FC = () => {
     return (
@@ -21,6 +22,7 @@ const App: FC = () => {
                     <Route path={'movie-now-playing'} element={<NowPlayingMoviePage/>}/>
                     <Route path={'movie-upcoming'} element={<UpcomingMoviePage/>}/>
                     <Route path={'movie-top-rated'} element={<TopRatedMoviePage/>}/>
+                    <Route path={'tv-popular'} element={<PopularTvPage/>}/>
                     <Route path={'*'} element={<NotFoundPage/>}/>
                 </Route>
             </Routes>

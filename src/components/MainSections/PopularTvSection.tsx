@@ -5,6 +5,7 @@ import scss from './MainSections.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
 import {fetchPopularTv} from "../../store/slices/tv/asyncActions";
 import {TvMainCard} from "../MainCards";
+import {Link} from "react-router-dom";
 
 
 const PopularTvSection: FC = () => {
@@ -13,14 +14,16 @@ const PopularTvSection: FC = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(fetchPopularTv())
+        dispatch(fetchPopularTv({page: 1}))
     },[])
 
     return (
         <section className={scss.section}>
             <div className={scss.section_title}>
                 <h2>Популярні серіали</h2>
-                <button>Дивитись всі</button>
+                <Link to={'tv-popular'}>
+                    <button>Дивитись всі</button>
+                </Link>
             </div>
             <div className={scss.section_movies}>
                 {

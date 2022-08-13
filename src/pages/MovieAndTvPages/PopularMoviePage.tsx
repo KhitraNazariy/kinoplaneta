@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 
-import scss from './MoviePages.module.scss';
+import scss from './MovieAndTvPages.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
 import {Loader, MovieCard, Pagination} from "../../components";
 import {fetchPopularMovie} from "../../store/slices/movie/asyncActions";

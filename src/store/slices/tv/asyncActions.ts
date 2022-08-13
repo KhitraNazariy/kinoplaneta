@@ -18,11 +18,11 @@ export const fetchTopRatedTv = createAsyncThunk<ITopRatedTv, undefined, {rejectV
     }
 );
 
-export const fetchPopularTv = createAsyncThunk<IPopularTv, undefined, {rejectValue: FetchTodosError}>(
+export const fetchPopularTv = createAsyncThunk<IPopularTv, {page: number}, {rejectValue: FetchTodosError}>(
     'tv/fetchPopularTv',
-    async (_, {rejectWithValue}) => {
+    async ({page}, {rejectWithValue}) => {
         try {
-            return await tvService.getPopularTv()
+            return await tvService.getPopularTv(page)
         } catch (e) {
             return rejectWithValue({message: 'Error'})
         }

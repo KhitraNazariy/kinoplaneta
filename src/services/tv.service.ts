@@ -7,7 +7,7 @@ export const tvService = {
     getTopRated: () => axiosService.get<ITopRatedTv>
     (`${urls.topRatedTv}?api_key=${API_KEY}&language=uk`)
         .then(value => value.data),
-    getPopularTv: () => axiosService.get<IPopularTv>
-    (`${urls.popularTv}?api_key=${API_KEY}&language=uk`)
+    getPopularTv: (page: number) => axiosService.get<IPopularTv>
+    (`${urls.popularTv}?api_key=${API_KEY}&language=uk&page=${page}`)
         .then(value => value.data)
 }

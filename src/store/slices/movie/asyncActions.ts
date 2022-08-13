@@ -10,23 +10,7 @@ interface FetchTodosError {
     message: string;
 }
 
-interface PopularMovieProps {
-    page: number
-}
-
-interface NowPlayingMovieProps {
-    page: number;
-}
-
-interface UpcomingMovieProps {
-    page: number;
-}
-
-interface TopRatedMovieProps {
-    page: number;
-}
-
-export const fetchNowPlayingMovie = createAsyncThunk<INowPlayingMovie, NowPlayingMovieProps, {rejectValue: FetchTodosError}>(
+export const fetchNowPlayingMovie = createAsyncThunk<INowPlayingMovie, {page: number}, {rejectValue: FetchTodosError}>(
     'movie/fetchNowPlayingMovie',
     async ({page}, {rejectWithValue}) => {
         try {
@@ -38,7 +22,7 @@ export const fetchNowPlayingMovie = createAsyncThunk<INowPlayingMovie, NowPlayin
 );
 
 
-export const fetchPopularMovie = createAsyncThunk<IPopularMovie, PopularMovieProps, {rejectValue: FetchTodosError}>(
+export const fetchPopularMovie = createAsyncThunk<IPopularMovie, {page: number}, {rejectValue: FetchTodosError}>(
     'movie/fetchPopularMovie',
     async ({page}, {rejectWithValue}) => {
         try {
@@ -50,7 +34,7 @@ export const fetchPopularMovie = createAsyncThunk<IPopularMovie, PopularMoviePro
 );
 
 
-export const fetchUpcomingMovie = createAsyncThunk<IUpcomingMovie, UpcomingMovieProps, {rejectValue: FetchTodosError}>(
+export const fetchUpcomingMovie = createAsyncThunk<IUpcomingMovie, {page: number}, {rejectValue: FetchTodosError}>(
     'movie/fetchUpcomingMovie',
     async ({page}, {rejectWithValue}) => {
         try {
@@ -62,7 +46,7 @@ export const fetchUpcomingMovie = createAsyncThunk<IUpcomingMovie, UpcomingMovie
 );
 
 
-export const fetchTopRatedMovie = createAsyncThunk<ITopRatedMovie, TopRatedMovieProps, {rejectValue: FetchTodosError}>(
+export const fetchTopRatedMovie = createAsyncThunk<ITopRatedMovie, {page: number}, {rejectValue: FetchTodosError}>(
     'movie/fetchTopRatedMovie',
     async ({page}, {rejectWithValue}) => {
         try {
