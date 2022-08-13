@@ -14,7 +14,7 @@ const SliderTopRatedTv: FC = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(fetchTopRatedTv())
+        dispatch(fetchTopRatedTv({page: 1}))
     },[])
 
     return (

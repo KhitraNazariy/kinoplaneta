@@ -9,11 +9,11 @@ type FetchTodosError = {
     message: string;
 };
 
-export const fetchTopRatedTv = createAsyncThunk<ITopRatedTv, undefined, {rejectValue: FetchTodosError}>(
+export const fetchTopRatedTv = createAsyncThunk<ITopRatedTv, {page: number}, {rejectValue: FetchTodosError}>(
     'tv/fetchTopRatedTv',
-    async (_, {rejectWithValue}) => {
+    async ({page}, {rejectWithValue}) => {
         try {
-            return await tvService.getTopRated()
+            return await tvService.getTopRated(page)
         } catch (e) {
             return rejectWithValue({message: 'Сервер не відповідає'})
         }
