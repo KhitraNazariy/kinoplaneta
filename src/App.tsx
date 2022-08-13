@@ -3,9 +3,11 @@ import {Route, Routes} from "react-router-dom";
 
 import {MainLayout} from "./layouts/MainLayout/MainLayout";
 import {
+    AiringTodayTvPage,
     HomePage,
     NotFoundPage,
     NowPlayingMoviePage,
+    OnTheAirTvPage,
     PopularMoviePage,
     PopularTvPage,
     TopRatedMoviePage,
@@ -23,6 +25,8 @@ const App: FC = () => {
                     <Route path={'movie-upcoming'} element={<UpcomingMoviePage/>}/>
                     <Route path={'movie-top-rated'} element={<TopRatedMoviePage/>}/>
                     <Route path={'tv-popular'} element={<PopularTvPage/>}/>
+                    <Route path={'tv-airing-today'} element={<AiringTodayTvPage/>}/>
+                    <Route path={'tv-on-the-air'} element={<OnTheAirTvPage/>}/>
                     <Route path={'*'} element={<NotFoundPage/>}/>
                 </Route>
             </Routes>

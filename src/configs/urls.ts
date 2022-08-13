@@ -10,7 +10,9 @@ export const urls = {
     topRatedMovie: '/movie/top_rated',
 
     topRatedTv: '/tv/top_rated',
-    popularTv: '/tv/popular'
+    popularTv: '/tv/popular',
+    airingTodayTv: '/tv/airing_today',
+    onTheAirTv: '/tv/on_the_air'
 }
 
 export default baseURL

@@ -2,6 +2,8 @@ import {axiosService} from "./axios.service";
 import {ITopRatedTv} from "../types/ITopRatedTv";
 import {API_KEY, urls} from "../configs";
 import {IPopularTv} from "../types/IPopularTv";
+import {IAiringTodayTv} from "../types/IAiringTodayTv";
+import {IOnTheAirTv} from "../types/IOnTheAirTv";
 
 export const tvService = {
     getTopRated: () => axiosService.get<ITopRatedTv>
@@ -9,5 +11,11 @@ export const tvService = {
         .then(value => value.data),
     getPopularTv: (page: number) => axiosService.get<IPopularTv>
     (`${urls.popularTv}?api_key=${API_KEY}&language=uk&page=${page}`)
+        .then(value => value.data),
+    getAiringToday: (page: number) => axiosService.get<IAiringTodayTv>
+    (`${urls.airingTodayTv}?api_key=${API_KEY}&language=uk&page=${page}`)
+        .then(value => value.data),
+    getOnTheAir: (page: number) => axiosService.get<IOnTheAirTv>
+    (`${urls.onTheAirTv}?api_key=${API_KEY}&language=uk&page=${page}`)
         .then(value => value.data)
 }
