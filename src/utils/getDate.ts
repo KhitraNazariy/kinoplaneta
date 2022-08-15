@@ -34,9 +34,13 @@ const getMonthName = (month: string, arrMonths: IMonth[]) => {
 
 
 export const getDate = (data: string) => {
-    const arrDate = data.split('-')
-    const year = arrDate[0]
-    const month = getMonthName(arrDate[1], months)
-    const day = arrDate[2]
-    return `${day} ${month}. ${year}`
+    if (data) {
+        const arrDate = data.split('-')
+        const year = arrDate[0]
+        const month = getMonthName(arrDate[1], months)
+        const day = arrDate[2]
+        return `${day} ${month}. ${year}`
+    } else {
+        return ''
+    }
 }

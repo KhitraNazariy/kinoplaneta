@@ -1,0 +1,129 @@
+.details {
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 30%;
+  height: 700px;
+
+  @media (max-width: 700px) {
+    height: 420px;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.8);
+    z-index: 2;
+  }
+
+  &_inner {
+    position: relative;
+    z-index: 3;
+    color: #fff;
+    padding: 0 150px;
+    display: flex;
+    column-gap: 50px;
+    top: 10%;
+
+    img {
+      width: 350px;
+      border-radius: 5px;
+    }
+
+    .content{
+
+      display: flex;
+      flex-direction: column;
+      row-gap: 40px;
+
+      &_title {
+        h2 {
+          font-size: 40px;
+          font-weight: 700;
+        }
+
+        p {
+          margin-top: 10px;
+          font-size: 22px;
+          color: #E5E5E5;
+          font-weight: 300;
+        }
+
+      }
+
+      &_buttons {
+
+        display: flex;
+        column-gap: 20px;
+
+        button {
+          border-radius: 30px;
+          border: none;
+          display: flex;
+          align-items: center;
+          column-gap: 5px;
+          padding: 12px 15px;
+          cursor: pointer;
+          font-size: 15px;
+          transition: .3s;
+          font-weight: 600;
+        }
+
+        &_watch {
+          background-color: #005382;
+          color: #FFFFFF;
+
+          &:hover {
+            background-color: #003F63;
+          }
+        }
+
+        &_add {
+          background-color: #E5E5E5;
+
+          &:hover {
+            background-color: #b7b5b5;
+          }
+
+        }
+
+      }
+
+      &_about {
+
+        h3 {
+          font-size: 24px;
+          font-weight: 600;
+          margin-bottom: 20px;
+        }
+
+        p {
+          font-weight: 300;
+          font-size: 20px;
+        }
+
+        .column {
+          float: left;
+          width: fit-content;
+          display: flex;
+          margin: 10px 0 0 30px;
+          flex-direction: column;
+          row-gap: 20px;
+        }
+
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+      }
+
+    }
+
+  }
+
+}

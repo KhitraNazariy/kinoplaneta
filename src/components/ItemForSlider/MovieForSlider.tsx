@@ -1,4 +1,5 @@
 import React, {FC} from 'react';
+import {Link} from "react-router-dom";
 
 import scss from './SliderCard.module.scss';
 import {IMovie} from "../../types/IMovie";
@@ -11,7 +12,8 @@ const MovieForSlider: FC<IMovie> = (
         poster_path,
         title,
         release_date,
-        vote_average
+        vote_average,
+        id
     }
 ) => {
 
@@ -24,9 +26,13 @@ const MovieForSlider: FC<IMovie> = (
             >
                 {vote_average}
             </p>
-            <img src={`${URL_IMG}${poster_path}`} alt={title}/>
+            <Link to={`movie/${id.toString()}`}>
+                <img src={`${URL_IMG}${poster_path}`} alt={title}/>
+            </Link>
             <div className={scss.sliderCard_description}>
-                <h3>{title}</h3>
+                <Link to={`movie/${id.toString()}`}>
+                    <h3>{title}</h3>
+                </Link>
                 <p>{getDate(release_date)}</p>
             </div>
         </div>

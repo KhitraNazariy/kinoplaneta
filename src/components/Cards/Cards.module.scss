@@ -48,6 +48,11 @@
       flex-direction: column;
       row-gap: 10px;
 
+      a {
+        text-decoration: none;
+        color: #000000;
+      }
+
       @media (max-width: 800px) {
         row-gap: 7px;
       }

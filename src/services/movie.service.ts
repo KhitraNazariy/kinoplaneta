@@ -4,6 +4,7 @@ import {API_KEY, urls} from "../configs";
 import {IPopularMovie} from "../types/IPopularMovie";
 import {IUpcomingMovie} from "../types/IUpcomingMovie";
 import {ITopRatedMovie} from "../types/ITopRatedMovie";
+import {IMovieDetails} from "../types/IMovieDetails";
 
 export const movieService = {
     getNowPlaying: (page: number) => axiosService.get<INowPlayingMovie>
@@ -17,5 +18,8 @@ export const movieService = {
         .then(value => value.data),
     getTopRatedMovie: (page: number) => axiosService.get<ITopRatedMovie>
     (`${urls.topRatedMovie}?api_key=${API_KEY}&language=uk&page=${page}`)
+        .then(value => value.data),
+    getMovieDetails: (id: string | undefined) => axiosService.get<IMovieDetails>
+    (`/movie/${id}?api_key=${API_KEY}&language=uk`)
         .then(value => value.data)
 }

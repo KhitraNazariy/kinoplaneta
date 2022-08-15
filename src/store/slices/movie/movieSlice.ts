@@ -1,10 +1,17 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 import {INowPlayingMovie} from "../../../types/INowPlayingMovie";
-import {fetchNowPlayingMovie, fetchPopularMovie, fetchTopRatedMovie, fetchUpcomingMovie} from "./asyncActions";
+import {
+    fetchMovieDetails,
+    fetchNowPlayingMovie,
+    fetchPopularMovie,
+    fetchTopRatedMovie,
+    fetchUpcomingMovie
+} from "./asyncActions";
 import {IPopularMovie} from "../../../types/IPopularMovie";
 import {IUpcomingMovie} from "../../../types/IUpcomingMovie";
 import {ITopRatedMovie} from "../../../types/ITopRatedMovie";
+import {IMovieDetails} from "../../../types/IMovieDetails";
 
 
 interface MovieSliceState {
@@ -12,6 +19,7 @@ interface MovieSliceState {
     responsePopularMovie: IPopularMovie;
     responseUpcomingMovie: IUpcomingMovie;
     responseTopRatedMovie: ITopRatedMovie;
+    responseMovieDetails: IMovieDetails;
     status: string;
     error: string | null
 }
@@ -21,6 +29,7 @@ const initialState: MovieSliceState = {
     responsePopularMovie: {} as IPopularMovie,
     responseUpcomingMovie: {} as IUpcomingMovie,
     responseTopRatedMovie: {} as ITopRatedMovie,
+    responseMovieDetails: {} as IMovieDetails,
     status: '',
     error: null
 }
@@ -88,6 +97,22 @@ const movieSlice = createSlice({
             state.responseTopRatedMovie = action.payload
         });
         builder.addCase(fetchTopRatedMovie.rejected, (state, {payload}) => {
+            state.status = 'error';
+            if (payload) {
+                state.error = payload.message
+            }
+        });
+
+        builder.addCase(fetchMovieDetails.pending, (state) => {
+            state.error = null;
+            state.status = 'loading';
+        });
+        builder.addCase(fetchMovieDetails.fulfilled, (state, action: PayloadAction<IMovieDetails>) => {
+            state.error = null;
+            state.status = 'success'
+            state.responseMovieDetails = action.payload
+        });
+        builder.addCase(fetchMovieDetails.rejected, (state, {payload}) => {
             state.status = 'error';
             if (payload) {
                 state.error = payload.message

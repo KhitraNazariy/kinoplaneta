@@ -4,6 +4,7 @@ export * from './Footer/Footer';
 export * from './Header/Header';
 export * from './ItemForSlider/index';
 export * from './MainCards/index';
+export * from './MainDetails/index';
 export * from './MainSections/index';
 export * from './MobileMenu/MobileMenu';
 export * from './Pagination/Pagination';

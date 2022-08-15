@@ -1,6 +1,7 @@
 import React, {FC, useEffect} from 'react';
 import Slider from "react-slick";
 import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 import scss from './Sliders.module.scss';
 import {settings} from "../../utils/SettingForSlider";
@@ -21,7 +22,9 @@ const SliderTopRatedTv: FC = () => {
         <section className={scss.slider}>
             <div className={scss.slider_title}>
                 <h2>Серіали з високим рейтингом</h2>
-                <button>Дивитись всі</button>
+                <Link to={'tv-top-rated'}>
+                    <button>Дивитись всі</button>
+                </Link>
             </div>
             <Slider {...settings}>
                 {

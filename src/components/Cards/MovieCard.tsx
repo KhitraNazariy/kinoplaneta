@@ -1,4 +1,5 @@
 import React, {FC} from 'react';
+import {Link} from "react-router-dom";
 
 import scss from './Cards.module.scss';
 import {IMovie} from "../../types/IMovie";
@@ -7,14 +8,18 @@ import {getYear} from "../../utils/getYear";
 import {getColorForRating} from "../../utils/getColorForRating";
 import {MdOutlineBookmarkAdded} from "react-icons/md";
 
-const MovieCard: FC<IMovie> = ({poster_path, title, release_date, overview, vote_average}) => {
+const MovieCard: FC<IMovie> = ({poster_path, title, release_date, overview, vote_average, id}) => {
 
     return (
         <div className={scss.card}>
-            <img src={`${URL_IMG}${poster_path}`} alt={title}/>
+            <Link to={`/movie/${id.toString()}`}>
+                <img src={`${URL_IMG}${poster_path}`} alt={title}/>
+            </Link>
             <div className={scss.card_content}>
                 <div className={scss.card_content_description}>
-                    <h3>{title}</h3>
+                    <Link to={`/movie/${id.toString()}`}>
+                        <h3>{title}</h3>
+                    </Link>
                     <p className={scss.date}>{getYear(release_date)}</p>
                     <p className={scss.overview}>{overview}</p>
                 </div>

@@ -39,7 +39,7 @@ const TopRatedTvPage: FC = () => {
             <div className={scss.content}>
                 <div style={{flexDirection: 'column'}} className={scss.content_wrap}>
                     <div className={scss.content_title}>
-                        <h2>Серіали в ефірі</h2>
+                        <h2>Серіали з високим рейтингом</h2>
                         <p>Добірка серіалів усього світу</p>
                     </div>
                     <div className={scss.content_cards}>
