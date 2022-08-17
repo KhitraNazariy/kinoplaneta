@@ -5,8 +5,12 @@
   background-position: center 30%;
   height: 700px;
 
-  @media (max-width: 700px) {
-    height: 420px;
+  @media (max-width: 950px) {
+    height: 520px;
+  }
+
+  @media (max-width: 750px) {
+    height: 860px;
   }
 
   &:after {
@@ -16,7 +20,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,.8);
+    background: rgba(0, 0, 0, .8);
     z-index: 2;
   }
 
@@ -29,21 +33,68 @@
     column-gap: 50px;
     top: 10%;
 
+    @media (max-width: 1200px) {
+      padding: 0 40px;
+      column-gap: 20px;
+    }
+
+    @media (max-width: 750px) {
+      width: 250px;
+      height: 380px;
+      flex-wrap: wrap;
+      row-gap: 30px;
+      top: 20px;
+    }
+
+    @media (max-width: 700px) {
+      padding: 0 20px;
+    }
+
     img {
       width: 350px;
       border-radius: 5px;
+
+      @media (max-width: 950px) {
+        width: 250px;
+        height: 380px;
+      }
+
     }
 
-    .content{
+    .content {
 
       display: flex;
       flex-direction: column;
       row-gap: 40px;
 
+      @media (max-width: 950px) {
+        row-gap: 20px;
+      }
+
+      @media (max-width: 750px) {
+        min-width: 450px;
+      }
+
+      @media (max-width: 500px) {
+        min-width: 320px;
+      }
+
       &_title {
         h2 {
           font-size: 40px;
           font-weight: 700;
+
+          @media (max-width: 950px) {
+            font-size: 30px;
+            width: fit-content;
+            line-height: 40px;
+          }
+
+          @media (max-width: 500px) {
+            font-size: 22px;
+            line-height: 26px;
+          }
+
         }
 
         p {
@@ -51,6 +102,15 @@
           font-size: 22px;
           color: #E5E5E5;
           font-weight: 300;
+
+          @media (max-width: 950px) {
+            font-size: 17px;
+          }
+
+          @media (max-width: 500px) {
+            font-size: 15px;
+          }
+
         }
 
       }
@@ -71,6 +131,20 @@
           font-size: 15px;
           transition: .3s;
           font-weight: 600;
+
+          @media (max-width: 950px) {
+            font-size: 13px;
+            padding: 10px 12px;
+          }
+
+          @media (max-width: 500px) {
+            font-size: 0;
+            justify-content: center;
+            align-items: center;
+            width: 90px;
+            column-gap: 0;
+          }
+
         }
 
         &_watch {
@@ -99,6 +173,12 @@
           font-size: 24px;
           font-weight: 600;
           margin-bottom: 20px;
+
+          @media (max-width: 950px) {
+            font-size: 18px;
+          }
+
+
         }
 
         &_info {
@@ -106,19 +186,30 @@
           .item {
             display: flex;
             margin-bottom: 20px;
+            font-size: 15px;
+
+            @media (max-width: 950px) {
+              margin-bottom: 10px;
+              font-size: 14px;
+            }
+
 
             &_key {
               display: block;
-              font-size: 15px;
               line-height: 18px;
               flex: 0 0 200px;
               font-weight: 300;
+
+              @media (max-width: 500px) {
+                flex: 0 0 150px;
+              }
+
             }
 
             &_value {
               font-weight: 300;
               color: #E5E5E5;
-              width: 300px;
+              //width: 300px;
             }
 
           }
