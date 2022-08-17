@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {BsFillPlayFill} from "react-icons/bs";
 import {MdOutlineBookmarkAdded} from "react-icons/md";
+import {AiOutlineArrowLeft} from "react-icons/ai";
 
 import scss from './MainDetails.module.scss';
 import {URL_IMG} from "../../configs";
@@ -8,6 +9,7 @@ import {IMovieDetails} from "../../types/IMovieDetails";
 import {getDate} from "../../utils/getDate";
 import {getColorForRating} from "../../utils/getColorForRating";
 import {getYear} from "../../utils/getYear";
+import {useNavigate} from "react-router-dom";
 
 interface IMovieMainDetailsProps {
     data: IMovieDetails
@@ -15,9 +17,17 @@ interface IMovieMainDetailsProps {
 
 const MovieMainDetails: FC<IMovieMainDetailsProps> = ({data}) => {
 
+    const navigate = useNavigate();
+
     return (
         <div className={scss.details} style={{backgroundImage: `url(${URL_IMG}${data.backdrop_path})`}}>
             <div className={scss.details_inner}>
+                <button
+                    onClick={() => navigate(-1)}
+                    className={scss.goBack}
+                >
+                    <AiOutlineArrowLeft/>Назад
+                </button>
                 <img src={`${URL_IMG}${data.poster_path}`} alt={data.title}/>
                 <div className={scss.content}>
                     <div className={scss.content_title}>
