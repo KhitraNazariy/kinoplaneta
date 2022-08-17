@@ -25,40 +25,70 @@ const MovieMainDetails: FC<IMovieMainDetailsProps> = ({data}) => {
                         <p>{data.original_title}</p>
                     </div>
                     <div className={scss.content_buttons}>
-                        <button className={scss.content_buttons_watch}><BsFillPlayFill size={19}/>Дивитись трейлер</button>
-                        <button className={scss.content_buttons_add}><MdOutlineBookmarkAdded size={19}/>Буду дивитись</button>
+                        <button className={scss.content_buttons_watch}><BsFillPlayFill size={19}/>Дивитись трейлер
+                        </button>
+                        <button className={scss.content_buttons_add}><MdOutlineBookmarkAdded size={19}/>Буду дивитись
+                        </button>
                     </div>
                     <div className={scss.content_about}>
                         <h3>Про фільм</h3>
-                        <div className={scss.row}>
-                            <div className={scss.column}>
-                                <p>Жанр</p>
-                                <p>Слоган</p>
-                                <p>Бюджет</p>
-                                <p>Тривалість</p>
-                                <p>Дохід</p>
-                                <p>Прем'єра у світі</p>
-                                <p>Оцінка користувачів</p>
-                            </div>
-                            <div className={scss.column}>
-                                <p>
+                        <ul className={scss.content_about_info}>
+                            <li className={scss.item}>
+                                <span className={scss.item_key}>Жанр</span>
+                                <span className={scss.item_value}>
                                     {
                                         data.genres?.map((genre, index) =>
                                             <span key={genre.id}>
-                                            { (index ? ', ' : '') + genre.name.toLowerCase() }
-                                        </span> )
+                                            {(index ? ', ' : '') + genre.name.toLowerCase()}
+                                        </span>)
                                     }
-                                </p>
-                                <p>{data.tagline ? data.tagline : '—'}</p>
-                                <p>{data.budget ? `$ ${data.budget}` : '—'}</p>
-                                <p>{data.runtime ? data.runtime : '—'} хв</p>
-                                <p>{data.revenue ? `$ ${data.revenue}` : '—'}</p>
-                                <p>{data.release_date ? getDate(data.release_date) : '—'}</p>
-                                <p style={{color: `${getColorForRating(data.vote_average)}`, fontWeight: '600'}}>
+                                </span>
+                            </li>
+                            <li className={scss.item}>
+                                <span className={scss.item_key}>Слоган</span>
+                                <span className={scss.item_value}>
+                                    {data.tagline ? data.tagline : '—'}
+                                </span>
+                            </li>
+                            <li className={scss.item}>
+                                <span className={scss.item_key}>Бюджет</span>
+                                <span className={scss.item_value}>
+                                    {data.budget ? `$ ${data.budget}` : '—'}
+                                </span>
+                            </li>
+                            <li className={scss.item}>
+                                <span className={scss.item_key}>Тривалість</span>
+                                <span className={scss.item_value}>
+                                    {data.runtime ? `${data.runtime} хв` : '—'}
+                                </span>
+                            </li>
+                            <li className={scss.item}>
+                                <span className={scss.item_key}>Дохід</span>
+                                <span className={scss.item_value}>
+                                    {data.revenue ? `$ ${data.revenue}` : '—'}
+                                </span>
+                            </li>
+                            <li className={scss.item}>
+                                <span className={scss.item_key}>Прем'єра у світі</span>
+                                <span className={scss.item_value}>
+                                    {data.release_date ? getDate(data.release_date) : '—'}
+                                </span>
+                            </li>
+                            <li className={scss.item}>
+                                <span className={scss.item_key}>Оцінка користувачів</span>
+                                <span
+                                    className={scss.item_value}
+                                    style={
+                                        {
+                                            color: `${getColorForRating(data.vote_average)}`,
+                                            fontWeight: '600'
+                                        }
+                                    }
+                                >
                                     {data.vote_average}
-                                </p>
-                            </div>
-                        </div>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

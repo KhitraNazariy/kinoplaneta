@@ -101,25 +101,30 @@
           margin-bottom: 20px;
         }
 
-        p {
-          font-weight: 300;
-          font-size: 20px;
+        &_info {
+
+          .item {
+            display: flex;
+            margin-bottom: 20px;
+
+            &_key {
+              display: block;
+              font-size: 15px;
+              line-height: 18px;
+              flex: 0 0 200px;
+              font-weight: 300;
+            }
+
+            &_value {
+              font-weight: 300;
+              color: #E5E5E5;
+              width: 300px;
+            }
+
+          }
+
         }
 
-        .column {
-          float: left;
-          width: fit-content;
-          display: flex;
-          margin: 10px 0 0 30px;
-          flex-direction: column;
-          row-gap: 20px;
-        }
-
-        .row:after {
-          content: "";
-          display: table;
-          clear: both;
-        }
       }
 
     }
