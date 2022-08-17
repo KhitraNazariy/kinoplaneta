@@ -2,27 +2,26 @@ import React, {FC} from 'react';
 import {BsFillPlayFill} from "react-icons/bs";
 import {MdOutlineBookmarkAdded} from "react-icons/md";
 
-import scss from './MainDetails.module.scss';
+import {ITvDetails} from "../../types/ITvDetails";
+import scss from "./MainDetails.module.scss";
 import {URL_IMG} from "../../configs";
-import {IMovieDetails} from "../../types/IMovieDetails";
+import {getYear} from "../../utils/getYear";
 import {getDate} from "../../utils/getDate";
 import {getColorForRating} from "../../utils/getColorForRating";
-import {getYear} from "../../utils/getYear";
 
-interface IMovieMainDetailsProps {
-    data: IMovieDetails
+interface ITvMainDetailsProps {
+    data: ITvDetails;
 }
 
-const MovieMainDetails: FC<IMovieMainDetailsProps> = ({data}) => {
-
+const TvMainDetails: FC<ITvMainDetailsProps> = ({data}) => {
     return (
         <div className={scss.details} style={{backgroundImage: `url(${URL_IMG}${data.backdrop_path})`}}>
             <div className={scss.details_inner}>
-                <img src={`${URL_IMG}${data.poster_path}`} alt={data.title}/>
+                <img src={`${URL_IMG}${data.poster_path}`} alt={data.name}/>
                 <div className={scss.content}>
                     <div className={scss.content_title}>
-                        <h2>{data.title} ({getYear(data.release_date)})</h2>
-                        <p>{data.original_title}</p>
+                        <h2>{data.name} ({getYear(data.first_air_date)})</h2>
+                        <p>{data.original_name}</p>
                     </div>
                     <div className={scss.content_buttons}>
                         <button className={scss.content_buttons_watch}><BsFillPlayFill size={19}/>Дивитись трейлер</button>
@@ -34,9 +33,9 @@ const MovieMainDetails: FC<IMovieMainDetailsProps> = ({data}) => {
                             <div className={scss.column}>
                                 <p>Жанр</p>
                                 <p>Слоган</p>
-                                <p>Бюджет</p>
-                                <p>Тривалість</p>
-                                <p>Дохід</p>
+                                <p>Тривалість серії</p>
+                                <p>Кількість серій</p>
+                                <p>Кількість сезонів</p>
                                 <p>Прем'єра у світі</p>
                                 <p>Оцінка користувачів</p>
                             </div>
@@ -50,10 +49,10 @@ const MovieMainDetails: FC<IMovieMainDetailsProps> = ({data}) => {
                                     }
                                 </p>
                                 <p>{data.tagline ? data.tagline : '—'}</p>
-                                <p>{data.budget ? `$ ${data.budget}` : '—'}</p>
-                                <p>{data.runtime ? data.runtime : '—'} хв</p>
-                                <p>{data.revenue ? `$ ${data.revenue}` : '—'}</p>
-                                <p>{data.release_date ? getDate(data.release_date) : '—'}</p>
+                                <p>{data.episode_run_time ? `${data.episode_run_time[0]} хв` : '—'}</p>
+                                <p>{data.number_of_episodes ? data.number_of_episodes : '—'}</p>
+                                <p>{data.number_of_seasons ? data.number_of_seasons : '—'}</p>
+                                <p>{data.first_air_date ? getDate(data.first_air_date) : '—'}</p>
                                 <p style={{color: `${getColorForRating(data.vote_average)}`, fontWeight: '600'}}>
                                     {data.vote_average}
                                 </p>
@@ -66,4 +65,4 @@ const MovieMainDetails: FC<IMovieMainDetailsProps> = ({data}) => {
     );
 };
 
-export {MovieMainDetails};
+export {TvMainDetails};

@@ -1,16 +1,18 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 import {ITopRatedTv} from "../../../types/ITopRatedTv";
-import {fetchAiringTodayTv, fetchOnTheAirTv, fetchPopularTv, fetchTopRatedTv} from "./asyncActions";
+import {fetchAiringTodayTv, fetchOnTheAirTv, fetchPopularTv, fetchTopRatedTv, fetchTvDetails} from "./asyncActions";
 import {IPopularTv} from "../../../types/IPopularTv";
 import {IAiringTodayTv} from "../../../types/IAiringTodayTv";
 import {IOnTheAirTv} from "../../../types/IOnTheAirTv";
+import {ITvDetails} from "../../../types/ITvDetails";
 
 interface TvSliceState {
     responseTopRatedTv: ITopRatedTv;
     responsePopularTv: IPopularTv;
     responseAiringToday: IAiringTodayTv;
     responseOnTheAirTv: IOnTheAirTv;
+    responseTvDetails: ITvDetails;
     status: string;
     error: string | null;
 }
@@ -20,6 +22,7 @@ const initialState: TvSliceState = {
     responsePopularTv: {} as IPopularTv,
     responseAiringToday: {} as IAiringTodayTv,
     responseOnTheAirTv: {} as IOnTheAirTv,
+    responseTvDetails: {} as ITvDetails,
     status: '',
     error: null
 }
@@ -87,6 +90,22 @@ const tvSlice = createSlice({
             state.responseOnTheAirTv = action.payload
         });
         builder.addCase(fetchOnTheAirTv.rejected, (state, {payload}) => {
+            state.status = 'error';
+            if (payload) {
+                state.error = payload.message
+            }
+        })
+
+        builder.addCase(fetchTvDetails.pending, (state) => {
+            state.error = null;
+            state.status = 'loading';
+        });
+        builder.addCase(fetchTvDetails.fulfilled, (state, action: PayloadAction<ITvDetails>) => {
+            state.status = 'success';
+            state.error = null
+            state.responseTvDetails = action.payload
+        });
+        builder.addCase(fetchTvDetails.rejected, (state, {payload}) => {
             state.status = 'error';
             if (payload) {
                 state.error = payload.message

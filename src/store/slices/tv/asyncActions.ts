@@ -1,9 +1,11 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
+
 import {ITopRatedTv} from "../../../types/ITopRatedTv";
 import {tvService} from "../../../services";
 import {IPopularTv} from "../../../types/IPopularTv";
 import {IAiringTodayTv} from "../../../types/IAiringTodayTv";
 import {IOnTheAirTv} from "../../../types/IOnTheAirTv";
+import {ITvDetails} from "../../../types/ITvDetails";
 
 type FetchTodosError = {
     message: string;
@@ -47,6 +49,17 @@ export const fetchOnTheAirTv = createAsyncThunk<IOnTheAirTv, {page: number}, {re
     async ({page}, {rejectWithValue}) => {
         try {
             return await tvService.getOnTheAir(page)
+        } catch (e) {
+            return rejectWithValue({message: 'Сервер не відповідає'})
+        }
+    }
+)
+
+export const fetchTvDetails = createAsyncThunk<ITvDetails, {id: string | undefined}, {rejectValue: FetchTodosError}>(
+    'movie/fetchTvDetails',
+    async ({id}, {rejectWithValue}) => {
+        try {
+            return await tvService.getTvDetails(id)
         } catch (e) {
             return rejectWithValue({message: 'Сервер не відповідає'})
         }

@@ -4,7 +4,7 @@ import {Route, Routes} from "react-router-dom";
 import {MainLayout} from "./layouts/MainLayout/MainLayout";
 import {
     AiringTodayTvPage,
-    HomePage,
+    HomePage, MovieDetailsPage,
     NotFoundPage,
     NowPlayingMoviePage,
     OnTheAirTvPage,
@@ -12,9 +12,9 @@ import {
     PopularTvPage,
     TopRatedMoviePage,
     TopRatedTvPage,
+    TvDetailsPage,
     UpcomingMoviePage
 } from "./pages";
-import {MovieDetailsPage} from "./pages/DetailsPages";
 
 const App: FC = () => {
     return (
@@ -31,6 +31,7 @@ const App: FC = () => {
                     <Route path={'tv-on-the-air'} element={<OnTheAirTvPage/>}/>
                     <Route path={'tv-top-rated'} element={<TopRatedTvPage/>}/>
                     <Route path={'movie/:id'} element={<MovieDetailsPage/>}/>
+                    <Route path={'tv/:id'} element={<TvDetailsPage/>}/>
                     <Route path={'*'} element={<NotFoundPage/>}/>
                 </Route>
             </Routes>

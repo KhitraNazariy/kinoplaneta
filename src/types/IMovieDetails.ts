@@ -3,7 +3,7 @@ export interface IMovieDetails {
     backdrop_path: string;
     belongs_to_collection: IBelongToCollection;
     budget: number;
-    genres: IGenres[];
+    genres: IGenre[];
     homepage: string;
     id: number;
     imdb_id: string;
@@ -12,12 +12,12 @@ export interface IMovieDetails {
     overview: string;
     popularity: number;
     poster_path: string;
-    production_companies: IProductionCompanies[];
-    production_countries: IProductionCountries[];
+    production_companies: IProductionCompany[];
+    production_countries: IProductionCountry[];
     release_date: string;
     revenue: number;
     runtime: number;
-    spoken_languages: ISpokenLanguages[];
+    spoken_languages: ISpokenLanguage[];
     status: string;
     tagline: string;
     title: string;
@@ -33,24 +33,24 @@ interface IBelongToCollection {
     backdrop_path: string;
 }
 
-interface IGenres {
+interface IGenre {
     id: number;
     name: string;
 }
 
-interface IProductionCompanies {
+interface IProductionCompany {
     id: number;
     logo_path: string;
     name: string;
     origin_country: string;
 }
 
-interface IProductionCountries {
+interface IProductionCountry {
     iso_3166_1: string;
     name: string;
 }
 
-interface ISpokenLanguages {
+interface ISpokenLanguage {
     english_name: string;
     iso_639_1: string;
     name: string;
