@@ -4,8 +4,8 @@ import {useSelector} from "react-redux";
 
 import scss from './DetailsPages.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
-import {fetchMovieDetails} from "../../store/slices/movie/asyncActions";
-import {Loader, MovieMainDetails} from "../../components";
+import {fetchCreditsMovie, fetchMovieDetails} from "../../store/slices/movie/asyncActions";
+import {Loader, MovieMainDetails, TabsComponent} from "../../components";
 import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
 
 const MovieDetailsPage: FC = () => {
@@ -17,6 +17,7 @@ const MovieDetailsPage: FC = () => {
 
     useEffect(() => {
         dispatch(fetchMovieDetails({id: id}))
+        dispatch(fetchCreditsMovie({id: id}))
     }, [])
 
     if (error) {
@@ -30,38 +31,12 @@ const MovieDetailsPage: FC = () => {
     return (
         <section className={scss.wrap}>
             <MovieMainDetails data={responseMovieDetails}/>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
+            <div className={scss.content}>
+                <TabsComponent
+                    overview={responseMovieDetails.overview}
+                    id={responseMovieDetails.id}
+                />
+            </div>
         </section>
     );
 };

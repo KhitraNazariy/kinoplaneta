@@ -6,6 +6,7 @@ import {IPopularMovie} from "../../../types/IPopularMovie";
 import {IUpcomingMovie} from "../../../types/IUpcomingMovie";
 import {ITopRatedMovie} from "../../../types/ITopRatedMovie";
 import {IMovieDetails} from "../../../types/IMovieDetails";
+import {ICreditsMovie} from "../../../types/ICreditsMovie";
 
 interface FetchTodosError {
     message: string;
@@ -64,6 +65,17 @@ export const fetchMovieDetails = createAsyncThunk<IMovieDetails, {id: string | u
     async ({id}, {rejectWithValue}) => {
         try {
             return await movieService.getMovieDetails(id)
+        } catch (e) {
+            return rejectWithValue({message: 'Сервер не відповідає'})
+        }
+    }
+)
+
+export const fetchCreditsMovie = createAsyncThunk<ICreditsMovie, {id: string | undefined}, {rejectValue: FetchTodosError}>(
+    'movie/fetchCreditsMovie',
+    async ({id}, {rejectWithValue}) => {
+        try {
+            return await movieService.getMovieCredits(id)
         } catch (e) {
             return rejectWithValue({message: 'Сервер не відповідає'})
         }

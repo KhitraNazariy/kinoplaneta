@@ -1,7 +1,9 @@
-.wrap {
-
-}
-
-.a, .b, .c, .d {
+.content {
   padding: 0 150px;
+  margin: 30px 0;
+
+  @media (max-width: 1200px) {
+    padding: 0 40px;
+  }
+
 }
