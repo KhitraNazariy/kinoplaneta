@@ -9,6 +9,7 @@ import {settings} from "../../utils/SettingForSlider";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store/store";
 import {PersonForSlider} from "../PersonForSlider/PersonForSlider";
+import {ICast} from "../../types/ICreditsMovie";
 
 interface ITabsComponentProps {
     id: number;
@@ -19,7 +20,9 @@ const TabsComponent: FC<ITabsComponentProps> = ({overview, id}) => {
 
     const {responseMovieCredits} = useSelector((state: RootState) => state.movie);
 
-    console.log(responseMovieCredits)
+    const isEmptyArr = (arr: ICast[]) => {
+        return arr?.length !== 0;
+    }
 
     return (
         <Tabs>
@@ -30,23 +33,27 @@ const TabsComponent: FC<ITabsComponentProps> = ({overview, id}) => {
 
             <TabPanel>
                 <p className={scss.overview}>
-                    {overview}
+                    {overview === '' ? 'Опис відсутній' : overview}
                 </p>
             </TabPanel>
             <TabPanel>
-                <section className={scss.slider}>
-                    <div className={scss.slider_title}>
-                        <h2>У головних ролях</h2>
-                        <Link to={'movie-now-playing'}>
-                            <button>Оглянути всі</button>
-                        </Link>
-                    </div>
-                    <Slider {...settings}>
-                        {
-                            responseMovieCredits.cast?.map(item => <PersonForSlider key={item.id} {...item}/>)
-                        }
-                    </Slider>
-                </section>
+                {
+                    isEmptyArr(responseMovieCredits?.cast ) && (
+                        <section className={scss.slider}>
+                            <div className={scss.slider_title}>
+                                <h2>У головних ролях</h2>
+                                <Link to={'movie-now-playing'}>
+                                    <button>Оглянути всі</button>
+                                </Link>
+                            </div>
+                            <Slider {...settings}>
+                                {
+                                    responseMovieCredits.cast?.map(item => <PersonForSlider key={item.id} {...item}/>)
+                                }
+                            </Slider>
+                        </section>
+                    )
+                }
             </TabPanel>
         </Tabs>
 

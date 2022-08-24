@@ -1,11 +1,19 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 import {ITopRatedTv} from "../../../types/ITopRatedTv";
-import {fetchAiringTodayTv, fetchOnTheAirTv, fetchPopularTv, fetchTopRatedTv, fetchTvDetails} from "./asyncActions";
+import {
+    fetchAiringTodayTv,
+    fetchOnTheAirTv,
+    fetchPopularTv,
+    fetchRecommendationsTv,
+    fetchTopRatedTv,
+    fetchTvDetails
+} from "./asyncActions";
 import {IPopularTv} from "../../../types/IPopularTv";
 import {IAiringTodayTv} from "../../../types/IAiringTodayTv";
 import {IOnTheAirTv} from "../../../types/IOnTheAirTv";
 import {ITvDetails} from "../../../types/ITvDetails";
+import {IRecommendationTv} from "../../../types/IRecommendationTv";
 
 interface TvSliceState {
     responseTopRatedTv: ITopRatedTv;
@@ -13,6 +21,7 @@ interface TvSliceState {
     responseAiringToday: IAiringTodayTv;
     responseOnTheAirTv: IOnTheAirTv;
     responseTvDetails: ITvDetails;
+    responseRecommendationsTv: IRecommendationTv;
     status: string;
     error: string | null;
 }
@@ -23,6 +32,7 @@ const initialState: TvSliceState = {
     responseAiringToday: {} as IAiringTodayTv,
     responseOnTheAirTv: {} as IOnTheAirTv,
     responseTvDetails: {} as ITvDetails,
+    responseRecommendationsTv: {} as IRecommendationTv,
     status: '',
     error: null
 }
@@ -106,6 +116,22 @@ const tvSlice = createSlice({
             state.responseTvDetails = action.payload
         });
         builder.addCase(fetchTvDetails.rejected, (state, {payload}) => {
+            state.status = 'error';
+            if (payload) {
+                state.error = payload.message
+            }
+        })
+
+        builder.addCase(fetchRecommendationsTv.pending, (state) => {
+            state.error = null;
+            state.status = 'loading';
+        });
+        builder.addCase(fetchRecommendationsTv.fulfilled, (state, action: PayloadAction<IRecommendationTv>) => {
+            state.status = 'success';
+            state.error = null
+            state.responseRecommendationsTv = action.payload
+        });
+        builder.addCase(fetchRecommendationsTv.rejected, (state, {payload}) => {
             state.status = 'error';
             if (payload) {
                 state.error = payload.message

@@ -4,20 +4,33 @@ import {useParams} from "react-router-dom";
 
 import {RootState, useAppDispatch} from "../../store/store";
 import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
-import {Loader, TvMainDetails} from "../../components";
-import {fetchTvDetails} from "../../store/slices/tv/asyncActions";
+import {Loader, RecommendationsMovie, RecommendationsTv, TabsComponent, TvMainDetails} from "../../components";
+import {fetchRecommendationsTv, fetchTvDetails} from "../../store/slices/tv/asyncActions";
 import scss from "./DetailsPages.module.scss";
+import Slider from "react-slick";
+import {settings} from "../../utils/SettingForSlider";
+import {ITv} from "../../types/ITv";
 
 const TvDetailsPage: FC = () => {
 
-    const {status, error, responseTvDetails} = useSelector((state: RootState) => state.tv);
+    const {
+        status,
+        error,
+        responseTvDetails,
+        responseRecommendationsTv
+    } = useSelector((state: RootState) => state.tv);
     const dispatch = useAppDispatch();
 
     const {id} = useParams();
 
     useEffect(() => {
         dispatch(fetchTvDetails({id: id}))
-    }, [])
+        dispatch(fetchRecommendationsTv({id: id}))
+    }, [id])
+
+    const isEmptyArr = (arr: any) => {
+        return arr?.length !== 0;
+    }
 
     if (error) {
         return <BadRequestPage/>
@@ -30,38 +43,25 @@ const TvDetailsPage: FC = () => {
     return (
         <section className={scss.wrap}>
             <TvMainDetails data={responseTvDetails}/>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
-            <div>df</div>
+            <div className={scss.content}>
+                <TabsComponent
+                    overview={responseTvDetails.overview}
+                    id={responseTvDetails.id}
+                />
+                {
+                    isEmptyArr(responseRecommendationsTv.results) && (
+                        <div className={scss.content_recommendations}>
+                            <h2>Рекомендації</h2>
+                            <Slider {...settings}>
+                                {
+                                    Array.isArray(responseRecommendationsTv.results) &&
+                                    responseRecommendationsTv.results.map(tv => <RecommendationsTv key={tv.id} {...tv}/>)
+                                }
+                            </Slider>
+                        </div>
+                    )
+                }
+            </div>
         </section>
     );
 };

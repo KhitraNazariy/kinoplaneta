@@ -6,6 +6,7 @@ import {IUpcomingMovie} from "../types/IUpcomingMovie";
 import {ITopRatedMovie} from "../types/ITopRatedMovie";
 import {IMovieDetails} from "../types/IMovieDetails";
 import {ICreditsMovie} from "../types/ICreditsMovie";
+import {IRecommendationMovie} from "../types/IRecommendationMovie";
 
 export const movieService = {
     getNowPlaying: (page: number) => axiosService.get<INowPlayingMovie>
@@ -25,5 +26,8 @@ export const movieService = {
         .then(value => value.data),
     getMovieCredits: (id: string | undefined) => axiosService.get<ICreditsMovie>
     (`/movie/${id}/credits?api_key=${API_KEY}&language=uk`)
-        .then(value => value.data)
+        .then(value => value.data),
+    getRecommendationsMovie: (id: string | undefined) => axiosService.get<IRecommendationMovie>
+    (`/movie/${id}/recommendations?api_key=${API_KEY}&language=uk`)
+        .then(value => value.data),
 }

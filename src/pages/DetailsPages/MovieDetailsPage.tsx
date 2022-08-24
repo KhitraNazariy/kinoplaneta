@@ -4,13 +4,21 @@ import {useSelector} from "react-redux";
 
 import scss from './DetailsPages.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
-import {fetchCreditsMovie, fetchMovieDetails} from "../../store/slices/movie/asyncActions";
-import {Loader, MovieMainDetails, TabsComponent} from "../../components";
+import {fetchCreditsMovie, fetchMovieDetails, fetchRecommendationsMovie} from "../../store/slices/movie/asyncActions";
+import {Loader, MovieMainDetails, RecommendationsMovie, TabsComponent} from "../../components";
 import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
+import Slider from "react-slick";
+import {settings} from "../../utils/SettingForSlider";
+import {IMovie} from "../../types/IMovie";
 
 const MovieDetailsPage: FC = () => {
 
-    const {status, error, responseMovieDetails} = useSelector((state: RootState) => state.movie);
+    const {
+        status,
+        error,
+        responseMovieDetails,
+        responseMovieRecommendations
+    } = useSelector((state: RootState) => state.movie);
     const dispatch = useAppDispatch();
 
     const {id} = useParams();
@@ -18,7 +26,13 @@ const MovieDetailsPage: FC = () => {
     useEffect(() => {
         dispatch(fetchMovieDetails({id: id}))
         dispatch(fetchCreditsMovie({id: id}))
-    }, [])
+        dispatch(fetchRecommendationsMovie({id: id}))
+    }, [id])
+
+    const isEmptyArr = (arr: IMovie[]) => {
+        return arr?.length !== 0;
+    }
+
 
     if (error) {
         return <BadRequestPage/>
@@ -36,6 +50,19 @@ const MovieDetailsPage: FC = () => {
                     overview={responseMovieDetails.overview}
                     id={responseMovieDetails.id}
                 />
+                {
+                    isEmptyArr(responseMovieRecommendations.results) && (
+                        <div className={scss.content_recommendations}>
+                            <h2>Рекомендації</h2>
+                            <Slider {...settings}>
+                                {
+                                    Array.isArray(responseMovieRecommendations.results) &&
+                                    responseMovieRecommendations.results.map(movie => <RecommendationsMovie key={movie.id} {...movie}/>)
+                                }
+                            </Slider>
+                        </div>
+                    )
+                }
             </div>
         </section>
     );

@@ -14,6 +14,7 @@ interface ITvMainDetailsProps {
 }
 
 const TvMainDetails: FC<ITvMainDetailsProps> = ({data}) => {
+
     return (
         <div className={scss.details} style={{backgroundImage: `url(${URL_IMG}${data.backdrop_path})`}}>
             <div className={scss.details_inner}>
@@ -30,7 +31,7 @@ const TvMainDetails: FC<ITvMainDetailsProps> = ({data}) => {
                         </button>
                     </div>
                     <div className={scss.content_about}>
-                        <h3>Про фільм</h3>
+                        <h3>Про серіал</h3>
                         <ul className={scss.content_about_info}>
                             <li className={scss.item}>
                                 <span className={scss.item_key}>Жанр</span>
@@ -52,7 +53,7 @@ const TvMainDetails: FC<ITvMainDetailsProps> = ({data}) => {
                             <li className={scss.item}>
                                 <span className={scss.item_key}>Тривалість серії</span>
                                 <span className={scss.item_value}>
-                                   {data.episode_run_time ? `${data.episode_run_time[0]} хв` : '—'}
+                                   {data.episode_run_time[0] ? `${data.episode_run_time[0]} хв` : '—'}
                                 </span>
                             </li>
                             <li className={scss.item}>

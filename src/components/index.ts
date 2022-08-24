@@ -10,6 +10,7 @@ export * from './MobileMenu/MobileMenu';
 export * from './PersonForSlider/PersonForSlider';
 export * from './Pagination/Pagination';
 export * from './Poster/Poster';
+export * from './RecommendationsItems/index';
 export * from './Sliders/index';
 export * from './TabsComponent/TabsComponent';
 export * from './UI/index';
