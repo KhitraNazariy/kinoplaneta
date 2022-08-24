@@ -3,8 +3,9 @@ import React, {FC} from 'react';
 import scss from './PersonForSlider.module.scss';
 import {ICast} from "../../types/ICreditsMovie";
 import {URL_IMG} from "../../configs";
+import {ICastTv} from "../../types/ICreditsTv";
 
-const PersonForSlider: FC<ICast> = ({character, name, profile_path}) => {
+const PersonForSlider: FC<ICast | ICastTv> = ({character, name, profile_path}) => {
 
     return (
         <div className={scss.card}>

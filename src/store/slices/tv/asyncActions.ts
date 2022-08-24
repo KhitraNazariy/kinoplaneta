@@ -7,6 +7,7 @@ import {IAiringTodayTv} from "../../../types/IAiringTodayTv";
 import {IOnTheAirTv} from "../../../types/IOnTheAirTv";
 import {ITvDetails} from "../../../types/ITvDetails";
 import {IRecommendationTv} from "../../../types/IRecommendationTv";
+import {ICreditsTv} from "../../../types/ICreditsTv";
 
 type FetchTodosError = {
     message: string;
@@ -72,6 +73,17 @@ export const fetchRecommendationsTv = createAsyncThunk<IRecommendationTv, {id: s
     async ({id}, {rejectWithValue}) => {
         try {
             return await tvService.getRecommendationsTv(id)
+        } catch (e) {
+            return rejectWithValue({message: 'Сервер не відповідає'})
+        }
+    }
+)
+
+export const fetchCreditsTv = createAsyncThunk<ICreditsTv, {id: string | undefined}, {rejectValue: FetchTodosError}>(
+    'movie/fetchCreditsTv',
+    async ({id}, {rejectWithValue}) => {
+        try {
+            return await tvService.getTvCredits(id)
         } catch (e) {
             return rejectWithValue({message: 'Сервер не відповідає'})
         }

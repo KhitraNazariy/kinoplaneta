@@ -53,7 +53,7 @@ const TvMainDetails: FC<ITvMainDetailsProps> = ({data}) => {
                             <li className={scss.item}>
                                 <span className={scss.item_key}>Тривалість серії</span>
                                 <span className={scss.item_value}>
-                                   {data.episode_run_time[0] ? `${data.episode_run_time[0]} хв` : '—'}
+                                   {data.episode_run_time ? `${data.episode_run_time[0]} хв` : '—'}
                                 </span>
                             </li>
                             <li className={scss.item}>

@@ -17,7 +17,8 @@ const MovieDetailsPage: FC = () => {
         status,
         error,
         responseMovieDetails,
-        responseMovieRecommendations
+        responseMovieRecommendations,
+        responseMovieCredits
     } = useSelector((state: RootState) => state.movie);
     const dispatch = useAppDispatch();
 
@@ -33,7 +34,6 @@ const MovieDetailsPage: FC = () => {
         return arr?.length !== 0;
     }
 
-
     if (error) {
         return <BadRequestPage/>
     }
@@ -47,6 +47,7 @@ const MovieDetailsPage: FC = () => {
             <MovieMainDetails data={responseMovieDetails}/>
             <div className={scss.content}>
                 <TabsComponent
+                    cast={responseMovieCredits.cast}
                     overview={responseMovieDetails.overview}
                     id={responseMovieDetails.id}
                 />

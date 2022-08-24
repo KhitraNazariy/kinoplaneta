@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 import {ITopRatedTv} from "../../../types/ITopRatedTv";
 import {
-    fetchAiringTodayTv,
+    fetchAiringTodayTv, fetchCreditsTv,
     fetchOnTheAirTv,
     fetchPopularTv,
     fetchRecommendationsTv,
@@ -14,6 +14,7 @@ import {IAiringTodayTv} from "../../../types/IAiringTodayTv";
 import {IOnTheAirTv} from "../../../types/IOnTheAirTv";
 import {ITvDetails} from "../../../types/ITvDetails";
 import {IRecommendationTv} from "../../../types/IRecommendationTv";
+import {ICreditsTv} from "../../../types/ICreditsTv";
 
 interface TvSliceState {
     responseTopRatedTv: ITopRatedTv;
@@ -22,6 +23,7 @@ interface TvSliceState {
     responseOnTheAirTv: IOnTheAirTv;
     responseTvDetails: ITvDetails;
     responseRecommendationsTv: IRecommendationTv;
+    responseTvCredits: ICreditsTv;
     status: string;
     error: string | null;
 }
@@ -33,6 +35,7 @@ const initialState: TvSliceState = {
     responseOnTheAirTv: {} as IOnTheAirTv,
     responseTvDetails: {} as ITvDetails,
     responseRecommendationsTv: {} as IRecommendationTv,
+    responseTvCredits: {} as ICreditsTv,
     status: '',
     error: null
 }
@@ -132,6 +135,22 @@ const tvSlice = createSlice({
             state.responseRecommendationsTv = action.payload
         });
         builder.addCase(fetchRecommendationsTv.rejected, (state, {payload}) => {
+            state.status = 'error';
+            if (payload) {
+                state.error = payload.message
+            }
+        })
+
+        builder.addCase(fetchCreditsTv.pending, (state) => {
+            state.error = null;
+            state.status = 'loading';
+        });
+        builder.addCase(fetchCreditsTv.fulfilled, (state, action: PayloadAction<ICreditsTv>) => {
+            state.status = 'success';
+            state.error = null
+            state.responseTvCredits = action.payload
+        });
+        builder.addCase(fetchCreditsTv.rejected, (state, {payload}) => {
             state.status = 'error';
             if (payload) {
                 state.error = payload.message

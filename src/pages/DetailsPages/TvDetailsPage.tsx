@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 import {RootState, useAppDispatch} from "../../store/store";
 import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
 import {Loader, RecommendationsMovie, RecommendationsTv, TabsComponent, TvMainDetails} from "../../components";
-import {fetchRecommendationsTv, fetchTvDetails} from "../../store/slices/tv/asyncActions";
+import {fetchCreditsTv, fetchRecommendationsTv, fetchTvDetails} from "../../store/slices/tv/asyncActions";
 import scss from "./DetailsPages.module.scss";
 import Slider from "react-slick";
 import {settings} from "../../utils/SettingForSlider";
@@ -17,15 +17,17 @@ const TvDetailsPage: FC = () => {
         status,
         error,
         responseTvDetails,
-        responseRecommendationsTv
+        responseRecommendationsTv,
+        responseTvCredits
     } = useSelector((state: RootState) => state.tv);
     const dispatch = useAppDispatch();
 
     const {id} = useParams();
 
     useEffect(() => {
-        dispatch(fetchTvDetails({id: id}))
-        dispatch(fetchRecommendationsTv({id: id}))
+        dispatch(fetchTvDetails({id}))
+        dispatch(fetchRecommendationsTv({id}))
+        dispatch(fetchCreditsTv({id}))
     }, [id])
 
     const isEmptyArr = (arr: any) => {
@@ -45,6 +47,7 @@ const TvDetailsPage: FC = () => {
             <TvMainDetails data={responseTvDetails}/>
             <div className={scss.content}>
                 <TabsComponent
+                    cast={responseTvCredits.cast}
                     overview={responseTvDetails.overview}
                     id={responseTvDetails.id}
                 />

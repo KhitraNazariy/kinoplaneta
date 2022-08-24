@@ -10,17 +10,17 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../store/store";
 import {PersonForSlider} from "../PersonForSlider/PersonForSlider";
 import {ICast} from "../../types/ICreditsMovie";
+import {ICastTv} from "../../types/ICreditsTv";
 
 interface ITabsComponentProps {
     id: number;
     overview: string;
+    cast: ICast[] | ICastTv[]
 }
 
-const TabsComponent: FC<ITabsComponentProps> = ({overview, id}) => {
+const TabsComponent: FC<ITabsComponentProps> = ({overview, id, cast}) => {
 
-    const {responseMovieCredits} = useSelector((state: RootState) => state.movie);
-
-    const isEmptyArr = (arr: ICast[]) => {
+    const isEmptyArr = (arr: ICast[] | ICastTv[]) => {
         return arr?.length !== 0;
     }
 
@@ -38,7 +38,7 @@ const TabsComponent: FC<ITabsComponentProps> = ({overview, id}) => {
             </TabPanel>
             <TabPanel>
                 {
-                    isEmptyArr(responseMovieCredits?.cast ) && (
+                    isEmptyArr(cast) && (
                         <section className={scss.slider}>
                             <div className={scss.slider_title}>
                                 <h2>У головних ролях</h2>
@@ -48,7 +48,7 @@ const TabsComponent: FC<ITabsComponentProps> = ({overview, id}) => {
                             </div>
                             <Slider {...settings}>
                                 {
-                                    responseMovieCredits.cast?.map(item => <PersonForSlider key={item.id} {...item}/>)
+                                    cast?.map(item => <PersonForSlider key={item.id} {...item}/>)
                                 }
                             </Slider>
                         </section>
