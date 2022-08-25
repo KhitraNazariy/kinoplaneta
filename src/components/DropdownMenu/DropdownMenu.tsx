@@ -49,7 +49,9 @@ const DropdownMenu: FC = () => {
                 <li>
                     Персони
                     <ul>
-                        <li>Популярні</li>
+                        <NavLink to={'person-popular'}>
+                            <li>Популярні</li>
+                        </NavLink>
                     </ul>
                 </li>
                 <li>

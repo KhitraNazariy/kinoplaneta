@@ -3,3 +3,4 @@ export * from './DetailsPages/index';
 export * from './HomePage/HomePage';
 export * from './MovieAndTvPages/index';
 export * from './NotFoundPage/NotFoundPage';
+export * from './PopularPersonPage/PopularPersonPage';

@@ -3,11 +3,13 @@ import {useDispatch} from "react-redux";
 
 import movie from "./slices/movie/movieSlice";
 import tv from "./slices/tv/tvSlice";
+import person from "./slices/person/personSlice";
 
 const store = configureStore({
     reducer: {
         movie,
-        tv
+        tv,
+        person
     }
 });
 

@@ -56,7 +56,6 @@ const movieSlice = createSlice({
             state.responseNowPlayingMovie = action.payload
         });
         builder.addCase(fetchNowPlayingMovie.rejected, (state, {payload}) => {
-            state.status = 'error';
             if (payload) {
                 state.error = payload.message
             }
@@ -72,7 +71,6 @@ const movieSlice = createSlice({
             state.responsePopularMovie = action.payload
         });
         builder.addCase(fetchPopularMovie.rejected, (state, {payload}) => {
-            state.status = 'error';
             if (payload) {
                 state.error = payload.message
             }
@@ -88,7 +86,6 @@ const movieSlice = createSlice({
             state.responseUpcomingMovie = action.payload
         });
         builder.addCase(fetchUpcomingMovie.rejected, (state, {payload}) => {
-            state.status = 'error';
             if (payload) {
                 state.error = payload.message
             }
@@ -104,7 +101,6 @@ const movieSlice = createSlice({
             state.responseTopRatedMovie = action.payload
         });
         builder.addCase(fetchTopRatedMovie.rejected, (state, {payload}) => {
-            state.status = 'error';
             if (payload) {
                 state.error = payload.message
             }
@@ -120,7 +116,6 @@ const movieSlice = createSlice({
             state.responseMovieDetails = action.payload
         });
         builder.addCase(fetchMovieDetails.rejected, (state, {payload}) => {
-            state.status = 'error';
             if (payload) {
                 state.error = payload.message
             }
@@ -136,7 +131,6 @@ const movieSlice = createSlice({
             state.responseMovieCredits = action.payload
         });
         builder.addCase(fetchCreditsMovie.rejected, (state, {payload}) => {
-            state.status = 'error';
             if (payload) {
                 state.error = payload.message
             }
@@ -152,7 +146,6 @@ const movieSlice = createSlice({
             state.responseMovieRecommendations = action.payload
         });
         builder.addCase(fetchRecommendationsMovie.rejected, (state, {payload}) => {
-            state.status = 'error';
             if (payload) {
                 state.error = payload.message
             }

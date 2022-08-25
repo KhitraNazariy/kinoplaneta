@@ -8,6 +8,7 @@ export * from './MainDetails/index';
 export * from './MainSections/index';
 export * from './MobileMenu/MobileMenu';
 export * from './PersonForSlider/PersonForSlider';
+export * from './PersonMainCard/PersonMainCard';
 export * from './Pagination/Pagination';
 export * from './Poster/Poster';
 export * from './RecommendationsItems/index';

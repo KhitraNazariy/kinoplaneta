@@ -1,0 +1,25 @@
+.card {
+
+  img {
+    width: 210px;
+    border-radius: 5px;
+
+    @media (max-width: 1010px) {
+      width: 130px;
+    }
+
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 10px 0 0 5px;
+    width: 200px;
+
+    @media (max-width: 1010px) {
+      font-size: 15px;
+      width: 120px;
+    }
+  }
+
+}

@@ -4,11 +4,13 @@ import {Route, Routes} from "react-router-dom";
 import {MainLayout} from "./layouts/MainLayout/MainLayout";
 import {
     AiringTodayTvPage,
-    HomePage, MovieDetailsPage,
+    HomePage,
+    MovieDetailsPage,
     NotFoundPage,
     NowPlayingMoviePage,
     OnTheAirTvPage,
     PopularMoviePage,
+    PopularPersonPage,
     PopularTvPage,
     TopRatedMoviePage,
     TopRatedTvPage,
@@ -26,12 +28,13 @@ const App: FC = () => {
                     <Route path={'movie-now-playing'} element={<NowPlayingMoviePage/>}/>
                     <Route path={'movie-upcoming'} element={<UpcomingMoviePage/>}/>
                     <Route path={'movie-top-rated'} element={<TopRatedMoviePage/>}/>
+                    <Route path={'movie/:id'} element={<MovieDetailsPage/>}/>
                     <Route path={'tv-popular'} element={<PopularTvPage/>}/>
                     <Route path={'tv-airing-today'} element={<AiringTodayTvPage/>}/>
                     <Route path={'tv-on-the-air'} element={<OnTheAirTvPage/>}/>
                     <Route path={'tv-top-rated'} element={<TopRatedTvPage/>}/>
-                    <Route path={'movie/:id'} element={<MovieDetailsPage/>}/>
                     <Route path={'tv/:id'} element={<TvDetailsPage/>}/>
+                    <Route path={'person-popular'} element={<PopularPersonPage/>}/>
                     <Route path={'*'} element={<NotFoundPage/>}/>
                 </Route>
             </Routes>

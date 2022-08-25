@@ -1,0 +1,32 @@
+.content {
+  padding: 0 150px;
+
+  @media (max-width: 1200px) {
+    padding: 0 40px;
+  }
+
+  @media (max-width: 700px) {
+    padding: 0 20px;
+  }
+
+  &_title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 30px 0;
+  }
+
+  &_cards {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 30px;
+    row-gap: 30px;
+    flex-wrap: wrap;
+
+    @media (max-width: 530px) {
+      justify-content: center;
+      column-gap: 20px;
+    }
+
+  }
+
+}
