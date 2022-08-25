@@ -1,0 +1,67 @@
+.content {
+  padding: 0 150px;
+  margin-top: 30px;
+  display: flex;
+  column-gap: 40px;
+
+  &_left {
+
+    img {
+      width: 330px;
+      border-radius: 10px;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 30px;
+    }
+
+    &_info {
+
+      padding: 10px;
+
+      &_block {
+
+        margin-top: 25px;
+
+        h3 {
+          font-size: 17px;
+          margin-bottom: 5px;
+          width: fit-content;
+          border-bottom: 1px solid silver;
+          padding-bottom: 2px;
+        }
+
+        p {
+          font-weight: 300;
+        }
+
+      }
+
+    }
+
+  }
+
+  &_right {
+    margin-top: 10px;
+
+    &_title {
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    &_biography {
+      margin-top: 40px;
+
+      h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+    }
+
+  }
+
+}

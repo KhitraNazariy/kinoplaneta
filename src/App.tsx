@@ -8,7 +8,7 @@ import {
     MovieDetailsPage,
     NotFoundPage,
     NowPlayingMoviePage,
-    OnTheAirTvPage,
+    OnTheAirTvPage, PersonDetailsPage,
     PopularMoviePage,
     PopularPersonPage,
     PopularTvPage,
@@ -35,6 +35,7 @@ const App: FC = () => {
                     <Route path={'tv-top-rated'} element={<TopRatedTvPage/>}/>
                     <Route path={'tv/:id'} element={<TvDetailsPage/>}/>
                     <Route path={'person-popular'} element={<PopularPersonPage/>}/>
+                    <Route path={'person/:id'} element={<PersonDetailsPage/>}/>
                     <Route path={'*'} element={<NotFoundPage/>}/>
                 </Route>
             </Routes>

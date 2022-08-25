@@ -15,6 +15,7 @@ export const urls = {
     onTheAirTv: '/tv/on_the_air',
 
     popularPerson: '/person/popular',
+    combinedCreditsPerson: '/combined_credits'
 }
 
 export default baseURL
