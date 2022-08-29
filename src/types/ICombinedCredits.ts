@@ -4,7 +4,7 @@ export interface ICombinedCredits {
     id: number;
 }
 
-interface ICombineCreditsCast {
+export interface ICombineCreditsCast {
     adult: boolean;
     backdrop_path: string;
     genre_ids: number[];

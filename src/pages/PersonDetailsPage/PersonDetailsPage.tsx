@@ -8,10 +8,11 @@ import {fetchCombinedCredits, fetchPersonDetails} from "../../store/slices/perso
 import {URL_IMG} from "../../configs";
 import {getDate} from "../../utils/getDate";
 import {getYear} from "../../utils/getYear";
-import {KnownForCard} from "../../components";
+import {CastPerson, KnownForCard} from "../../components";
 
 const PersonDetailsPage: FC = () => {
 
+    const _ = require("lodash");
     const dispatch = useAppDispatch();
     const {responseDetailsPerson, responseCombineCredits} = useSelector((state: RootState) => state.person);
 
@@ -20,13 +21,17 @@ const PersonDetailsPage: FC = () => {
     useEffect(() => {
         dispatch(fetchPersonDetails({id}))
         dispatch(fetchCombinedCredits({id}))
-    },[])
+    }, [])
 
     const numberOfShots = responseCombineCredits.cast?.length
 
     const age = new Date().getFullYear() - Number(getYear(responseDetailsPerson.birthday))
 
     const {state} = useLocation();
+
+    const sort = _.orderBy(responseCombineCredits.cast, ['release_date', 'first_air_date'], 'desc')
+
+    console.log(sort)
 
     return (
         <div className={scss.content}>
@@ -91,6 +96,14 @@ const PersonDetailsPage: FC = () => {
                         {
                             //@ts-ignore
                             state?.map((item, index) => <KnownForCard key={index} {...item}/>)
+                        }
+                    </div>
+                </div>
+                <div className={scss.content_right_playing}>
+                    <h2>Гра</h2>
+                    <div className={scss.content_right_playing_blocks}>
+                        {
+                            sort?.map(item => <CastPerson key={item.id} {...item}/>)
                         }
                     </div>
                 </div>

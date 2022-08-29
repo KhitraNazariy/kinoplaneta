@@ -1,4 +1,5 @@
 export * from './Cards/index';
+export * from './CastPerson/CastPerson';
 export * from './DropdownMenu/DropdownMenu';
 export * from './Footer/Footer';
 export * from './Header/Header';

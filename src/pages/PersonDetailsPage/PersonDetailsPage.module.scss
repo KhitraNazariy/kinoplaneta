@@ -70,13 +70,33 @@
     &_knowFor {
 
       h2 {
-        font-size: 19px;
+        font-size: 18px;
         margin: 20px 0 10px;
+        font-weight: 600;
       }
 
       &_cards {
         display: flex;
         column-gap: 20px;
+      }
+
+    }
+
+    &_playing {
+
+      margin-top: 20px;
+
+      h2 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      &_blocks {
+
+        padding: 20px 30px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+
       }
 
     }
