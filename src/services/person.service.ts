@@ -9,7 +9,7 @@ export const personService = {
     (`${urls.popularPerson}?api_key=${API_KEY}&language=uk&page=${page}`)
         .then(value => value.data),
     getDetails: (id: string | undefined) => axiosService.get<IPersonDetails>
-    (`/person/${id}?api_key=${API_KEY}&language=uk`)
+    (`/person/${id}?api_key=${API_KEY}&language=en-US`)
         .then(value => value.data),
     getCombinedCredits: (id: string | undefined) => axiosService.get<ICombinedCredits>
     (`/person/${id}/${urls.combinedCreditsPerson}?api_key=${API_KEY}&language=uk`)

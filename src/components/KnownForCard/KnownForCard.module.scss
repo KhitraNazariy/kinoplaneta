@@ -1,0 +1,25 @@
+.card {
+
+  position: relative;
+
+  img {
+
+    width: 150px;
+    border-radius: 10px;
+    height: 230px;
+
+  }
+
+  p {
+
+    padding: 3px 7px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #FFFFFF;
+    font-size: 12px;
+    border-radius: 5px;
+
+  }
+
+}

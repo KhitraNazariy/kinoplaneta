@@ -4,6 +4,7 @@ export interface IMovie {
     genre_ids: number[],
     id: number;
     original_language: string;
+    media_type?: string;
     original_title: string;
     overview: string;
     popularity: number;

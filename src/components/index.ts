@@ -3,6 +3,7 @@ export * from './DropdownMenu/DropdownMenu';
 export * from './Footer/Footer';
 export * from './Header/Header';
 export * from './ItemForSlider/index';
+export * from './KnownForCard/KnownForCard';
 export * from './MainCards/index';
 export * from './MainDetails/index';
 export * from './MainSections/index';

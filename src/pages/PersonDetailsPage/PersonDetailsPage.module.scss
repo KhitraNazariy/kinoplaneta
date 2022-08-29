@@ -60,6 +60,25 @@
         margin-bottom: 20px;
       }
 
+      p {
+        line-height: 22px;
+        font-weight: 300;
+      }
+
+    }
+
+    &_knowFor {
+
+      h2 {
+        font-size: 19px;
+        margin: 20px 0 10px;
+      }
+
+      &_cards {
+        display: flex;
+        column-gap: 20px;
+      }
+
     }
 
   }
