@@ -1,7 +1,24 @@
 .block {
 
+  position: relative;
   display: flex;
   column-gap: 30px;
+
+  &_popup {
+    position: absolute;
+    width: 400px;
+    background-color: #003F63;
+    bottom: 20px;
+    left: -120px;
+    padding: 10px;
+    border-radius: 10px;
+
+    img {
+      width: 110px;
+      height: 160px;
+    }
+
+  }
 
   &_year {
     text-align: center;
