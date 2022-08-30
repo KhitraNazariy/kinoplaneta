@@ -31,8 +31,6 @@ const PersonDetailsPage: FC = () => {
 
     const sort = _.orderBy(responseCombineCredits.cast, ['release_date', 'first_air_date'], 'desc')
 
-    console.log(sort)
-
     return (
         <div className={scss.content}>
             <div className={scss.content_left}>

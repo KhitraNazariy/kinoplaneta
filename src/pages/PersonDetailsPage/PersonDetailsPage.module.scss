@@ -84,17 +84,20 @@
 
     &_playing {
 
-      margin-top: 20px;
+      margin: 30px 0;
 
       h2 {
         font-size: 20px;
         font-weight: 600;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
       }
 
       &_blocks {
 
         padding: 20px 30px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
         box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
 
       }

@@ -1,6 +1,6 @@
-export const getYear = (date: string) => {
+export const getYear = (date: string | undefined) => {
     if  (!date) {
-        return 'рік не вказаний'
+        return '—'
     }
     return  date.split('-')[0]
 }
