@@ -6,16 +6,58 @@
 
   &_popup {
     position: absolute;
-    width: 400px;
+    width: 600px;
     background-color: #003F63;
     bottom: 20px;
-    left: -120px;
-    padding: 10px;
-    border-radius: 10px;
+    left: -230px;
+    padding: 20px;
+    border-radius: 5px;
+    column-gap: 20px;
 
     img {
       width: 110px;
       height: 160px;
+      border-radius: 10px;
+    }
+
+    &_details {
+
+      color: #FFFFFF;
+
+      &_title {
+
+        display: flex;
+        column-gap: 20px;
+        align-items: center;
+
+        a {
+          text-decoration: none;
+          color: #FFFFFF;
+        }
+
+        h3 {
+          font-size: 20px;
+          font-weight: 600;
+          margin-bottom: 10px;
+        }
+
+        p {
+          display: flex;
+          align-items: center;
+          column-gap: 5px;
+          background-color: #01B4E4;
+          padding: 4px 10px;
+          border-radius: 5px;
+        }
+
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 18px;
+        margin-bottom: 10px;
+      }
+
     }
 
   }
