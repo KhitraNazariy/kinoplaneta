@@ -1,4 +1,4 @@
-export const getYear = (date: string | undefined) => {
+export const getYear = (date: string | undefined | null) => {
     if  (!date) {
         return '—'
     }

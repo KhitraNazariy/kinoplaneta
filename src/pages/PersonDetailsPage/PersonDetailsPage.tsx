@@ -14,7 +14,10 @@ const PersonDetailsPage: FC = () => {
 
     const _ = require("lodash");
     const dispatch = useAppDispatch();
-    const {responseDetailsPerson, responseCombineCredits} = useSelector((state: RootState) => state.person);
+    const {
+        responseDetailsPerson,
+        responseCombineCredits
+    } = useSelector((state: RootState) => state.person);
 
     const {id} = useParams();
 
@@ -25,7 +28,13 @@ const PersonDetailsPage: FC = () => {
 
     const numberOfShots = responseCombineCredits.cast?.length
 
-    const age = new Date().getFullYear() - Number(getYear(responseDetailsPerson.birthday))
+    const getAge = (): number => {
+        if (!responseDetailsPerson.deathday) {
+            return new Date().getFullYear() - Number(getYear(responseDetailsPerson.birthday))
+        } else {
+            return Number(getYear(responseDetailsPerson.deathday)) - Number(getYear(responseDetailsPerson.birthday))
+        }
+    }
 
     const {state} = useLocation();
 
@@ -34,7 +43,7 @@ const PersonDetailsPage: FC = () => {
     return (
         <div className={scss.content}>
             <div className={scss.content_left}>
-                <img src={`${URL_IMG}${responseDetailsPerson.profile_path}`} alt=""/>
+                <img src={`${URL_IMG}${responseDetailsPerson.profile_path}`} alt={`${responseDetailsPerson.name}`}/>
                 <h2 className={scss.title}>Особиста інформація</h2>
                 <div className={scss.content_left_info}>
                     <div className={scss.content_left_info_block}>
@@ -52,9 +61,21 @@ const PersonDetailsPage: FC = () => {
                     <div className={scss.content_left_info_block}>
                         <h3>День народження</h3>
                         <p>
-                            {getDate(responseDetailsPerson.birthday)} ({age} years old)
+                            {getDate(responseDetailsPerson.birthday)}
+                            {!responseDetailsPerson.deathday ? `(${getAge()} years old)` : ''}
                         </p>
                     </div>
+                    {
+                        responseDetailsPerson.deathday && (
+                            <div className={scss.content_left_info_block}>
+                                <h3>День смерті</h3>
+                                <p>
+                                    {getDate(responseDetailsPerson.deathday)}
+                                    {responseDetailsPerson.deathday ? `(${getAge()} years old)` : ''}
+                                </p>
+                            </div>
+                        )
+                    }
                     <div className={scss.content_left_info_block}>
                         <h3>Місце народження</h3>
                         <p>

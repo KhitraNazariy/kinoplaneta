@@ -3,7 +3,7 @@ export interface IPersonDetails {
     also_known_as: string[];
     biography: string;
     birthday: string;
-    deathday: null,
+    deathday: string;
     gender: number;
     homepage: null,
     id: number;
