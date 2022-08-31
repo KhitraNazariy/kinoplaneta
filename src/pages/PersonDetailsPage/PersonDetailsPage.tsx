@@ -44,56 +44,58 @@ const PersonDetailsPage: FC = () => {
         <div className={scss.content}>
             <div className={scss.content_left}>
                 <img src={`${URL_IMG}${responseDetailsPerson.profile_path}`} alt={`${responseDetailsPerson.name}`}/>
-                <h2 className={scss.title}>Особиста інформація</h2>
-                <div className={scss.content_left_info}>
-                    <div className={scss.content_left_info_block}>
-                        <h3>Відомий(-а) за</h3>
-                        <p>
-                            {responseDetailsPerson.known_for_department}
-                        </p>
-                    </div>
-                    <div className={scss.content_left_info_block}>
-                        <h3>Кількість зйомок</h3>
-                        <p>
-                            {numberOfShots}
-                        </p>
-                    </div>
-                    <div className={scss.content_left_info_block}>
-                        <h3>День народження</h3>
-                        <p>
-                            {getDate(responseDetailsPerson.birthday)}
-                            {!responseDetailsPerson.deathday ? `(${getAge()} years old)` : ''}
-                        </p>
-                    </div>
-                    {
-                        responseDetailsPerson.deathday && (
-                            <div className={scss.content_left_info_block}>
-                                <h3>День смерті</h3>
-                                <p>
-                                    {getDate(responseDetailsPerson.deathday)}
-                                    {responseDetailsPerson.deathday ? `(${getAge()} years old)` : ''}
-                                </p>
-                            </div>
-                        )
-                    }
-                    <div className={scss.content_left_info_block}>
-                        <h3>Місце народження</h3>
-                        <p>
-                            {responseDetailsPerson.place_of_birth}
-                        </p>
-                    </div>
-                    <div className={scss.content_left_info_block}>
-                        <h3>Також відомий(-а) як</h3>
+                <div>
+                    <h2 className={scss.title}>Особиста інформація</h2>
+                    <div className={scss.content_left_info}>
+                        <div className={scss.content_left_info_block}>
+                            <h3>Відомий(-а) за</h3>
+                            <p>
+                                {responseDetailsPerson.known_for_department}
+                            </p>
+                        </div>
+                        <div className={scss.content_left_info_block}>
+                            <h3>Кількість зйомок</h3>
+                            <p>
+                                {numberOfShots}
+                            </p>
+                        </div>
+                        <div className={scss.content_left_info_block}>
+                            <h3>День народження</h3>
+                            <p>
+                                {getDate(responseDetailsPerson.birthday)}
+                                {!responseDetailsPerson.deathday ? `(${getAge()} years old)` : ''}
+                            </p>
+                        </div>
                         {
-                            responseDetailsPerson.also_known_as?.map((item, index) => (
-                                <p
-                                    key={index}
-                                    style={{lineHeight: '30px'}}
-                                >
-                                    {item}
-                                </p>
-                            ))
+                            responseDetailsPerson.deathday && (
+                                <div className={scss.content_left_info_block}>
+                                    <h3>День смерті</h3>
+                                    <p>
+                                        {getDate(responseDetailsPerson.deathday)}
+                                        {responseDetailsPerson.deathday ? `(${getAge()} years old)` : ''}
+                                    </p>
+                                </div>
+                            )
                         }
+                        <div className={scss.content_left_info_block}>
+                            <h3>Місце народження</h3>
+                            <p>
+                                {responseDetailsPerson.place_of_birth}
+                            </p>
+                        </div>
+                        <div className={scss.content_left_info_block_knownAs}>
+                            <h3>Також відомий(-а) як</h3>
+                            {
+                                responseDetailsPerson.also_known_as?.map((item, index) => (
+                                    <p
+                                        key={index}
+                                        style={{lineHeight: '30px'}}
+                                    >
+                                        {item}
+                                    </p>
+                                ))
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

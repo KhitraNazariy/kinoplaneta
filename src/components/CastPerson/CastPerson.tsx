@@ -28,10 +28,10 @@ const CastPerson: FC<ICombineCreditsCast> = (
 
     const [isChecked, setIsChecked] = useState(false);
     const detailsRef = useRef<HTMLDivElement>(null);
-    
+
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-          const _event = event as PopupClick
+            const _event = event as PopupClick
 
             if (detailsRef.current && !_event.path.includes(detailsRef.current)) {
                 setIsChecked(false)
@@ -42,7 +42,7 @@ const CastPerson: FC<ICombineCreditsCast> = (
 
         return () => document.body.removeEventListener('click', handleClickOutside)
 
-    },[])
+    }, [])
 
     const getDate = (releaseDate: string | undefined, firstAirDate: string | undefined): string | undefined => {
         if (!releaseDate) {
@@ -65,15 +65,16 @@ const CastPerson: FC<ICombineCreditsCast> = (
                         <Link to={`/${media_type}/${id.toString()}`}>
                             <h3>{name}{title}</h3>
                         </Link>
-                        <p><AiFillStar/>{vote_average}</p>
+                        <p className={scss.block_popup_details_title_vote_average}><AiFillStar/>{vote_average}</p>
                     </div>
-                    <p>{overview ? overview : 'Опис відсутній'}</p>
+                    <p className={scss.block_popup_details_description}>{overview ? overview : 'Опис відсутній'}</p>
                 </div>
             </div>
             <div className={scss.block_year}>{getYear(getDate(release_date, first_air_date))}</div>
             <input type="radio" onChange={onChange} checked={isChecked}/>
             <p className={scss.block_description}>
-                <Link to={`/${media_type}/${id.toString()}`}><span className={scss.block_description_title}>{name}{title}</span></Link>
+                <Link to={`/${media_type}/${id.toString()}`}><span
+                    className={scss.block_description_title}>{name}{title}</span></Link>
                 <span className={scss.block_description_separator}>{character ? 'як' : ''}</span>
                 <span className={scss.block_description_character}>{character}</span>
             </p>

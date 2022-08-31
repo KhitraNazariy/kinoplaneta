@@ -8,6 +8,11 @@
     border-radius: 10px;
     height: 230px;
 
+    @media (max-width: 950px) {
+      width: 120px;
+      height: 180px;
+    }
+
   }
 
   p {
@@ -19,6 +24,12 @@
     color: #FFFFFF;
     font-size: 12px;
     border-radius: 5px;
+
+    @media (max-width: 950px) {
+      top: 5px;
+      left: 5px;
+
+    }
 
   }
 
