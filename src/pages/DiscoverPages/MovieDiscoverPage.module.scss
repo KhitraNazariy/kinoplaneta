@@ -1,0 +1,47 @@
+.wrap {
+  background-color: #F4F4F4;
+  padding: 0 150px;
+}
+
+.container {
+  background-color: #FFFFFF;
+  padding: 50px 40px 30px;
+
+  &_header {
+    display: flex;
+    column-gap: 100px;
+    align-items: center;
+
+    &_title {
+      h2 {
+        font-weight: 700;
+        font-size: 36px;
+      }
+
+      p {
+        font-size: 15px;
+        font-weight: 300;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  &_content {
+
+    display: flex;
+    column-gap: 30px;
+    margin-top: 50px;
+
+    &_sort {
+      min-width: 350px;
+      height: 800px;
+      background-color: #005382;
+    }
+
+    &_cards {
+
+    }
+
+  }
+
+}

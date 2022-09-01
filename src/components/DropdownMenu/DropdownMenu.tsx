@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 import scss from './DropdownMenu.module.scss'
 
@@ -13,7 +13,7 @@ const DropdownMenu: FC = () => {
                     </li>
                 </NavLink>
                 <li>
-                    Фільми
+                    <Link to={'movie-discover'}>Фільми</Link>
                     <ul>
                         <NavLink to={'movie-popular'}>
                             <li>Популярні</li>

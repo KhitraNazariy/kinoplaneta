@@ -8,9 +8,14 @@ import {ITopRatedMovie} from "../../../types/ITopRatedMovie";
 import {IMovieDetails} from "../../../types/IMovieDetails";
 import {ICreditsMovie} from "../../../types/ICreditsMovie";
 import {IRecommendationMovie} from "../../../types/IRecommendationMovie";
+import {IDiscoverMovie} from "../../../types/IDiscoverMovie";
 
 interface FetchTodosError {
     message: string;
+}
+
+interface DiscoverMovie {
+    page: number
 }
 
 export const fetchNowPlayingMovie = createAsyncThunk<INowPlayingMovie, { page: number }, { rejectValue: FetchTodosError }>(
@@ -91,6 +96,17 @@ export const fetchRecommendationsMovie = createAsyncThunk<IRecommendationMovie,
     async ({id}, {rejectWithValue}) => {
         try {
             return await movieService.getRecommendationsMovie(id)
+        } catch (e) {
+            return rejectWithValue({message: 'Сервер не відповідає'})
+        }
+    }
+)
+
+export const fetchDiscoverMovie = createAsyncThunk<IDiscoverMovie, DiscoverMovie, {rejectValue: FetchTodosError}>(
+    'movie/fetchDiscoverMovie',
+    async ({page}, {rejectWithValue}) => {
+        try {
+            return await movieService.getDiscoverMovie(page)
         } catch (e) {
             return rejectWithValue({message: 'Сервер не відповідає'})
         }

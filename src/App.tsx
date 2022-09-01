@@ -5,7 +5,7 @@ import {MainLayout} from "./layouts/MainLayout/MainLayout";
 import {
     AiringTodayTvPage,
     HomePage,
-    MovieDetailsPage,
+    MovieDetailsPage, MovieDiscoverPage,
     NotFoundPage,
     NowPlayingMoviePage,
     OnTheAirTvPage, PersonDetailsPage,
@@ -28,6 +28,7 @@ const App: FC = () => {
                     <Route path={'movie-now-playing'} element={<NowPlayingMoviePage/>}/>
                     <Route path={'movie-upcoming'} element={<UpcomingMoviePage/>}/>
                     <Route path={'movie-top-rated'} element={<TopRatedMoviePage/>}/>
+                    <Route path={'movie-discover'} element={<MovieDiscoverPage/>}/>
                     <Route path={'movie/:id'} element={<MovieDetailsPage/>}/>
                     <Route path={'tv-popular'} element={<PopularTvPage/>}/>
                     <Route path={'tv-airing-today'} element={<AiringTodayTvPage/>}/>
