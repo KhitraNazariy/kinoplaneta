@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import scss from './MovieDiscoverPage.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
 import {fetchDiscoverMovie} from "../../store/slices/movie/asyncActions";
-import {MovieCard, Search} from "../../components";
+import {MovieCard, Search, Sort} from "../../components";
 
 const MovieDiscoverPage: FC = () => {
 
@@ -15,8 +15,6 @@ const MovieDiscoverPage: FC = () => {
     useEffect(() => {
         dispatch(fetchDiscoverMovie({page: 1}))
     },[])
-
-    console.log(responseDiscoverMovie)
 
     return (
         <div className={scss.wrap}>
@@ -35,9 +33,7 @@ const MovieDiscoverPage: FC = () => {
 
 
                 <div className={scss.container_content}>
-                    <div className={scss.container_content_sort}>
-
-                    </div>
+                    <Sort/>
                     <div className={scss.container_content_cards}>
                         {
                             Array.isArray(responseDiscoverMovie.results) &&

@@ -12,8 +12,6 @@ interface SearchProps {
 
 const Search: FC<SearchProps> = ({setSearchValue, searchValue, placeholder}) => {
 
-    console.log(searchValue)
-
     return (
         <div className={scss.search}>
             <div className={scss.search_searchIcon}>
