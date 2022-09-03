@@ -4,12 +4,11 @@ import {useParams} from "react-router-dom";
 
 import {RootState, useAppDispatch} from "../../store/store";
 import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
-import {Loader, RecommendationsMovie, RecommendationsTv, TabsComponent, TvMainDetails} from "../../components";
+import {Loader, RecommendationsTv, TabsComponent, TvMainDetails} from "../../components";
 import {fetchCreditsTv, fetchRecommendationsTv, fetchTvDetails} from "../../store/slices/tv/asyncActions";
 import scss from "./DetailsPages.module.scss";
 import Slider from "react-slick";
 import {settings} from "../../utils/SettingForSlider";
-import {ITv} from "../../types/ITv";
 
 const TvDetailsPage: FC = () => {
 
@@ -38,7 +37,7 @@ const TvDetailsPage: FC = () => {
         return <BadRequestPage/>
     }
 
-    if (status === 'loading') {
+    if (status === 'loading' && !responseTvDetails) {
         return <Loader/>
     }
 

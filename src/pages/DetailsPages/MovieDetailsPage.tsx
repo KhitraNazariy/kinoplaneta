@@ -38,7 +38,7 @@ const MovieDetailsPage: FC = () => {
         return <BadRequestPage/>
     }
 
-    if (status === 'loading') {
+    if (status === 'loading' && !responseMovieDetails) {
         return <Loader/>
     }
 
