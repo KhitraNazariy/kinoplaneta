@@ -4,17 +4,25 @@ import {useSelector} from "react-redux";
 import scss from './MovieDiscoverPage.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
 import {fetchDiscoverMovie} from "../../store/slices/movie/asyncActions";
-import {MovieCard, Search, Sort} from "../../components";
+import {Loader, MovieCard, Search, Sort} from "../../components";
+import {changeSendRequest} from "../../store/slices/sort/sortSlice";
+import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
 
 const MovieDiscoverPage: FC = () => {
 
     const dispatch = useAppDispatch();
-    const {responseDiscoverMovie} = useSelector((state: RootState) => state.movie);
+    const {responseDiscoverMovie, error, status} = useSelector((state: RootState) => state.movie);
+    const {minValueVoteAv, maxValueVoteAv, sendRequest} = useSelector((state: RootState) => state.sort);
     const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
-        dispatch(fetchDiscoverMovie({page: 1}))
-    },[])
+        dispatch(fetchDiscoverMovie({page: 1, minValueVoteAv, maxValueVoteAv}))
+        dispatch(changeSendRequest(false))
+    },[sendRequest])
+
+    if (error) {
+        return <BadRequestPage/>
+    }
 
     return (
         <div className={scss.wrap}>
@@ -44,6 +52,6 @@ const MovieDiscoverPage: FC = () => {
             </div>
         </div>
     );
-};
+}
 
 export {MovieDiscoverPage};

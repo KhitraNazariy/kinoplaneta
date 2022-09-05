@@ -43,7 +43,7 @@ const PersonDetailsPage: FC = () => {
     return (
         <div className={scss.content}>
             <div className={scss.content_left}>
-                <img src={responseDetailsPerson.profile_path? `${URL_IMG}${responseDetailsPerson.profile_path}` : ''} alt={`${responseDetailsPerson.name}`}/>
+                <img src={`${URL_IMG}${responseDetailsPerson.profile_path}`} alt={`${responseDetailsPerson.name}`}/>
                 <div>
                     <h2 className={scss.title}>Особиста інформація</h2>
                     <div className={scss.content_left_info}>

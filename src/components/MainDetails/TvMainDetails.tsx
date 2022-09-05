@@ -16,9 +16,9 @@ interface ITvMainDetailsProps {
 const TvMainDetails: FC<ITvMainDetailsProps> = ({data}) => {
 
     return (
-        <div className={scss.details} style={{backgroundImage: data.backdrop_path ? `url(${URL_IMG}${data.backdrop_path})` : ''}}>
+        <div className={scss.details} style={{backgroundImage: `url(${URL_IMG}${data.backdrop_path})`}}>
             <div className={scss.details_inner}>
-                <img src={data.poster_path ? `${URL_IMG}${data.poster_path}` : ''} alt={data.name}/>
+                <img src={`${URL_IMG}${data.poster_path}`} alt={data.name}/>
                 <div className={scss.content}>
                     <div className={scss.content_title}>
                         <h2>{data.name} ({getYear(data.first_air_date)})</h2>

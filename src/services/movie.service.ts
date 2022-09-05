@@ -31,7 +31,11 @@ export const movieService = {
     getRecommendationsMovie: (id: string | undefined) => axiosService.get<IRecommendationMovie>
     (`/movie/${id}/recommendations?api_key=${API_KEY}&language=uk`)
         .then(value => value.data),
-    getDiscoverMovie: (page: number) => axiosService.get<IDiscoverMovie>
-    (`${urls.discoverMovie}?api_key=${API_KEY}&language=uk&page=${page}`)
+    getDiscoverMovie: (
+        page: number,
+        minValueVoteAv: number,
+        maxValueVoteAv: number
+    ) => axiosService.get<IDiscoverMovie>
+    (`${urls.discoverMovie}?api_key=${API_KEY}&language=uk&page=${page}&vote_average.gte=${minValueVoteAv}&vote_average.lte=${maxValueVoteAv}`)
         .then(value => value.data)
 }

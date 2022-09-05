@@ -1,14 +1,16 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 
 import scss from './SortRating.module.scss';
 import {MultiRangeSlider} from "../index";
+import {useSelector} from "react-redux";
+import {RootState, useAppDispatch} from "../../../store/store";
+import {setMax, setMin} from "../../../store/slices/sort/sortSlice";
 
 const SortRating: FC = () => {
 
-    const [min, setMin] = useState();
-    const [max, setMax] = useState();
+    const dispatch = useAppDispatch();
 
-    console.log(max, min)
+    const {minValueVoteAv, maxValueVoteAv} = useSelector((state: RootState) => state.sort);
 
     return (
         <div className={scss.sort}>
@@ -19,20 +21,40 @@ const SortRating: FC = () => {
                 <div className={scss.sort_rating_input}>
                     <div className={scss.sort_rating_input_field}>
                         <span>Від</span>
-                        <input type="number" className={scss.ratingMin} value={min}/>
+                        <input
+                            type="number"
+                            className={scss.ratingMin}
+                            onChange={(event) => {
+                                //@ts-ignore
+                                dispatch(setMin(event.target.value))
+                            }}
+                            value={minValueVoteAv}
+                            min={1}
+                            max={10}
+                            data-testid="input"
+                            disabled={true}
+                        />
                     </div>
                     <div className={scss.sort_rating_input_field}>
                         <span>До</span>
-                        <input type="number" className={scss.ratingMax} value={max}/>
+                        <input
+                            type="number"
+                            className={scss.ratingMax}
+                            onChange={(event) => {
+                                //@ts-ignore
+                                dispatch(setMax(event.target.value))
+                            }}
+                            value={maxValueVoteAv}
+                            min={1}
+                            max={10}
+                            data-testid="input"
+                            disabled={true}
+                        />
                     </div>
                 </div>
                 <MultiRangeSlider
                     min={1}
                     max={10}
-                    onChange={({ min, max }) => {
-                        setMin(min)
-                        setMax(max)
-                    }}
                 />
             </div>
 

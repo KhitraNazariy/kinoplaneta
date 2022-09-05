@@ -15,7 +15,9 @@ interface FetchTodosError {
 }
 
 interface DiscoverMovie {
-    page: number
+    page: number;
+    minValueVoteAv: number;
+    maxValueVoteAv: number;
 }
 
 export const fetchNowPlayingMovie = createAsyncThunk<INowPlayingMovie, { page: number }, { rejectValue: FetchTodosError }>(
@@ -104,9 +106,9 @@ export const fetchRecommendationsMovie = createAsyncThunk<IRecommendationMovie,
 
 export const fetchDiscoverMovie = createAsyncThunk<IDiscoverMovie, DiscoverMovie, {rejectValue: FetchTodosError}>(
     'movie/fetchDiscoverMovie',
-    async ({page}, {rejectWithValue}) => {
+    async ({page, minValueVoteAv, maxValueVoteAv}, {rejectWithValue}) => {
         try {
-            return await movieService.getDiscoverMovie(page)
+            return await movieService.getDiscoverMovie(page, minValueVoteAv, maxValueVoteAv)
         } catch (e) {
             return rejectWithValue({message: 'Сервер не відповідає'})
         }

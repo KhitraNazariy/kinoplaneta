@@ -1,14 +1,19 @@
 import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
 
 import scss from './MultiRangeSlider.module.scss';
+import {RootState, useAppDispatch} from "../../../store/store";
+import {setMax, setMin} from "../../../store/slices/sort/sortSlice";
+import {useSelector} from "react-redux";
 
 interface MultiRangeSliderProps {
     min: number;
     max: number;
-    onChange: ({min, max}) => void
 }
 
-const MultiRangeSlider: FC<MultiRangeSliderProps> = ({min, max, onChange}) => {
+const MultiRangeSlider: FC<MultiRangeSliderProps> = ({min, max}) => {
+
+    const dispatch = useAppDispatch();
+    const {maxValueVoteAv, minValueVoteAv} = useSelector((state: RootState) => state.sort);
 
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
@@ -18,7 +23,7 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({min, max, onChange}) => {
 
     const getPercent = useCallback(
         (value) => Math.round(((value - min) / (max - min)) * 100),
-        [min, max]
+        [maxValueVoteAv, minValueVoteAv]
     );
 
     useEffect(() => {
@@ -43,9 +48,6 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({min, max, onChange}) => {
         }
     }, [maxVal, getPercent]);
 
-    useEffect(() => {
-        onChange({ min: minVal, max: maxVal });
-    }, [minVal, maxVal, onChange]);
 
     return (
         <div className={scss.container}>
@@ -53,26 +55,29 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({min, max, onChange}) => {
                 type="range"
                 min={min}
                 max={max}
-                value={minVal}
+                value={minValueVoteAv}
                 onChange={(event) => {
                     const value = Math.min(Number(event.target.value), maxVal - 1);
                     setMinVal(value);
+                    dispatch(setMin(value))
                     minValRef.current = value;
                 }}
                 className={`${scss.thumb} ${scss.thumb_left}`}
-                style={{ zIndex: minVal > max - 100 ? '5' : ''}}
+                style={{ zIndex: minValueVoteAv > max - 100 ? '5' : ''}}
             />
             <input
                 type="range"
                 min={min}
                 max={max}
-                value={maxVal}
+                value={maxValueVoteAv}
                 onChange={(event) => {
                     const value = Math.max(Number(event.target.value), minVal + 1);
                     setMaxVal(value);
+                    dispatch(setMax(value))
                     maxValRef.current = value;
                 }}
                 className={`${scss.thumb} ${scss.thumb_right}`}
+                style={{ zIndex: maxValueVoteAv > max - 100 ? '5' : ''}}
             />
 
             <div className={scss.slider}>
