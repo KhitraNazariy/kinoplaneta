@@ -36,6 +36,6 @@ export const movieService = {
         minValueVoteAv: number,
         maxValueVoteAv: number
     ) => axiosService.get<IDiscoverMovie>
-    (`${urls.discoverMovie}?api_key=${API_KEY}&language=uk&page=${page}&vote_average.gte=${minValueVoteAv}&vote_average.lte=${maxValueVoteAv}`)
+    (`${urls.discoverMovie}?api_key=${API_KEY}&language=uk&page=${page}&vote_average.gte=${minValueVoteAv}&vote_average.lte=${maxValueVoteAv}&primary_release_date.gte=1700-02-01&primary_release_date.lte=2010-01-01&sort_by=primary_release_date.asc`)
         .then(value => value.data)
 }

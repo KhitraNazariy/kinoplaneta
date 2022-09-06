@@ -1,16 +1,17 @@
 import React, {FC} from 'react';
 
-import scss from './SortRating.module.scss';
+import scss from './SortItem.module.scss';
 import {MultiRangeSlider} from "../index";
 import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../../store/store";
 import {setMax, setMin} from "../../../store/slices/sort/sortSlice";
 
+
 const SortRating: FC = () => {
 
     const dispatch = useAppDispatch();
 
-    const {minValueVoteAv, maxValueVoteAv} = useSelector((state: RootState) => state.sort);
+    const {maxValueVoteAv, minValueVoteAv} = useSelector((state: RootState) => state.sort);
 
     return (
         <div className={scss.sort}>
@@ -25,8 +26,7 @@ const SortRating: FC = () => {
                             type="number"
                             className={scss.ratingMin}
                             onChange={(event) => {
-                                //@ts-ignore
-                                dispatch(setMin(event.target.value))
+                                dispatch(setMin(Number(event.target.value)))
                             }}
                             value={minValueVoteAv}
                             min={1}
@@ -41,8 +41,7 @@ const SortRating: FC = () => {
                             type="number"
                             className={scss.ratingMax}
                             onChange={(event) => {
-                                //@ts-ignore
-                                dispatch(setMax(event.target.value))
+                                dispatch(setMax(Number(event.target.value)))
                             }}
                             value={maxValueVoteAv}
                             min={1}
