@@ -1,6 +1,11 @@
 .sort {
 
   &_info {
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+
     &_item {
       border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 5px;

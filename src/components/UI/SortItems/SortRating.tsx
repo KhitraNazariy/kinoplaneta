@@ -26,7 +26,7 @@ const SortRating: FC = () => {
                             type="number"
                             className={scss.ratingMin}
                             onChange={(event) => {
-                                dispatch(setMin(Number(event.target.value)))
+                                dispatch(setMin({type: 'rating', value: Number(event.target.value)}))
                             }}
                             value={minValueVoteAv}
                             min={1}
@@ -41,7 +41,7 @@ const SortRating: FC = () => {
                             type="number"
                             className={scss.ratingMax}
                             onChange={(event) => {
-                                dispatch(setMax(Number(event.target.value)))
+                                dispatch(setMax({type: 'rating', value: Number(event.target.value)}))
                             }}
                             value={maxValueVoteAv}
                             min={1}
@@ -54,6 +54,9 @@ const SortRating: FC = () => {
                 <MultiRangeSlider
                     min={1}
                     max={10}
+                    minValProps={minValueVoteAv}
+                    maxValProps={maxValueVoteAv}
+                    type={'rating'}
                 />
             </div>
 

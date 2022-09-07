@@ -18,6 +18,8 @@ interface DiscoverMovie {
     page: number;
     minValueVoteAv: number;
     maxValueVoteAv: number;
+    minReleaseYear: number
+    maxReleaseYear: number;
 }
 
 export const fetchNowPlayingMovie = createAsyncThunk<INowPlayingMovie, { page: number }, { rejectValue: FetchTodosError }>(
@@ -104,11 +106,23 @@ export const fetchRecommendationsMovie = createAsyncThunk<IRecommendationMovie,
     }
 )
 
-export const fetchDiscoverMovie = createAsyncThunk<IDiscoverMovie, DiscoverMovie, {rejectValue: FetchTodosError}>(
+export const fetchDiscoverMovie = createAsyncThunk<IDiscoverMovie, DiscoverMovie, { rejectValue: FetchTodosError }>(
     'movie/fetchDiscoverMovie',
-    async ({page, minValueVoteAv, maxValueVoteAv}, {rejectWithValue}) => {
+    async ({
+               page,
+               minValueVoteAv,
+               maxValueVoteAv,
+               minReleaseYear,
+               maxReleaseYear
+           }, {rejectWithValue}) => {
         try {
-            return await movieService.getDiscoverMovie(page, minValueVoteAv, maxValueVoteAv)
+            return await movieService.getDiscoverMovie(
+                page,
+                minValueVoteAv,
+                maxValueVoteAv,
+                minReleaseYear,
+                maxReleaseYear
+            )
         } catch (e) {
             return rejectWithValue({message: 'Сервер не відповідає'})
         }

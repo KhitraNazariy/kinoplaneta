@@ -5,6 +5,7 @@ import scss from './Sort.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
 import {changeSendRequest, resetBtn} from "../../store/slices/sort/sortSlice";
 import {SortRating} from "../UI";
+import {SortYear} from "../UI/SortItems/SortYear";
 
 const Sort: FC = () => {
 
@@ -22,9 +23,11 @@ const Sort: FC = () => {
         <div className={scss.sort}>
             <div className={scss.sort_info}>
                 <div className={scss.sort_info_item}>Рейтинг: {minValueVoteAv} - {maxValueVoteAv}</div>
+                <div className={scss.sort_info_item}>Рік виходу: {minReleaseYear} - {maxReleaseYear}</div>
             </div>
             <div className={scss.sort_items}>
                 <SortRating/>
+                <SortYear/>
             </div>
             <div className={scss.sort_buttons}>
                 <div>
@@ -40,7 +43,7 @@ const Sort: FC = () => {
                 <div>
                     <button
                         className={scss.sort_buttons_reset}
-                        onClick={() => dispatch(resetBtn())}
+                        onClick={() => dispatch(resetBtn(true))}
                     >
                         Скинути
                     </button>

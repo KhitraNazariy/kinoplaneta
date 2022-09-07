@@ -5,18 +5,24 @@ import scss from './MovieDiscoverPage.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
 import {fetchDiscoverMovie} from "../../store/slices/movie/asyncActions";
 import {MovieCard, Search, Sort} from "../../components";
-import {changeDisabledBtn, changeSendRequest, resetBtn} from "../../store/slices/sort/sortSlice";
+import {changeDisabledBtn, changeSendRequest} from "../../store/slices/sort/sortSlice";
 import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
 
 const MovieDiscoverPage: FC = () => {
 
     const dispatch = useAppDispatch();
     const {responseDiscoverMovie, error} = useSelector((state: RootState) => state.movie);
-    const {minValueVoteAv, maxValueVoteAv, sendRequest} = useSelector((state: RootState) => state.sort);
+    const {
+        minValueVoteAv,
+        maxValueVoteAv,
+        sendRequest,
+        minReleaseYear,
+        maxReleaseYear
+    } = useSelector((state: RootState) => state.sort);
     const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
-        dispatch(fetchDiscoverMovie({page: 1, minValueVoteAv, maxValueVoteAv}))
+        dispatch(fetchDiscoverMovie({page: 1, minValueVoteAv, maxValueVoteAv, maxReleaseYear, minReleaseYear}))
         dispatch(changeSendRequest(false))
         dispatch(changeDisabledBtn(true))
     },[sendRequest])

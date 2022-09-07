@@ -1,19 +1,23 @@
 import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
-import {useSelector} from "react-redux";
 
 import scss from './MultiRangeSlider.module.scss';
 import {RootState, useAppDispatch} from "../../../store/store";
-import {setMax, setMin} from "../../../store/slices/sort/sortSlice";
+import {resetBtn, setMax, setMin} from "../../../store/slices/sort/sortSlice";
+import {useSelector} from "react-redux";
 
 interface MultiRangeSliderProps {
     min: number;
     max: number;
+    minValProps: number;
+    maxValProps: number;
+    type: string;
 }
 
-const MultiRangeSlider: FC<MultiRangeSliderProps> = ({min, max}) => {
+const MultiRangeSlider: FC<MultiRangeSliderProps> = ({min, max, minValProps, maxValProps, type}) => {
 
     const dispatch = useAppDispatch();
-    const {maxValueVoteAv, minValueVoteAv} = useSelector((state: RootState) => state.sort);
+
+    const {isResetBtn} = useSelector((state: RootState) => state.sort);
 
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
@@ -36,12 +40,28 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({min, max}) => {
             range.current.style.width = `${maxPercent - minPercent}%`;
         }
 
-        return () => {
-            dispatch(setMin(1))
-            dispatch(setMax(10))
-        }
-
     }, [minVal, getPercent]);
+
+    useEffect(() => {
+        return () => {
+            dispatch(setMin({type, value: min}))
+            dispatch(setMax({type, value: max}))
+        }
+    }, [])
+
+    useEffect(() => {
+
+        if (isResetBtn) {
+            setMaxVal(max)
+            setMinVal(min)
+            dispatch(setMin({type, value: min}))
+            dispatch(setMax({type, value: max}))
+            minValRef.current = min
+            maxValRef.current = max
+        }
+        dispatch(resetBtn(false))
+
+    } ,[isResetBtn])
 
     useEffect(() => {
         const minPercent = getPercent(minValRef.current);
@@ -58,29 +78,29 @@ const MultiRangeSlider: FC<MultiRangeSliderProps> = ({min, max}) => {
                 type="range"
                 min={min}
                 max={max}
-                value={minValueVoteAv}
+                value={minValProps}
                 onChange={(event) => {
-                    const value = Math.min(Number(event.target.value), maxValueVoteAv - 1);
+                    const value = Math.min(Number(event.target.value), maxValProps - 1);
                     setMinVal(value);
-                    dispatch(setMin(value))
+                    dispatch(setMin({type, value}))
                     minValRef.current = value;
                 }}
                 className={`${scss.thumb} ${scss.thumb_left}`}
-                style={{ zIndex: minValueVoteAv > max - 100 ? '5' : ''}}
+                style={{zIndex: minValProps > max - 100 ? '5' : ''}}
             />
             <input
                 type="range"
                 min={min}
                 max={max}
-                value={maxValueVoteAv}
+                value={maxValProps}
                 onChange={(event) => {
-                    const value = Math.max(Number(event.target.value), minValueVoteAv + 1);
+                    const value = Math.max(Number(event.target.value), minValProps + 1);
                     setMaxVal(value);
-                    dispatch(setMax(value))
+                    dispatch(setMax({type, value}))
                     maxValRef.current = value;
                 }}
                 className={`${scss.thumb} ${scss.thumb_right}`}
-                style={{ zIndex: maxValueVoteAv > max - 100 ? '5' : ''}}
+                style={{zIndex: maxValProps > max - 100 ? '5' : ''}}
             />
 
             <div className={scss.slider}>
