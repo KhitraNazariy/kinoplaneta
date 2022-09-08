@@ -9,6 +9,7 @@ export const urls = {
     upcomingMovie: '/movie/upcoming',
     topRatedMovie: '/movie/top_rated',
     discoverMovie: '/discover/movie',
+    genreMovieList: '/genre/movie/list',
 
     topRatedTv: '/tv/top_rated',
     popularTv: '/tv/popular',

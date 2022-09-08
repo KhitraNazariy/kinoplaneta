@@ -8,6 +8,7 @@ import {IMovieDetails} from "../types/IMovieDetails";
 import {ICreditsMovie} from "../types/ICreditsMovie";
 import {IRecommendationMovie} from "../types/IRecommendationMovie";
 import {IDiscoverMovie} from "../types/IDiscoverMovie";
+import {IGenres} from "../types/IGenres";
 
 export const movieService = {
     getNowPlaying: (page: number) => axiosService.get<INowPlayingMovie>
@@ -37,7 +38,12 @@ export const movieService = {
         maxValueVoteAv: number,
         minReleaseYear: number,
         maxReleaseYear: number,
+        genreId: number | null,
+        primaryReleaseDate: string
     ) => axiosService.get<IDiscoverMovie>
-    (`${urls.discoverMovie}?api_key=${API_KEY}&language=uk&page=${page}&vote_average.gte=${minValueVoteAv}&vote_average.lte=${maxValueVoteAv}&primary_release_date.gte=${minReleaseYear}-02-01&primary_release_date.lte=${maxReleaseYear}-01-01&sort_by=primary_release_date.asc`)
+    (`${urls.discoverMovie}?api_key=${API_KEY}&language=uk&page=${page}&vote_average.gte=${minValueVoteAv}&vote_average.lte=${maxValueVoteAv}&primary_release_date.gte=${minReleaseYear}-02-01&primary_release_date.lte=${maxReleaseYear}-01-01&sort_by=primary_release_date.${primaryReleaseDate}&with_genres=${genreId}`)
+        .then(value => value.data),
+    getGenres: () => axiosService.get<IGenres>
+    (`${urls.genreMovieList}?api_key=${API_KEY}&language=uk`)
         .then(value => value.data)
 }

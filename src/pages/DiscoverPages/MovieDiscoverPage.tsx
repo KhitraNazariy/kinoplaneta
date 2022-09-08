@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 
 import scss from './MovieDiscoverPage.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
-import {fetchDiscoverMovie} from "../../store/slices/movie/asyncActions";
+import {fetchDiscoverMovie, fetchGenresMovie} from "../../store/slices/movie/asyncActions";
 import {MovieCard, Search, Sort} from "../../components";
 import {changeDisabledBtn, changeSendRequest} from "../../store/slices/sort/sortSlice";
 import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
@@ -11,21 +11,25 @@ import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
 const MovieDiscoverPage: FC = () => {
 
     const dispatch = useAppDispatch();
-    const {responseDiscoverMovie, error} = useSelector((state: RootState) => state.movie);
+    const {responseDiscoverMovie, error, responseGenresMovie} = useSelector((state: RootState) => state.movie);
     const {
         minValueVoteAv,
         maxValueVoteAv,
         sendRequest,
         minReleaseYear,
-        maxReleaseYear
+        maxReleaseYear,
+        isResetBtn,
+        genreSort,
+        primaryReleaseDate
     } = useSelector((state: RootState) => state.sort);
     const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
-        dispatch(fetchDiscoverMovie({page: 1, minValueVoteAv, maxValueVoteAv, maxReleaseYear, minReleaseYear}))
+        dispatch(fetchDiscoverMovie({page: 1, minValueVoteAv, maxValueVoteAv, maxReleaseYear, minReleaseYear, genreId: genreSort.id, primaryReleaseDate}))
+        dispatch(fetchGenresMovie())
         dispatch(changeSendRequest(false))
         dispatch(changeDisabledBtn(true))
-    },[sendRequest])
+    },[sendRequest, isResetBtn])
 
     if (error) {
         return <BadRequestPage/>
@@ -48,7 +52,9 @@ const MovieDiscoverPage: FC = () => {
 
 
                 <div className={scss.container_content}>
-                    <Sort/>
+                    <Sort
+                        genres={responseGenresMovie}
+                    />
                     <div className={scss.container_content_cards}>
                         {
                             Array.isArray(responseDiscoverMovie.results) &&

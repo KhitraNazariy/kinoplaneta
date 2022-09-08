@@ -8,6 +8,11 @@ interface SortSliceState {
     isResetBtn: boolean;
     minReleaseYear: number;
     maxReleaseYear: number;
+    genreSort: {
+        id: number | null;
+        name: string;
+    }
+    primaryReleaseDate: string;
 }
 
 const initialState: SortSliceState = {
@@ -17,7 +22,12 @@ const initialState: SortSliceState = {
     disabledBtn: true,
     isResetBtn: false,
     minReleaseYear: 1874,
-    maxReleaseYear: new Date().getFullYear()
+    maxReleaseYear: new Date().getFullYear(),
+    genreSort: {
+        name: '',
+        id: null
+    },
+    primaryReleaseDate: 'desc'
 }
 
 const sortSlice = createSlice({
@@ -42,6 +52,16 @@ const sortSlice = createSlice({
             }
         },
 
+        setGenre: (state, action: PayloadAction<{id: number, name: string}>) => {
+            state.disabledBtn = false
+            state.genreSort = action.payload
+        },
+
+        setPrimaryReleaseDate: (state, action: PayloadAction<string>) => {
+            state.disabledBtn = false
+            state.primaryReleaseDate = action.payload
+        },
+
         changeSendRequest: (state, action: PayloadAction<boolean>) => {
             state.sendRequest = action.payload
         },
@@ -53,6 +73,8 @@ const sortSlice = createSlice({
         resetBtn: (state, action) => {
             state.isResetBtn = !state.disabledBtn
             state.isResetBtn = action.payload
+            state.genreSort = {id: null, name: ''}
+            state.primaryReleaseDate = 'desc'
         }
     },
     extraReducers: () => {
@@ -67,7 +89,9 @@ export const {
     setMax,
     changeSendRequest,
     changeDisabledBtn,
-    resetBtn
+    resetBtn,
+    setGenre,
+    setPrimaryReleaseDate
 
 } = sortSlice.actions;
 

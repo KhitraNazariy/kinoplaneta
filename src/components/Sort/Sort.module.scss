@@ -17,6 +17,129 @@
   }
 
   &_items {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    margin-top: 30px;
+
+    .genres {
+
+      position: relative;
+
+      &_title {
+        font-weight: 600;
+        font-size: 17px;
+      }
+
+      &_name {
+        margin-top: 15px;
+        border-radius: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        height: 40px;
+        justify-content: space-between;
+        padding: 0 15px;
+        transition: .3s;
+
+        &:hover {
+          border: 1px solid rgba(0, 0, 0, 0.5);
+          cursor: pointer;
+        }
+      }
+
+      &_list {
+        background-color: #FFFFFF;
+        position: absolute;
+        height: 300px;
+        overflow: scroll;
+        overflow-x: hidden;
+        width: 252px;
+        top: 80px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        z-index: 2;
+
+        .item {
+          height: 40px;
+          display: flex;
+          align-items: center;
+          padding-left: 15px;
+
+          &:hover {
+            background-color: #F4F4F4;
+            cursor: pointer;
+          }
+
+        }
+
+      }
+
+    }
+
+    .releaseYear {
+
+      h2 {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      [type="radio"]:checked,
+      [type="radio"]:not(:checked) {
+        position: absolute;
+        left: -9999px;
+      }
+
+      [type="radio"]:checked + label,
+      [type="radio"]:not(:checked) + label {
+        position: relative;
+        padding-left: 28px;
+        cursor: pointer;
+        line-height: 20px;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      [type="radio"]:checked + label:before,
+      [type="radio"]:not(:checked) + label:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 18px;
+        height: 18px;
+        border: 1px solid #ddd;
+        border-radius: 100%;
+        background: #fff;
+      }
+
+      [type="radio"]:checked + label:after,
+      [type="radio"]:not(:checked) + label:after {
+        content: '';
+        width: 12px;
+        height: 12px;
+        background: #005382;
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        border-radius: 100%;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+      }
+
+      [type="radio"]:not(:checked) + label:after {
+        opacity: 0;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+
+      [type="radio"]:checked + label:after {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
 
   }
 

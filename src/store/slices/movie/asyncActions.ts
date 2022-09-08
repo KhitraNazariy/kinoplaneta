@@ -9,6 +9,7 @@ import {IMovieDetails} from "../../../types/IMovieDetails";
 import {ICreditsMovie} from "../../../types/ICreditsMovie";
 import {IRecommendationMovie} from "../../../types/IRecommendationMovie";
 import {IDiscoverMovie} from "../../../types/IDiscoverMovie";
+import {IGenres} from "../../../types/IGenres";
 
 interface FetchTodosError {
     message: string;
@@ -18,8 +19,10 @@ interface DiscoverMovie {
     page: number;
     minValueVoteAv: number;
     maxValueVoteAv: number;
-    minReleaseYear: number
+    minReleaseYear: number;
     maxReleaseYear: number;
+    genreId: number | null;
+    primaryReleaseDate: string;
 }
 
 export const fetchNowPlayingMovie = createAsyncThunk<INowPlayingMovie, { page: number }, { rejectValue: FetchTodosError }>(
@@ -113,7 +116,9 @@ export const fetchDiscoverMovie = createAsyncThunk<IDiscoverMovie, DiscoverMovie
                minValueVoteAv,
                maxValueVoteAv,
                minReleaseYear,
-               maxReleaseYear
+               maxReleaseYear,
+               genreId,
+               primaryReleaseDate
            }, {rejectWithValue}) => {
         try {
             return await movieService.getDiscoverMovie(
@@ -121,8 +126,21 @@ export const fetchDiscoverMovie = createAsyncThunk<IDiscoverMovie, DiscoverMovie
                 minValueVoteAv,
                 maxValueVoteAv,
                 minReleaseYear,
-                maxReleaseYear
+                maxReleaseYear,
+                genreId,
+                primaryReleaseDate
             )
+        } catch (e) {
+            return rejectWithValue({message: 'Сервер не відповідає'})
+        }
+    }
+)
+
+export const fetchGenresMovie = createAsyncThunk<IGenres, undefined, { rejectValue: FetchTodosError }>(
+    'movie/fetchGenresMovie',
+    async (_, {rejectWithValue}) => {
+        try {
+            return await movieService.getGenres()
         } catch (e) {
             return rejectWithValue({message: 'Сервер не відповідає'})
         }

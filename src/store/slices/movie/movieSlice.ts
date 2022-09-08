@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 import {INowPlayingMovie} from "../../../types/INowPlayingMovie";
 import {
-    fetchCreditsMovie, fetchDiscoverMovie,
+    fetchCreditsMovie, fetchDiscoverMovie, fetchGenresMovie,
     fetchMovieDetails,
     fetchNowPlayingMovie,
     fetchPopularMovie, fetchRecommendationsMovie,
@@ -16,6 +16,7 @@ import {IMovieDetails} from "../../../types/IMovieDetails";
 import {ICreditsMovie} from "../../../types/ICreditsMovie";
 import {IRecommendationMovie} from "../../../types/IRecommendationMovie";
 import {IDiscoverMovie} from "../../../types/IDiscoverMovie";
+import {IGenres} from "../../../types/IGenres";
 
 
 interface MovieSliceState {
@@ -27,6 +28,7 @@ interface MovieSliceState {
     responseMovieCredits: ICreditsMovie;
     responseMovieRecommendations: IRecommendationMovie;
     responseDiscoverMovie: IDiscoverMovie;
+    responseGenresMovie: IGenres
     status: string;
     error: string | null
 }
@@ -40,6 +42,7 @@ const initialState: MovieSliceState = {
     responseMovieCredits: {} as ICreditsMovie,
     responseMovieRecommendations: {} as IRecommendationMovie,
     responseDiscoverMovie: {} as IDiscoverMovie,
+    responseGenresMovie: {} as IGenres,
     status: '',
     error: null
 }
@@ -164,6 +167,21 @@ const movieSlice = createSlice({
             state.responseDiscoverMovie = action.payload
         });
         builder.addCase(fetchDiscoverMovie.rejected, (state, {payload}) => {
+            if (payload) {
+                state.error = payload.message
+            }
+        });
+
+        builder.addCase(fetchGenresMovie.pending, (state) => {
+            state.error = null;
+            state.status = 'loading';
+        });
+        builder.addCase(fetchGenresMovie.fulfilled, (state, action: PayloadAction<IGenres>) => {
+            state.error = null;
+            state.status = 'success'
+            state.responseGenresMovie = action.payload
+        });
+        builder.addCase(fetchGenresMovie.rejected, (state, {payload}) => {
             if (payload) {
                 state.error = payload.message
             }
