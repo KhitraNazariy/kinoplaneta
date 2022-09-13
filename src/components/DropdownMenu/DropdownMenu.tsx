@@ -13,8 +13,11 @@ const DropdownMenu: FC = () => {
                     </li>
                 </NavLink>
                 <li>
-                    <Link to={'movie-discover'}>Фільми</Link>
+                    Фільми
                     <ul>
+                        <NavLink to={'movie-discover'}>
+                            <li>Всі фільми</li>
+                        </NavLink>
                         <NavLink to={'movie-popular'}>
                             <li>Популярні</li>
                         </NavLink>
@@ -32,6 +35,9 @@ const DropdownMenu: FC = () => {
                 <li>
                     Серіали
                     <ul>
+                        <NavLink to={'tv-discover'}>
+                            <li>Всі серіали</li>
+                        </NavLink>
                         <NavLink to={'tv-popular'}>
                             <li>Популярні</li>
                         </NavLink>

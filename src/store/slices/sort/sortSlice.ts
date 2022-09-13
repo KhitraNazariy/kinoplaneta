@@ -12,7 +12,10 @@ interface SortSliceState {
         id: number | null;
         name: string;
     }
-    primaryReleaseDate: string;
+    sortBy: {
+        name: string;
+        query: string;
+    }
 }
 
 const initialState: SortSliceState = {
@@ -27,14 +30,17 @@ const initialState: SortSliceState = {
         name: '',
         id: null
     },
-    primaryReleaseDate: 'desc'
+    sortBy: {
+        name: 'Популярні',
+        query: 'popularity.desc'
+    }
 }
 
 const sortSlice = createSlice({
     name: 'sort',
     initialState,
     reducers: {
-        setMin: (state, action: PayloadAction<{type: string, value: number}>) => {
+        setMin: (state, action: PayloadAction<{ type: string, value: number }>) => {
             state.disabledBtn = false
             if (action.payload.type === 'rating') {
                 state.minValueVoteAv = action.payload.value
@@ -43,7 +49,7 @@ const sortSlice = createSlice({
             }
         },
 
-        setMax: (state, action: PayloadAction<{type: string, value: number}>) => {
+        setMax: (state, action: PayloadAction<{ type: string, value: number }>) => {
             state.disabledBtn = false
             if (action.payload.type === 'rating') {
                 state.maxValueVoteAv = action.payload.value
@@ -52,14 +58,14 @@ const sortSlice = createSlice({
             }
         },
 
-        setGenre: (state, action: PayloadAction<{id: number, name: string}>) => {
+        setGenre: (state, action: PayloadAction<{ id: number, name: string }>) => {
             state.disabledBtn = false
             state.genreSort = action.payload
         },
 
-        setPrimaryReleaseDate: (state, action: PayloadAction<string>) => {
+        setSortBy: (state, action: PayloadAction<{name: string, query: string}>) => {
             state.disabledBtn = false
-            state.primaryReleaseDate = action.payload
+            state.sortBy = action.payload
         },
 
         changeSendRequest: (state, action: PayloadAction<boolean>) => {
@@ -74,7 +80,10 @@ const sortSlice = createSlice({
             state.isResetBtn = !state.disabledBtn
             state.isResetBtn = action.payload
             state.genreSort = {id: null, name: ''}
-            state.primaryReleaseDate = 'desc'
+            state.sortBy = {
+                name: 'Популярні',
+                query: 'popularity.desc'
+            }
         }
     },
     extraReducers: () => {
@@ -91,7 +100,7 @@ export const {
     changeDisabledBtn,
     resetBtn,
     setGenre,
-    setPrimaryReleaseDate
+    setSortBy
 
 } = sortSlice.actions;
 

@@ -15,6 +15,7 @@ import {
     TopRatedMoviePage,
     TopRatedTvPage,
     TvDetailsPage,
+    TvDiscoverPage,
     UpcomingMoviePage
 } from "./pages";
 
@@ -34,6 +35,7 @@ const App: FC = () => {
                     <Route path={'tv-airing-today'} element={<AiringTodayTvPage/>}/>
                     <Route path={'tv-on-the-air'} element={<OnTheAirTvPage/>}/>
                     <Route path={'tv-top-rated'} element={<TopRatedTvPage/>}/>
+                    <Route path={'tv-discover'} element={<TvDiscoverPage/>}/>
                     <Route path={'tv/:id'} element={<TvDetailsPage/>}/>
                     <Route path={'person-popular'} element={<PopularPersonPage/>}/>
                     <Route path={'person/:id'} element={<PersonDetailsPage/>}/>

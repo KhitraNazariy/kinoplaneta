@@ -2,12 +2,12 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 import {ITopRatedTv} from "../../../types/ITopRatedTv";
 import {
-    fetchAiringTodayTv, fetchCreditsTv,
+    fetchAiringTodayTv, fetchCreditsTv, fetchDiscoverTv,
     fetchOnTheAirTv,
     fetchPopularTv,
     fetchRecommendationsTv,
     fetchTopRatedTv,
-    fetchTvDetails
+    fetchTvDetails, fetchTvGenres
 } from "./asyncActions";
 import {IPopularTv} from "../../../types/IPopularTv";
 import {IAiringTodayTv} from "../../../types/IAiringTodayTv";
@@ -15,6 +15,8 @@ import {IOnTheAirTv} from "../../../types/IOnTheAirTv";
 import {ITvDetails} from "../../../types/ITvDetails";
 import {IRecommendationTv} from "../../../types/IRecommendationTv";
 import {ICreditsTv} from "../../../types/ICreditsTv";
+import {IDiscoverTv} from "../../../types/IDiscoverTv";
+import {IGenres} from "../../../types/IGenres";
 
 interface TvSliceState {
     responseTopRatedTv: ITopRatedTv;
@@ -24,6 +26,8 @@ interface TvSliceState {
     responseTvDetails: ITvDetails;
     responseRecommendationsTv: IRecommendationTv;
     responseTvCredits: ICreditsTv;
+    responseDiscoverTv: IDiscoverTv;
+    responseGenresTv: IGenres;
     status: string;
     error: string | null;
 }
@@ -36,6 +40,8 @@ const initialState: TvSliceState = {
     responseTvDetails: {} as ITvDetails,
     responseRecommendationsTv: {} as IRecommendationTv,
     responseTvCredits: {} as ICreditsTv,
+    responseDiscoverTv: {} as IDiscoverTv,
+    responseGenresTv: {} as IGenres,
     status: '',
     error: null
 }
@@ -151,6 +157,38 @@ const tvSlice = createSlice({
             state.responseTvCredits = action.payload
         });
         builder.addCase(fetchCreditsTv.rejected, (state, {payload}) => {
+            state.status = 'error';
+            if (payload) {
+                state.error = payload.message
+            }
+        })
+
+        builder.addCase(fetchDiscoverTv.pending, (state) => {
+            state.error = null;
+            state.status = 'loading';
+        });
+        builder.addCase(fetchDiscoverTv.fulfilled, (state, action: PayloadAction<IDiscoverTv>) => {
+            state.status = 'success';
+            state.error = null
+            state.responseDiscoverTv = action.payload
+        });
+        builder.addCase(fetchDiscoverTv.rejected, (state, {payload}) => {
+            state.status = 'error';
+            if (payload) {
+                state.error = payload.message
+            }
+        })
+
+        builder.addCase(fetchTvGenres.pending, (state) => {
+            state.error = null;
+            state.status = 'loading';
+        });
+        builder.addCase(fetchTvGenres.fulfilled, (state, action: PayloadAction<IGenres>) => {
+            state.status = 'success';
+            state.error = null
+            state.responseGenresTv = action.payload
+        });
+        builder.addCase(fetchTvGenres.rejected, (state, {payload}) => {
             state.status = 'error';
             if (payload) {
                 state.error = payload.message

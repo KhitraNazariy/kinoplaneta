@@ -8,10 +8,22 @@ import {IOnTheAirTv} from "../../../types/IOnTheAirTv";
 import {ITvDetails} from "../../../types/ITvDetails";
 import {IRecommendationTv} from "../../../types/IRecommendationTv";
 import {ICreditsTv} from "../../../types/ICreditsTv";
+import {IDiscoverTv} from "../../../types/IDiscoverTv";
+import {IGenres} from "../../../types/IGenres";
 
-type FetchTodosError = {
+interface FetchTodosError  {
     message: string;
-};
+}
+
+interface DiscoverTv {
+    page: number;
+    minValueVoteAv: number,
+    maxValueVoteAv: number,
+    minReleaseYear: number,
+    maxReleaseYear: number,
+    genreId: number | null,
+    sortBy: string
+}
 
 export const fetchTopRatedTv = createAsyncThunk<ITopRatedTv, {page: number}, {rejectValue: FetchTodosError}>(
     'tv/fetchTopRatedTv',
@@ -84,6 +96,36 @@ export const fetchCreditsTv = createAsyncThunk<ICreditsTv, {id: string | undefin
     async ({id}, {rejectWithValue}) => {
         try {
             return await tvService.getTvCredits(id)
+        } catch (e) {
+            return rejectWithValue({message: 'Сервер не відповідає'})
+        }
+    }
+)
+
+export const fetchDiscoverTv = createAsyncThunk<IDiscoverTv, DiscoverTv, {rejectValue: FetchTodosError}>(
+    'tv/fetchDiscoverTv',
+    async ({
+               page,
+               minValueVoteAv,
+               maxValueVoteAv,
+               minReleaseYear,
+               maxReleaseYear,
+               genreId,
+               sortBy
+           }, {rejectWithValue}) => {
+        try {
+            return await tvService.getDiscover(page, minValueVoteAv, maxValueVoteAv, minReleaseYear, maxReleaseYear, genreId, sortBy)
+        } catch (e) {
+            return rejectWithValue({message: 'Сервер не відповідає'})
+        }
+    }
+)
+
+export const fetchTvGenres = createAsyncThunk<IGenres, undefined, {rejectValue: FetchTodosError}>(
+    'tv/fetchTvGenres',
+    async (_, {rejectWithValue}) => {
+        try {
+            return await tvService.getGenres()
         } catch (e) {
             return rejectWithValue({message: 'Сервер не відповідає'})
         }

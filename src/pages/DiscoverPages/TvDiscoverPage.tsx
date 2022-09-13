@@ -1,18 +1,20 @@
 import React, {FC, useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 
-import scss from './MovieDiscoverPage.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
 import {fetchDiscoverMovie, fetchGenresMovie} from "../../store/slices/movie/asyncActions";
-import {MovieCard, Search, Sort} from "../../components";
-import {changeDisabledBtn, changeSendRequest, resetBtn} from "../../store/slices/sort/sortSlice";
+import {changeDisabledBtn, changeSendRequest} from "../../store/slices/sort/sortSlice";
 import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
-import {sort} from "../../utils/sortByMovie";
+import scss from "./MovieDiscoverPage.module.scss";
+import {Search, Sort} from "../../components";
+import {TvCard} from "../../components/Cards/TvCard";
+import {fetchDiscoverTv, fetchTvGenres} from "../../store/slices/tv/asyncActions";
 
-const MovieDiscoverPage: FC = () => {
 
+const TvDiscoverPage: FC = () => {
     const dispatch = useAppDispatch();
-    const {responseDiscoverMovie, error, responseGenresMovie} = useSelector((state: RootState) => state.movie);
+    const {responseDiscoverTv, error, responseGenresTv} = useSelector((state: RootState) => state.tv);
+
     const {
         minValueVoteAv,
         maxValueVoteAv,
@@ -26,15 +28,10 @@ const MovieDiscoverPage: FC = () => {
     const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
-        dispatch(fetchDiscoverMovie({page: 1, minValueVoteAv, maxValueVoteAv, maxReleaseYear, minReleaseYear, genreId: genreSort.id, sortBy: sortBy.query}))
-        dispatch(fetchGenresMovie())
+        dispatch(fetchTvGenres())
         dispatch(changeSendRequest(false))
         dispatch(changeDisabledBtn(true))
-
-        return () => {
-            dispatch(resetBtn(true))
-        }
-
+        dispatch(fetchDiscoverTv({page: 1, minValueVoteAv, maxValueVoteAv, maxReleaseYear, minReleaseYear, genreId: genreSort.id, sortBy: sortBy.query}))
     },[sendRequest, isResetBtn])
 
     if (error) {
@@ -58,14 +55,14 @@ const MovieDiscoverPage: FC = () => {
 
 
                 <div className={scss.container_content}>
-                    <Sort
-                        genres={responseGenresMovie}
-                        sort={sort}
-                    />
+                    {/*<Sort*/}
+                    {/*    genres={responseGenresTv}*/}
+                    {/*    sort={sort}*/}
+                    {/*/>*/}
                     <div className={scss.container_content_cards}>
                         {
-                            Array.isArray(responseDiscoverMovie.results) &&
-                            responseDiscoverMovie.results.map(movie => <MovieCard key={movie.id} {...movie}/>)
+                            Array.isArray(responseDiscoverTv.results) &&
+                            responseDiscoverTv.results.map(tv => <TvCard key={tv.id} {...tv}/>)
                         }
                     </div>
                 </div>
@@ -74,4 +71,4 @@ const MovieDiscoverPage: FC = () => {
     );
 }
 
-export {MovieDiscoverPage};
+export {TvDiscoverPage};

@@ -15,6 +15,8 @@ export const urls = {
     popularTv: '/tv/popular',
     airingTodayTv: '/tv/airing_today',
     onTheAirTv: '/tv/on_the_air',
+    discoverTv: '/discover/tv',
+    genreTvList: '/genre/tv/list',
 
     popularPerson: '/person/popular',
     combinedCreditsPerson: '/combined_credits'

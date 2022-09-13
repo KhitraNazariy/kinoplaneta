@@ -1,21 +1,22 @@
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {useSelector} from "react-redux";
 
 import scss from './Sort.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
-import {changeSendRequest, resetBtn, setGenre, setPrimaryReleaseDate} from "../../store/slices/sort/sortSlice";
+import {changeSendRequest, resetBtn, setGenre, setSortBy} from "../../store/slices/sort/sortSlice";
 import {SortRating} from "../UI";
 import {SortYear} from "../UI/SortItems/SortYear";
 import {IGenres} from "../../types/IGenres";
 import {IoIosArrowDown} from "react-icons/io";
+import {ISortItem} from "../../types/ISortItem";
+
 
 interface SortProps {
     genres: IGenres
+    sort: ISortItem[]
 }
 
-const Sort: FC<SortProps> = ({genres}) => {
-
-    const [isOpen, setIsOpen] = useState(false);
+const Sort: FC<SortProps> = ({genres, sort}) => {
 
     const {
         maxValueVoteAv,
@@ -24,9 +25,12 @@ const Sort: FC<SortProps> = ({genres}) => {
         minReleaseYear,
         maxReleaseYear,
         genreSort,
-        primaryReleaseDate
+        sortBy,
     } = useSelector((state: RootState) => state.sort);
     const dispatch = useAppDispatch();
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [isOpenSort, setIsOpenSort] = useState(false);
 
     return (
         <div className={scss.sort}>
@@ -34,7 +38,7 @@ const Sort: FC<SortProps> = ({genres}) => {
                 <div className={scss.sort_info_item}>Рейтинг: {minValueVoteAv} - {maxValueVoteAv}</div>
                 <div className={scss.sort_info_item}>Дата виходу: {minReleaseYear} - {maxReleaseYear}</div>
                 <div className={scss.sort_info_item}>Жанр: {genreSort.name === '' ? 'Всі жанри' : genreSort.name}</div>
-                <div className={scss.sort_info_item}>Дата виходу: {primaryReleaseDate === 'desc' ? 'Спочатку нові' : 'Спочатку старі'}</div>
+                <div className={scss.sort_info_item}>Сорт: {sortBy.name}</div>
             </div>
             <div className={scss.sort_items}>
                 <SortRating/>
@@ -71,32 +75,39 @@ const Sort: FC<SortProps> = ({genres}) => {
                         )}
                     </div>
                 </div>
-                <div className={scss.releaseYear}>
-                    <h2>Рік виходу</h2>
-                    <form action="#">
-                        <p>
-                            <input
-                                type="radio"
-                                id="test1"
-                                name="radio-group"
-                                checked={primaryReleaseDate === 'desc'}
-                                onClick={() => dispatch(setPrimaryReleaseDate('desc'))}
-                                readOnly={true}
-                            />
-                            <label htmlFor="test1">Спочатку нові</label>
-                        </p>
-                        <p>
-                            <input
-                                type="radio"
-                                id="test2"
-                                name="radio-group"
-                                checked={primaryReleaseDate === 'asc'}
-                                onClick={() => dispatch(setPrimaryReleaseDate('asc'))}
-                                readOnly={true}
-                            />
-                            <label htmlFor="test2">Спочатку старі</label>
-                        </p>
-                    </form>
+
+
+                <div className={scss.genres}>
+                    <h2 className={scss.genres_title}>Сортувати результат за</h2>
+                    <h3
+                        className={scss.genres_name}
+                        onClick={() => setIsOpenSort(!isOpenSort)}
+                    >
+                        {sortBy.name}
+                        <IoIosArrowDown/>
+                    </h3>
+                    <div
+                        style={{display: isOpenSort ? 'block' : 'none'}}
+                        className={scss.genres_list}
+                    >
+                        {sort.map((item, index) => (
+                                <div
+                                    style={{
+                                        backgroundColor: sortBy.name === item.name ? '#005382' : '',
+                                        color: sortBy.name === item.name ? '#FFFFFF' : ''
+                                    }}
+                                    className={scss.item}
+                                    onClick={() => {
+                                        dispatch(setSortBy(item))
+                                        setIsOpenSort(!isOpenSort)
+                                    }}
+                                    key={index}
+                                >
+                                    {item.name}
+                                </div>
+                            )
+                        )}
+                    </div>
                 </div>
             </div>
             <div className={scss.sort_buttons}>

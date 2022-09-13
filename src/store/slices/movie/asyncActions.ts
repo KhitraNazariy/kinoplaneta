@@ -22,7 +22,7 @@ interface DiscoverMovie {
     minReleaseYear: number;
     maxReleaseYear: number;
     genreId: number | null;
-    primaryReleaseDate: string;
+    sortBy: string;
 }
 
 export const fetchNowPlayingMovie = createAsyncThunk<INowPlayingMovie, { page: number }, { rejectValue: FetchTodosError }>(
@@ -118,7 +118,7 @@ export const fetchDiscoverMovie = createAsyncThunk<IDiscoverMovie, DiscoverMovie
                minReleaseYear,
                maxReleaseYear,
                genreId,
-               primaryReleaseDate
+               sortBy
            }, {rejectWithValue}) => {
         try {
             return await movieService.getDiscoverMovie(
@@ -128,7 +128,7 @@ export const fetchDiscoverMovie = createAsyncThunk<IDiscoverMovie, DiscoverMovie
                 minReleaseYear,
                 maxReleaseYear,
                 genreId,
-                primaryReleaseDate
+                sortBy
             )
         } catch (e) {
             return rejectWithValue({message: 'Сервер не відповідає'})

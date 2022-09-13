@@ -39,9 +39,9 @@ export const movieService = {
         minReleaseYear: number,
         maxReleaseYear: number,
         genreId: number | null,
-        primaryReleaseDate: string
+        sortBy: string
     ) => axiosService.get<IDiscoverMovie>
-    (`${urls.discoverMovie}?api_key=${API_KEY}&language=uk&page=${page}&vote_average.gte=${minValueVoteAv}&vote_average.lte=${maxValueVoteAv}&primary_release_date.gte=${minReleaseYear}-02-01&primary_release_date.lte=${maxReleaseYear}-01-01&sort_by=primary_release_date.${primaryReleaseDate}&with_genres=${genreId}`)
+    (`${urls.discoverMovie}?api_key=${API_KEY}&language=uk&page=${page}&vote_average.gte=${minValueVoteAv}&vote_average.lte=${maxValueVoteAv}&primary_release_date.gte=${minReleaseYear}-01-01&primary_release_date.lte=${maxReleaseYear}-01-01&sort_by=${sortBy}&with_genres=${genreId}`)
         .then(value => value.data),
     getGenres: () => axiosService.get<IGenres>
     (`${urls.genreMovieList}?api_key=${API_KEY}&language=uk`)
