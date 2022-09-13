@@ -41,6 +41,38 @@ const Sort: FC<SortProps> = ({genres, sort}) => {
                 <div className={scss.sort_info_item}>Сорт: {sortBy.name}</div>
             </div>
             <div className={scss.sort_items}>
+                <div className={scss.genres}>
+                    <h2 className={scss.genres_title}>Сортувати результат за</h2>
+                    <h3
+                        className={scss.genres_name}
+                        onClick={() => setIsOpenSort(!isOpenSort)}
+                    >
+                        {sortBy.name}
+                        <IoIosArrowDown/>
+                    </h3>
+                    <div
+                        style={{display: isOpenSort ? 'block' : 'none', height: '200px', zIndex: '10'}}
+                        className={scss.genres_list}
+                    >
+                        {sort.map((item, index) => (
+                                <div
+                                    style={{
+                                        backgroundColor: sortBy.name === item.name ? '#005382' : '',
+                                        color: sortBy.name === item.name ? '#FFFFFF' : ''
+                                    }}
+                                    className={scss.item}
+                                    onClick={() => {
+                                        dispatch(setSortBy(item))
+                                        setIsOpenSort(!isOpenSort)
+                                    }}
+                                    key={index}
+                                >
+                                    {item.name}
+                                </div>
+                            )
+                        )}
+                    </div>
+                </div>
                 <SortRating/>
                 <SortYear/>
                 <div className={scss.genres}>
@@ -70,40 +102,6 @@ const Sort: FC<SortProps> = ({genres, sort}) => {
                                     key={genre.id}
                                 >
                                     {genre.name}
-                                </div>
-                            )
-                        )}
-                    </div>
-                </div>
-
-
-                <div className={scss.genres}>
-                    <h2 className={scss.genres_title}>Сортувати результат за</h2>
-                    <h3
-                        className={scss.genres_name}
-                        onClick={() => setIsOpenSort(!isOpenSort)}
-                    >
-                        {sortBy.name}
-                        <IoIosArrowDown/>
-                    </h3>
-                    <div
-                        style={{display: isOpenSort ? 'block' : 'none'}}
-                        className={scss.genres_list}
-                    >
-                        {sort.map((item, index) => (
-                                <div
-                                    style={{
-                                        backgroundColor: sortBy.name === item.name ? '#005382' : '',
-                                        color: sortBy.name === item.name ? '#FFFFFF' : ''
-                                    }}
-                                    className={scss.item}
-                                    onClick={() => {
-                                        dispatch(setSortBy(item))
-                                        setIsOpenSort(!isOpenSort)
-                                    }}
-                                    key={index}
-                                >
-                                    {item.name}
                                 </div>
                             )
                         )}

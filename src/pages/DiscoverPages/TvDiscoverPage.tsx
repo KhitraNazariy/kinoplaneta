@@ -2,13 +2,13 @@ import React, {FC, useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 
 import {RootState, useAppDispatch} from "../../store/store";
-import {fetchDiscoverMovie, fetchGenresMovie} from "../../store/slices/movie/asyncActions";
 import {changeDisabledBtn, changeSendRequest} from "../../store/slices/sort/sortSlice";
 import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
 import scss from "./MovieDiscoverPage.module.scss";
-import {Search, Sort} from "../../components";
+import {Pagination, Search, Sort} from "../../components";
 import {TvCard} from "../../components/Cards/TvCard";
 import {fetchDiscoverTv, fetchTvGenres} from "../../store/slices/tv/asyncActions";
+import {sort} from "../../utils/sortByTv";
 
 
 const TvDiscoverPage: FC = () => {
@@ -26,13 +26,24 @@ const TvDiscoverPage: FC = () => {
         sortBy
     } = useSelector((state: RootState) => state.sort);
     const [searchValue, setSearchValue] = useState('');
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         dispatch(fetchTvGenres())
         dispatch(changeSendRequest(false))
         dispatch(changeDisabledBtn(true))
         dispatch(fetchDiscoverTv({page: 1, minValueVoteAv, maxValueVoteAv, maxReleaseYear, minReleaseYear, genreId: genreSort.id, sortBy: sortBy.query}))
+        window.scrollTo(0, 0)
+
     },[sendRequest, isResetBtn])
+
+    const totalPages = () => {
+        if (responseDiscoverTv.total_pages < 500) {
+            return responseDiscoverTv.total_pages
+        } else {
+            return 500
+        }
+    }
 
     if (error) {
         return <BadRequestPage/>
@@ -55,10 +66,10 @@ const TvDiscoverPage: FC = () => {
 
 
                 <div className={scss.container_content}>
-                    {/*<Sort*/}
-                    {/*    genres={responseGenresTv}*/}
-                    {/*    sort={sort}*/}
-                    {/*/>*/}
+                    <Sort
+                        genres={responseGenresTv}
+                        sort={sort}
+                    />
                     <div className={scss.container_content_cards}>
                         {
                             Array.isArray(responseDiscoverTv.results) &&
@@ -66,6 +77,7 @@ const TvDiscoverPage: FC = () => {
                         }
                     </div>
                 </div>
+                <Pagination totalPages={totalPages()} page={page} setPage={setPage}/>
             </div>
         </div>
     );

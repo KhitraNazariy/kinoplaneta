@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import scss from './MovieDiscoverPage.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
 import {fetchDiscoverMovie, fetchGenresMovie} from "../../store/slices/movie/asyncActions";
-import {MovieCard, Search, Sort} from "../../components";
+import {Loader, MovieCard, Pagination, Search, Sort} from "../../components";
 import {changeDisabledBtn, changeSendRequest, resetBtn} from "../../store/slices/sort/sortSlice";
 import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
 import {sort} from "../../utils/sortByMovie";
@@ -24,18 +24,24 @@ const MovieDiscoverPage: FC = () => {
         sortBy
     } = useSelector((state: RootState) => state.sort);
     const [searchValue, setSearchValue] = useState('');
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
-        dispatch(fetchDiscoverMovie({page: 1, minValueVoteAv, maxValueVoteAv, maxReleaseYear, minReleaseYear, genreId: genreSort.id, sortBy: sortBy.query}))
+        dispatch(fetchDiscoverMovie({page, minValueVoteAv, maxValueVoteAv, maxReleaseYear, minReleaseYear, genreId: genreSort.id, sortBy: sortBy.query}))
         dispatch(fetchGenresMovie())
         dispatch(changeSendRequest(false))
         dispatch(changeDisabledBtn(true))
+        window.scrollTo(0, 0)
 
-        return () => {
-            dispatch(resetBtn(true))
+    },[sendRequest, isResetBtn, page])
+
+    const totalPages = () => {
+        if (responseDiscoverMovie.total_pages < 500) {
+            return responseDiscoverMovie.total_pages
+        } else {
+            return 500
         }
-
-    },[sendRequest, isResetBtn])
+    }
 
     if (error) {
         return <BadRequestPage/>
@@ -69,6 +75,7 @@ const MovieDiscoverPage: FC = () => {
                         }
                     </div>
                 </div>
+                <Pagination totalPages={totalPages()} page={page} setPage={setPage}/>
             </div>
         </div>
     );
