@@ -3,16 +3,21 @@ import {useSelector} from "react-redux";
 
 import scss from './MovieDiscoverPage.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
-import {fetchDiscoverMovie, fetchGenresMovie} from "../../store/slices/movie/asyncActions";
-import {Loader, MovieCard, Pagination, Search, Sort} from "../../components";
-import {changeDisabledBtn, changeSendRequest, resetBtn} from "../../store/slices/sort/sortSlice";
-import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
+import {fetchDiscoverMovie, fetchGenresMovie, fetchSearchMovie} from "../../store/slices/movie/asyncActions";
+import {MovieCard, Pagination, Search, Sort} from "../../components";
+import {changeDisabledBtn, changeSendRequest} from "../../store/slices/sort/sortSlice";
 import {sort} from "../../utils/sortByMovie";
+import {clearResponseSearchMovie} from "../../store/slices/movie/movieSlice";
 
 const MovieDiscoverPage: FC = () => {
 
     const dispatch = useAppDispatch();
-    const {responseDiscoverMovie, error, responseGenresMovie} = useSelector((state: RootState) => state.movie);
+    const {
+        responseDiscoverMovie,
+        responseGenresMovie,
+        responseSearchMovie
+    } = useSelector((state: RootState) => state.movie);
+
     const {
         minValueVoteAv,
         maxValueVoteAv,
@@ -23,19 +28,44 @@ const MovieDiscoverPage: FC = () => {
         genreSort,
         sortBy
     } = useSelector((state: RootState) => state.sort);
+
     const [searchValue, setSearchValue] = useState('');
     const [page, setPage] = useState(1);
 
+
     useEffect(() => {
-        dispatch(fetchDiscoverMovie({page, minValueVoteAv, maxValueVoteAv, maxReleaseYear, minReleaseYear, genreId: genreSort.id, sortBy: sortBy.query}))
+        dispatch(fetchDiscoverMovie({
+            page,
+            minValueVoteAv,
+            maxValueVoteAv,
+            maxReleaseYear,
+            minReleaseYear,
+            genreId: genreSort.id,
+            sortBy: sortBy.query
+        }))
         dispatch(fetchGenresMovie())
         dispatch(changeSendRequest(false))
         dispatch(changeDisabledBtn(true))
         window.scrollTo(0, 0)
+        dispatch(fetchSearchMovie({query: searchValue, page}))
 
-    },[sendRequest, isResetBtn, page])
+        if (searchValue === '') {
+            dispatch(clearResponseSearchMovie())
+        }
+
+    }, [sendRequest, isResetBtn, page, searchValue])
+
 
     const totalPages = () => {
+        for (let i in responseSearchMovie) {
+            if (responseSearchMovie.hasOwnProperty(i)) {
+                if (responseSearchMovie.total_pages < 500) {
+                    return responseSearchMovie.total_pages
+                } else {
+                    return 500
+                }
+            }
+        }
         if (responseDiscoverMovie.total_pages < 500) {
             return responseDiscoverMovie.total_pages
         } else {
@@ -43,8 +73,13 @@ const MovieDiscoverPage: FC = () => {
         }
     }
 
-    if (error) {
-        return <BadRequestPage/>
+    const renderMovies = () => {
+        for (let i in responseSearchMovie) {
+            if (responseSearchMovie.hasOwnProperty(i)) {
+                return responseSearchMovie.results?.map(movie => <MovieCard key={movie.id} {...movie}/>)
+            }
+        }
+        return responseDiscoverMovie.results?.map(movie => <MovieCard key={movie.id} {...movie}/>)
     }
 
     return (
@@ -64,15 +99,14 @@ const MovieDiscoverPage: FC = () => {
 
 
                 <div className={scss.container_content}>
-                    <Sort
-                        genres={responseGenresMovie}
-                        sort={sort}
-                    />
+                    {!searchValue &&
+                        <Sort
+                            genres={responseGenresMovie}
+                            sort={sort}
+                        />
+                    }
                     <div className={scss.container_content_cards}>
-                        {
-                            Array.isArray(responseDiscoverMovie.results) &&
-                            responseDiscoverMovie.results.map(movie => <MovieCard key={movie.id} {...movie}/>)
-                        }
+                        {renderMovies()}
                     </div>
                 </div>
                 <Pagination totalPages={totalPages()} page={page} setPage={setPage}/>

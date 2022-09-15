@@ -10,6 +10,7 @@ export const urls = {
     topRatedMovie: '/movie/top_rated',
     discoverMovie: '/discover/movie',
     genreMovieList: '/genre/movie/list',
+    searchMovie: '/search/movie',
 
     topRatedTv: '/tv/top_rated',
     popularTv: '/tv/popular',

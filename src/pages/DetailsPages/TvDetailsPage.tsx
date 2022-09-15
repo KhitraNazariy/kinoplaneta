@@ -27,6 +27,7 @@ const TvDetailsPage: FC = () => {
         dispatch(fetchTvDetails({id}))
         dispatch(fetchRecommendationsTv({id}))
         dispatch(fetchCreditsTv({id}))
+        window.scrollTo(0, 0)
     }, [id])
 
     const isEmptyArr = (arr: any) => {

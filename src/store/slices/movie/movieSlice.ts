@@ -5,7 +5,7 @@ import {
     fetchCreditsMovie, fetchDiscoverMovie, fetchGenresMovie,
     fetchMovieDetails,
     fetchNowPlayingMovie,
-    fetchPopularMovie, fetchRecommendationsMovie,
+    fetchPopularMovie, fetchRecommendationsMovie, fetchSearchMovie,
     fetchTopRatedMovie,
     fetchUpcomingMovie
 } from "./asyncActions";
@@ -17,6 +17,7 @@ import {ICreditsMovie} from "../../../types/ICreditsMovie";
 import {IRecommendationMovie} from "../../../types/IRecommendationMovie";
 import {IDiscoverMovie} from "../../../types/IDiscoverMovie";
 import {IGenres} from "../../../types/IGenres";
+import {IMovies} from "../../../types/IMovies";
 
 
 interface MovieSliceState {
@@ -28,7 +29,8 @@ interface MovieSliceState {
     responseMovieCredits: ICreditsMovie;
     responseMovieRecommendations: IRecommendationMovie;
     responseDiscoverMovie: IDiscoverMovie;
-    responseGenresMovie: IGenres
+    responseGenresMovie: IGenres;
+    responseSearchMovie: IMovies;
     status: string;
     error: string | null
 }
@@ -43,6 +45,7 @@ const initialState: MovieSliceState = {
     responseMovieRecommendations: {} as IRecommendationMovie,
     responseDiscoverMovie: {} as IDiscoverMovie,
     responseGenresMovie: {} as IGenres,
+    responseSearchMovie: {} as IMovies,
     status: '',
     error: null
 }
@@ -50,7 +53,11 @@ const initialState: MovieSliceState = {
 const movieSlice = createSlice({
     name: 'movie',
     initialState,
-    reducers:{},
+    reducers:{
+        clearResponseSearchMovie: (state) => {
+            state.responseSearchMovie = {} as IMovies
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchNowPlayingMovie.pending, (state) => {
             state.error = null;
@@ -186,8 +193,25 @@ const movieSlice = createSlice({
                 state.error = payload.message
             }
         });
+
+        builder.addCase(fetchSearchMovie.pending, (state) => {
+            state.error = null;
+            state.status = 'loading';
+        });
+        builder.addCase(fetchSearchMovie.fulfilled, (state, action: PayloadAction<IMovies>) => {
+            state.error = null;
+            state.status = 'success'
+            state.responseSearchMovie = action.payload
+        });
+        builder.addCase(fetchSearchMovie.rejected, (state, {payload}) => {
+            if (payload) {
+                state.error = payload.message
+            }
+        });
     }
 });
+
+export const {clearResponseSearchMovie} = movieSlice.actions;
 
 const movie = movieSlice.reducer;
 

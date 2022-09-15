@@ -28,6 +28,7 @@ const MovieDetailsPage: FC = () => {
         dispatch(fetchMovieDetails({id: id}))
         dispatch(fetchCreditsMovie({id: id}))
         dispatch(fetchRecommendationsMovie({id: id}))
+        window.scrollTo(0, 0)
     }, [id])
 
     const isEmptyArr = (arr: IMovie[]) => {
