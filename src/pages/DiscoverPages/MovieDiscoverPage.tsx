@@ -1,14 +1,14 @@
 import React, {FC, useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
+import {FaSortAmountDownAlt} from "react-icons/fa";
 
-import scss from './MovieDiscoverPage.module.scss';
+import scss from './DiscoverPage.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
 import {fetchDiscoverMovie, fetchGenresMovie, fetchSearchMovie} from "../../store/slices/movie/asyncActions";
 import {MovieCard, Pagination, Search, Sort} from "../../components";
 import {changeDisabledBtn, changeSendRequest} from "../../store/slices/sort/sortSlice";
 import {sort} from "../../utils/sortByMovie";
 import {clearResponseSearchMovie} from "../../store/slices/movie/movieSlice";
-import {FaSortAmountDownAlt} from "react-icons/fa";
 
 const MovieDiscoverPage: FC = () => {
 
@@ -17,7 +17,7 @@ const MovieDiscoverPage: FC = () => {
     const [page, setPage] = useState(1);
 
     const [isOpenSortComponent, setIsOpenSortComponent] = useState(false);
-    const [isOpenMovieContent, setIsOpenMovieContent] = useState(true);
+    const [isOpenContent, setIsOpenContent] = useState(true);
 
 
     const {
@@ -105,7 +105,7 @@ const MovieDiscoverPage: FC = () => {
                         className={scss.filterBtn}
                         onClick={() => {
                             setIsOpenSortComponent(!isOpenSortComponent)
-                            setIsOpenMovieContent(!isOpenMovieContent)
+                            setIsOpenContent(!isOpenContent)
                         }}
                     >
                         <FaSortAmountDownAlt/>
@@ -121,12 +121,12 @@ const MovieDiscoverPage: FC = () => {
                             sort={sort}
                             setIsOpenSortComponent={setIsOpenSortComponent}
                             isOpenSortComponent={isOpenSortComponent}
-                            isOpenMovieContent={isOpenMovieContent}
-                            setIsOpenMovieContent={setIsOpenMovieContent}
+                            isOpenContent={isOpenContent}
+                            setIsOpenContent={setIsOpenContent}
                         />
                     }
                     <div className={scss.container_content_cards}>
-                        {isOpenMovieContent &&
+                        {isOpenContent &&
                             renderMovies()
                         }
                     </div>

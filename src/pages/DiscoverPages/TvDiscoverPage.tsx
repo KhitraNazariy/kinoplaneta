@@ -1,9 +1,10 @@
 import React, {FC, useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
+import {FaSortAmountDownAlt} from "react-icons/fa";
 
 import {RootState, useAppDispatch} from "../../store/store";
 import {changeDisabledBtn, changeSendRequest} from "../../store/slices/sort/sortSlice";
-import scss from "./MovieDiscoverPage.module.scss";
+import scss from "./DiscoverPage.module.scss";
 import {Pagination, Search, Sort} from "../../components";
 import {TvCard} from "../../components/Cards/TvCard";
 import {fetchDiscoverTv, fetchSearchTv, fetchTvGenres} from "../../store/slices/tv/asyncActions";
@@ -14,7 +15,9 @@ import {clearResponseSearchTv} from "../../store/slices/tv/tvSlice";
 const TvDiscoverPage: FC = () => {
 
     const dispatch = useAppDispatch();
+
     const [isOpenSortComponent, setIsOpenSortComponent] = useState(false);
+    const [isOpenContent, setIsOpenContent] = useState(true);
 
     const {
         responseDiscoverTv,
@@ -49,11 +52,12 @@ const TvDiscoverPage: FC = () => {
             genreId: genreSort.id,
             sortBy: sortBy.query
         }))
-        dispatch(fetchSearchTv({query: searchValue, page}))
         window.scrollTo(0, 0)
 
         if (searchValue === '') {
             dispatch(clearResponseSearchTv())
+        } else {
+            dispatch(fetchSearchTv({query: searchValue, page}))
         }
 
     },[sendRequest, isResetBtn, page, searchValue])
@@ -75,7 +79,7 @@ const TvDiscoverPage: FC = () => {
         }
     }
 
-    const renderMovies = () => {
+    const renderTvs = () => {
         for (let i in responseSearchTv) {
             if (responseSearchTv.hasOwnProperty(i)) {
                 return responseSearchTv.results?.map(tv => <TvCard key={tv.id} {...tv}/>)
@@ -97,18 +101,34 @@ const TvDiscoverPage: FC = () => {
                         setSearchValue={setSearchValue}
                         placeholder={'Пошук фільмів...'}
                     />
+                    <button
+                        className={scss.filterBtn}
+                        onClick={() => {
+                            setIsOpenSortComponent(!isOpenSortComponent)
+                            setIsOpenContent(!isOpenContent)
+                        }}
+                    >
+                        <FaSortAmountDownAlt/>
+                        Сортування
+                    </button>
                 </div>
 
 
                 <div className={scss.container_content}>
-                    {/*<Sort*/}
-                    {/*    genres={responseGenresTv}*/}
-                    {/*    sort={sort}*/}
-                    {/*    setIsOpenSortComponent={setIsOpenSortComponent}*/}
-                    {/*    isOpenSortComponent={isOpenSortComponent}*/}
-                    {/*/>*/}
+                    {!searchValue &&
+                        <Sort
+                            genres={responseGenresTv}
+                            sort={sort}
+                            setIsOpenSortComponent={setIsOpenSortComponent}
+                            isOpenSortComponent={isOpenSortComponent}
+                            isOpenContent={isOpenContent}
+                            setIsOpenContent={setIsOpenContent}
+                        />
+                    }
                     <div className={scss.container_content_cards}>
-                        {renderMovies()}
+                        {isOpenContent &&
+                            renderTvs()
+                        }
                     </div>
                 </div>
                 <Pagination totalPages={totalPages()} page={page} setPage={setPage}/>

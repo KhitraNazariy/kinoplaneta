@@ -16,8 +16,8 @@ interface SortProps {
     sort: ISortItem[];
     setIsOpenSortComponent: (state: boolean) => void;
     isOpenSortComponent: boolean;
-    setIsOpenMovieContent: (state: boolean) => void;
-    isOpenMovieContent: boolean;
+    setIsOpenContent: (state: boolean) => void;
+    isOpenContent: boolean;
 }
 
 const Sort: FC<SortProps> = (
@@ -26,8 +26,8 @@ const Sort: FC<SortProps> = (
         sort,
         setIsOpenSortComponent,
         isOpenSortComponent,
-        isOpenMovieContent,
-        setIsOpenMovieContent
+        setIsOpenContent,
+        isOpenContent
     }
 ) => {
 
@@ -127,29 +127,29 @@ const Sort: FC<SortProps> = (
             <div className={scss.sort_buttons}>
                 <div>
                     <button
+                        className={scss.sort_buttons_reset}
+                        onClick={() => {
+                            dispatch(resetBtn(true))
+                            setIsOpenSortComponent(!isOpenSortComponent)
+                            setIsOpenContent(!isOpenContent)
+                        }}
+                    >
+                        Скинути
+                    </button>
+                </div>
+                <div>
+                    <button
                         style={{backgroundColor: disabledBtn ? 'silver' : '', cursor: disabledBtn ? 'default' : ''}}
                         className={scss.sort_buttons_apply}
                         onClick={() => {
                             dispatch(changeSendRequest(true))
                             setIsOpenSortComponent(!isOpenSortComponent)
-                            setIsOpenMovieContent(!isOpenMovieContent)
+                            setIsOpenContent(!isOpenContent)
 
                         }}
 
                     >
                         Застосувати
-                    </button>
-                </div>
-                <div>
-                    <button
-                        className={scss.sort_buttons_reset}
-                        onClick={() => {
-                            dispatch(resetBtn(true))
-                            setIsOpenSortComponent(!isOpenSortComponent)
-                            setIsOpenMovieContent(!isOpenMovieContent)
-                        }}
-                    >
-                        Скинути
                     </button>
                 </div>
             </div>
