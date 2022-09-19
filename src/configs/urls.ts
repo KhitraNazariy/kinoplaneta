@@ -18,6 +18,7 @@ export const urls = {
     onTheAirTv: '/tv/on_the_air',
     discoverTv: '/discover/tv',
     genreTvList: '/genre/tv/list',
+    searchTv: '/search/tv',
 
     popularPerson: '/person/popular',
     combinedCreditsPerson: '/combined_credits'

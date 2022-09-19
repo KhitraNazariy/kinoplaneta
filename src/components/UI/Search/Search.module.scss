@@ -10,6 +10,7 @@
     top: 12px;
     left: 20px;
 
+
   }
 
   &_clearIcon {
@@ -34,6 +35,14 @@
     width: 400px;
     outline: none;
     font-size: 16px;
+
+    @media (max-width: 950px) {
+      width: 200px;
+    }
+
+    @media (max-width: 760px) {
+      font-size: 15px;
+    }
 
     &:focus {
       border: 1px solid rgba(0, 0, 0, 0.3);

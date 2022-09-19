@@ -1,6 +1,18 @@
 .sort {
   min-width: 250px;
 
+  @media (max-width: 950px) {
+    width: 500px;
+  }
+
+  @media (max-width: 540px) {
+    width: 400px;
+  }
+
+  @media (max-width: 440px) {
+    width: 330px;
+  }
+
   &_rating {
 
     &_title {
@@ -34,6 +46,19 @@
           padding: 10px 10px;
           width: 100px;
           font-size: 15px;
+
+          @media (max-width: 950px) {
+            width: 223px;
+          }
+
+          @media (max-width: 540px) {
+            width: 172px;
+          }
+
+          @media (max-width: 440px) {
+            width: 136px;
+          }
+
         }
 
       }
@@ -58,7 +83,6 @@
     }
 
     &_range {
-      //display: flex;
       position: relative;
 
       input {

@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 
 import {ITopRatedTv} from "../../../types/ITopRatedTv";
-import {tvService} from "../../../services";
+import {movieService, tvService} from "../../../services";
 import {IPopularTv} from "../../../types/IPopularTv";
 import {IAiringTodayTv} from "../../../types/IAiringTodayTv";
 import {IOnTheAirTv} from "../../../types/IOnTheAirTv";
@@ -10,6 +10,8 @@ import {IRecommendationTv} from "../../../types/IRecommendationTv";
 import {ICreditsTv} from "../../../types/ICreditsTv";
 import {IDiscoverTv} from "../../../types/IDiscoverTv";
 import {IGenres} from "../../../types/IGenres";
+import {IMovies} from "../../../types/IMovies";
+import {ITvs} from "../../../types/ITvs";
 
 interface FetchTodosError  {
     message: string;
@@ -126,6 +128,17 @@ export const fetchTvGenres = createAsyncThunk<IGenres, undefined, {rejectValue: 
     async (_, {rejectWithValue}) => {
         try {
             return await tvService.getGenres()
+        } catch (e) {
+            return rejectWithValue({message: 'Сервер не відповідає'})
+        }
+    }
+)
+
+export const fetchSearchTv = createAsyncThunk<ITvs, {query: string, page: number}, {rejectValue: FetchTodosError}>(
+    'tv/fetchSearchTv',
+    async ({query, page}, {rejectWithValue}) => {
+        try {
+            return await tvService.getSearch(query, page)
         } catch (e) {
             return rejectWithValue({message: 'Сервер не відповідає'})
         }

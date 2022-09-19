@@ -9,7 +9,7 @@ import {IRecommendationTv} from "../types/IRecommendationTv";
 import {ICreditsTv} from "../types/ICreditsTv";
 import {IDiscoverTv} from "../types/IDiscoverTv";
 import {IGenres} from "../types/IGenres";
-import {IDiscoverMovie} from "../types/IDiscoverMovie";
+import {ITvs} from "../types/ITvs";
 
 export const tvService = {
     getTopRated: (page: number) => axiosService.get<ITopRatedTv>
@@ -46,5 +46,8 @@ export const tvService = {
         .then(value => value.data),
     getGenres: () => axiosService.get<IGenres>
     (`${urls.genreTvList}?api_key=${API_KEY}&language=uk`)
+        .then(value => value.data),
+    getSearch: (query: string, page: number) => axiosService.get<ITvs>
+    (`${urls.searchTv}?api_key=${API_KEY}&language=uk&page=${page}&query=${query}`)
         .then(value => value.data)
 }

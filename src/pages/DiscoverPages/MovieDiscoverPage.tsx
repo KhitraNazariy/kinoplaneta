@@ -8,10 +8,18 @@ import {MovieCard, Pagination, Search, Sort} from "../../components";
 import {changeDisabledBtn, changeSendRequest} from "../../store/slices/sort/sortSlice";
 import {sort} from "../../utils/sortByMovie";
 import {clearResponseSearchMovie} from "../../store/slices/movie/movieSlice";
+import {FaSortAmountDownAlt} from "react-icons/fa";
 
 const MovieDiscoverPage: FC = () => {
 
     const dispatch = useAppDispatch();
+    const [searchValue, setSearchValue] = useState('');
+    const [page, setPage] = useState(1);
+
+    const [isOpenSortComponent, setIsOpenSortComponent] = useState(false);
+    const [isOpenMovieContent, setIsOpenMovieContent] = useState(true);
+
+
     const {
         responseDiscoverMovie,
         responseGenresMovie,
@@ -29,9 +37,6 @@ const MovieDiscoverPage: FC = () => {
         sortBy
     } = useSelector((state: RootState) => state.sort);
 
-    const [searchValue, setSearchValue] = useState('');
-    const [page, setPage] = useState(1);
-
 
     useEffect(() => {
         dispatch(fetchDiscoverMovie({
@@ -47,10 +52,11 @@ const MovieDiscoverPage: FC = () => {
         dispatch(changeSendRequest(false))
         dispatch(changeDisabledBtn(true))
         window.scrollTo(0, 0)
-        dispatch(fetchSearchMovie({query: searchValue, page}))
 
         if (searchValue === '') {
             dispatch(clearResponseSearchMovie())
+        } else {
+            dispatch(fetchSearchMovie({query: searchValue, page}))
         }
 
     }, [sendRequest, isResetBtn, page, searchValue])
@@ -95,6 +101,16 @@ const MovieDiscoverPage: FC = () => {
                         setSearchValue={setSearchValue}
                         placeholder={'Пошук фільмів...'}
                     />
+                    <button
+                        className={scss.filterBtn}
+                        onClick={() => {
+                            setIsOpenSortComponent(!isOpenSortComponent)
+                            setIsOpenMovieContent(!isOpenMovieContent)
+                        }}
+                    >
+                        <FaSortAmountDownAlt/>
+                        Сортування
+                    </button>
                 </div>
 
 
@@ -103,10 +119,16 @@ const MovieDiscoverPage: FC = () => {
                         <Sort
                             genres={responseGenresMovie}
                             sort={sort}
+                            setIsOpenSortComponent={setIsOpenSortComponent}
+                            isOpenSortComponent={isOpenSortComponent}
+                            isOpenMovieContent={isOpenMovieContent}
+                            setIsOpenMovieContent={setIsOpenMovieContent}
                         />
                     }
                     <div className={scss.container_content_cards}>
-                        {renderMovies()}
+                        {isOpenMovieContent &&
+                            renderMovies()
+                        }
                     </div>
                 </div>
                 <Pagination totalPages={totalPages()} page={page} setPage={setPage}/>

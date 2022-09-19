@@ -5,7 +5,7 @@ import {
     fetchAiringTodayTv, fetchCreditsTv, fetchDiscoverTv,
     fetchOnTheAirTv,
     fetchPopularTv,
-    fetchRecommendationsTv,
+    fetchRecommendationsTv, fetchSearchTv,
     fetchTopRatedTv,
     fetchTvDetails, fetchTvGenres
 } from "./asyncActions";
@@ -17,6 +17,7 @@ import {IRecommendationTv} from "../../../types/IRecommendationTv";
 import {ICreditsTv} from "../../../types/ICreditsTv";
 import {IDiscoverTv} from "../../../types/IDiscoverTv";
 import {IGenres} from "../../../types/IGenres";
+import {ITvs} from "../../../types/ITvs";
 
 interface TvSliceState {
     responseTopRatedTv: ITopRatedTv;
@@ -28,6 +29,7 @@ interface TvSliceState {
     responseTvCredits: ICreditsTv;
     responseDiscoverTv: IDiscoverTv;
     responseGenresTv: IGenres;
+    responseSearchTv: ITvs;
     status: string;
     error: string | null;
 }
@@ -42,6 +44,7 @@ const initialState: TvSliceState = {
     responseTvCredits: {} as ICreditsTv,
     responseDiscoverTv: {} as IDiscoverTv,
     responseGenresTv: {} as IGenres,
+    responseSearchTv: {} as ITvs,
     status: '',
     error: null
 }
@@ -49,7 +52,11 @@ const initialState: TvSliceState = {
 const tvSlice = createSlice({
     name: 'tv',
     initialState,
-    reducers: {},
+    reducers: {
+        clearResponseSearchTv: (state) => {
+            state.responseSearchTv = {} as ITvs
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchTopRatedTv.pending, (state) => {
             state.error = null;
@@ -194,8 +201,26 @@ const tvSlice = createSlice({
                 state.error = payload.message
             }
         })
+
+        builder.addCase(fetchSearchTv.pending, (state) => {
+            state.error = null;
+            state.status = 'loading';
+        });
+        builder.addCase(fetchSearchTv.fulfilled, (state, action: PayloadAction<ITvs>) => {
+            state.status = 'success';
+            state.error = null
+            state.responseSearchTv = action.payload
+        });
+        builder.addCase(fetchSearchTv.rejected, (state, {payload}) => {
+            state.status = 'error';
+            if (payload) {
+                state.error = payload.message
+            }
+        })
     }
 });
+
+export const {clearResponseSearchTv} = tvSlice.actions;
 
 const tv = tvSlice.reducer
 

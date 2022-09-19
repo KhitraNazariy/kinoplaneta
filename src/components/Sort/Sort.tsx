@@ -12,11 +12,24 @@ import {ISortItem} from "../../types/ISortItem";
 
 
 interface SortProps {
-    genres: IGenres
-    sort: ISortItem[]
+    genres: IGenres;
+    sort: ISortItem[];
+    setIsOpenSortComponent: (state: boolean) => void;
+    isOpenSortComponent: boolean;
+    setIsOpenMovieContent: (state: boolean) => void;
+    isOpenMovieContent: boolean;
 }
 
-const Sort: FC<SortProps> = ({genres, sort}) => {
+const Sort: FC<SortProps> = (
+    {
+        genres,
+        sort,
+        setIsOpenSortComponent,
+        isOpenSortComponent,
+        isOpenMovieContent,
+        setIsOpenMovieContent
+    }
+) => {
 
     const {
         maxValueVoteAv,
@@ -33,7 +46,10 @@ const Sort: FC<SortProps> = ({genres, sort}) => {
     const [isOpenSort, setIsOpenSort] = useState(false);
 
     return (
-        <div className={scss.sort}>
+        <div
+            style={{display: isOpenSortComponent ? 'block' : ''}}
+            className={scss.sort}
+        >
             <div className={scss.sort_info}>
                 <div className={scss.sort_info_item}>Рейтинг: {minValueVoteAv} - {maxValueVoteAv}</div>
                 <div className={scss.sort_info_item}>Дата виходу: {minReleaseYear} - {maxReleaseYear}</div>
@@ -113,7 +129,12 @@ const Sort: FC<SortProps> = ({genres, sort}) => {
                     <button
                         style={{backgroundColor: disabledBtn ? 'silver' : '', cursor: disabledBtn ? 'default' : ''}}
                         className={scss.sort_buttons_apply}
-                        onClick={() => dispatch(changeSendRequest(true))}
+                        onClick={() => {
+                            dispatch(changeSendRequest(true))
+                            setIsOpenSortComponent(!isOpenSortComponent)
+                            setIsOpenMovieContent(!isOpenMovieContent)
+
+                        }}
 
                     >
                         Застосувати
@@ -122,7 +143,11 @@ const Sort: FC<SortProps> = ({genres, sort}) => {
                 <div>
                     <button
                         className={scss.sort_buttons_reset}
-                        onClick={() => dispatch(resetBtn(true))}
+                        onClick={() => {
+                            dispatch(resetBtn(true))
+                            setIsOpenSortComponent(!isOpenSortComponent)
+                            setIsOpenMovieContent(!isOpenMovieContent)
+                        }}
                     >
                         Скинути
                     </button>
