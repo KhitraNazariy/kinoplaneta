@@ -3,7 +3,7 @@ import {Route, Routes} from "react-router-dom";
 
 import {MainLayout} from "./layouts/MainLayout/MainLayout";
 import {
-    AiringTodayTvPage,
+    AiringTodayTvPage, AuthPage,
     HomePage,
     MovieDetailsPage, MovieDiscoverPage,
     NotFoundPage,
@@ -39,6 +39,7 @@ const App: FC = () => {
                     <Route path={'tv/:id'} element={<TvDetailsPage/>}/>
                     <Route path={'person-popular'} element={<PopularPersonPage/>}/>
                     <Route path={'person/:id'} element={<PersonDetailsPage/>}/>
+                    <Route path={'auth'} element={<AuthPage/>}/>
                     <Route path={'*'} element={<NotFoundPage/>}/>
                 </Route>
             </Routes>

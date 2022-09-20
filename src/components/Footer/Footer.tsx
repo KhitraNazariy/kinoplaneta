@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
+import {Link, NavLink} from "react-router-dom";
 
 import logoIcon from '../../assets/img/logo.png';
 import scss from './Footer.module.scss';
-import {Link} from "react-router-dom";
 
 const Footer: FC = () => {
     return (
@@ -14,9 +14,15 @@ const Footer: FC = () => {
             </div>
             <nav>
                 <ul className={scss.footer_nav}>
-                    <li className={scss.footer_nav_item}>Фільми</li>
-                    <li className={scss.footer_nav_item}>Серіали</li>
-                    <li className={scss.footer_nav_item}>Персони</li>
+                    <NavLink to={'movie-discover'}>
+                        <li className={scss.footer_nav_item}>Фільми</li>
+                    </NavLink>
+                    <NavLink to={'tv-discover'}>
+                        <li className={scss.footer_nav_item}>Серіали</li>
+                    </NavLink>
+                    <NavLink to={'person-popular'}>
+                        <li className={scss.footer_nav_item}>Персони</li>
+                    </NavLink>
                 </ul>
             </nav>
             <div className={scss.footer_someInfo}>

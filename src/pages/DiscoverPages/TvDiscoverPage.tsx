@@ -99,7 +99,7 @@ const TvDiscoverPage: FC = () => {
                     <Search
                         searchValue={searchValue}
                         setSearchValue={setSearchValue}
-                        placeholder={'Пошук фільмів...'}
+                        placeholder={'Пошук серіалів...'}
                     />
                     <button
                         className={scss.filterBtn}

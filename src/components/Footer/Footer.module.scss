@@ -35,6 +35,11 @@
     display: flex;
     column-gap: 40px;
 
+    a {
+      text-decoration: none;
+      color: #FFFFFF;
+    }
+
     &_item {
       font-size: 17px;
       cursor: pointer;

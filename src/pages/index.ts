@@ -1,3 +1,4 @@
+export * from './AuthPage/AuthPage';
 export * from './BadRequestPage/BadRequestPage';
 export * from './DetailsPages/index';
 export * from './DiscoverPages/index';

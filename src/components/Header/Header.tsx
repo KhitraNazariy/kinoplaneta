@@ -23,7 +23,7 @@ const Header: FC<HeaderProps> = ({active, setActive}) => {
                 <DropdownMenu/>
             </div>
             <div className={scss.header__rightContent}>
-                <NavLink to={''}>Ввійти</NavLink>
+                <NavLink to={''}>Реєстрація</NavLink>
                 <div className={scss.header__rightContent_mobile}>
                     <div onClick={() => setActive(!active)} className={scss.header__rightContent_mobile_burgerMenu}>
                         <span></span>
