@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {AiOutlineArrowRight} from 'react-icons/ai';
 import {Link} from "react-router-dom";
 
-import backgroundImg from '../../assets/img/bg.png';
+import backgroundImg from '../../img/bg.png';
 import scss from './Poster.module.scss';
 
 const Poster: FC = () => {

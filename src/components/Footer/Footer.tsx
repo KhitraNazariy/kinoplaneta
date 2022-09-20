@@ -1,17 +1,17 @@
 import React, {FC} from 'react';
 import {Link} from "react-router-dom";
 
-// import logoIcon from '../../assets/img/logo.png';
+import LogoIcon from '../../img/logo.png'
 import scss from './Footer.module.scss';
 
 const Footer: FC = () => {
     return (
         <footer className={scss.footer}>
-            {/*<div className={scss.footer_logo}>*/}
-            {/*    <Link to={'/'}>*/}
-            {/*        <img src={logoIcon} alt="logo-icon"/>*/}
-            {/*    </Link>*/}
-            {/*</div>*/}
+            <div className={scss.footer_logo}>
+                <Link to={'/'}>
+                    <img src={LogoIcon} alt="logo-icon"/>
+                </Link>
+            </div>
             <nav>
                 <ul className={scss.footer_nav}>
                     <Link to={'movie-discover'}>

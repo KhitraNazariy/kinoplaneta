@@ -1,8 +1,8 @@
 import React, {Dispatch, FC, SetStateAction} from 'react';
 import {Link, NavLink} from "react-router-dom";
 
-import logoIcon from '../../assets/img/logo.png'
-import loginIcon from '../../assets/img/login.png';
+import LogoIcon from '../../img/logo.png'
+import LoginIcon from '../../img/login.png';
 import scss from './Header.module.scss';
 import {DropdownMenu} from "../DropdownMenu/DropdownMenu";
 
@@ -17,7 +17,7 @@ const Header: FC<HeaderProps> = ({active, setActive}) => {
             <div className={scss.header__leftContent}>
                 <div className={scss.header__leftContent_logo}>
                     <Link to={'/'}>
-                        <img src={logoIcon} alt="icon-logo"/>
+                        <img src={LogoIcon} alt="icon-logo"/>
                     </Link>
                 </div>
                 <DropdownMenu/>
@@ -28,7 +28,7 @@ const Header: FC<HeaderProps> = ({active, setActive}) => {
                     <div onClick={() => setActive(!active)} className={scss.header__rightContent_mobile_burgerMenu}>
                         <span></span>
                     </div>
-                    <img className={scss.header__rightContent_mobile_login} src={loginIcon} alt="login-icon"/>
+                    <img className={scss.header__rightContent_mobile_login} src={LoginIcon} alt="login-icon"/>
                 </div>
             </div>
         </header>
