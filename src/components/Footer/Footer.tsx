@@ -1,28 +1,28 @@
 import React, {FC} from 'react';
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-import logoIcon from '../../assets/img/logo.png';
+// import logoIcon from '../../assets/img/logo.png';
 import scss from './Footer.module.scss';
 
 const Footer: FC = () => {
     return (
         <footer className={scss.footer}>
-            <div className={scss.footer_logo}>
-                <Link to={'/'}>
-                    <img src={logoIcon} alt="logo-icon"/>
-                </Link>
-            </div>
+            {/*<div className={scss.footer_logo}>*/}
+            {/*    <Link to={'/'}>*/}
+            {/*        <img src={logoIcon} alt="logo-icon"/>*/}
+            {/*    </Link>*/}
+            {/*</div>*/}
             <nav>
                 <ul className={scss.footer_nav}>
-                    <NavLink to={'movie-discover'}>
+                    <Link to={'movie-discover'}>
                         <li className={scss.footer_nav_item}>Фільми</li>
-                    </NavLink>
-                    <NavLink to={'tv-discover'}>
+                    </Link>
+                    <Link to={'tv-discover'}>
                         <li className={scss.footer_nav_item}>Серіали</li>
-                    </NavLink>
-                    <NavLink to={'person-popular'}>
+                    </Link>
+                    <Link to={'person-popular'}>
                         <li className={scss.footer_nav_item}>Персони</li>
-                    </NavLink>
+                    </Link>
                 </ul>
             </nav>
             <div className={scss.footer_someInfo}>
