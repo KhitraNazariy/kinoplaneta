@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/kinoplaneta/static/css/main.72d95128.css",
+    "main.js": "/kinoplaneta/static/js/main.f4b071d8.js",
+    "static/media/bg.png": "/kinoplaneta/static/media/bg.9ad3ffadda2346d7194a.png",
+    "index.html": "/kinoplaneta/index.html",
+    "main.72d95128.css.map": "/kinoplaneta/static/css/main.72d95128.css.map",
+    "main.f4b071d8.js.map": "/kinoplaneta/static/js/main.f4b071d8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.72d95128.css",
+    "static/js/main.f4b071d8.js"
+  ]
+}
