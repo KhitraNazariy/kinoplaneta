@@ -1,15 +1,16 @@
 import React, {FC} from 'react';
 import {Link} from "react-router-dom";
 
-import LogoIcon from './../../assets/img/logo.png'
+
 import scss from './Footer.module.scss';
+import {MdMovie} from "react-icons/md";
 
 const Footer: FC = () => {
     return (
         <footer className={scss.footer}>
             <div className={scss.footer_logo}>
                 <Link to={'/'}>
-                    <img src={LogoIcon} alt="logo-icon"/>
+                    <MdMovie className={scss.footer_icon}/>
                 </Link>
             </div>
             <nav>

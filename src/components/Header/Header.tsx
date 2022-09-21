@@ -1,10 +1,10 @@
 import React, {Dispatch, FC, SetStateAction} from 'react';
 import {Link, NavLink} from "react-router-dom";
 
-import LogoIcon from './../../assets/img/logo.png'
 import LoginIcon from '../../assets/img/login.png';
 import scss from './Header.module.scss';
 import {DropdownMenu} from "../DropdownMenu/DropdownMenu";
+import {MdMovie} from "react-icons/md";
 
 interface HeaderProps {
     active: boolean;
@@ -17,7 +17,7 @@ const Header: FC<HeaderProps> = ({active, setActive}) => {
             <div className={scss.header__leftContent}>
                 <div className={scss.header__leftContent_logo}>
                     <Link to={'/'}>
-                        <img src={LogoIcon} alt="icon-logo"/>
+                        <MdMovie className={scss.header__leftContent_icon}/>
                     </Link>
                 </div>
                 <DropdownMenu/>

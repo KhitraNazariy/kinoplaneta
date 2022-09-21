@@ -29,20 +29,24 @@
       column-gap: 60px;
     }
 
-    &_logo {
-
-      display: flex;
-      align-items: center;
-      column-gap: 20px;
-
-      &_title {
-        text-transform: uppercase;
-        font-size: 22px;
-      }
-
-      img {
-        height: 40px;
-      }
+    //&_logo {
+    //
+    //  display: flex;
+    //  align-items: center;
+    //  column-gap: 20px;
+    //
+    //  &_title {
+    //    text-transform: uppercase;
+    //    font-size: 22px;
+    //  }
+    //
+    //  img {
+    //    height: 40px;
+    //  }
+    //}
+    &_icon {
+      color: #FFFFFF;
+      font-size: 30px;
     }
 
   }
