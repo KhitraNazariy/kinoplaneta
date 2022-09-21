@@ -1,7 +1,7 @@
 import React, {Dispatch, FC, SetStateAction} from 'react';
 import {Link, NavLink} from "react-router-dom";
 
-import LogoIcon from '../../assets/img/logo.png'
+import LogoIcon from './../../assets/img/logo.png'
 import LoginIcon from '../../assets/img/login.png';
 import scss from './Header.module.scss';
 import {DropdownMenu} from "../DropdownMenu/DropdownMenu";
