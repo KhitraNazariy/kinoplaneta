@@ -1,15 +1,17 @@
 import React, {FC} from 'react';
 import {Link} from "react-router-dom";
 
-import LogoIcon from './../../assets/img/logo.png'
 import scss from './Footer.module.scss';
 
 const Footer: FC = () => {
+
+    const logo = require('../../assets/img/logo.png')
+
     return (
         <footer className={scss.footer}>
             <div className={scss.footer_logo}>
                 <Link to={'/'}>
-                    <img src={LogoIcon} alt="logo-icon"/>
+                    <img src={logo} alt="logo-icon"/>
                 </Link>
             </div>
             <nav>

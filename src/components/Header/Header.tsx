@@ -1,8 +1,6 @@
 import React, {Dispatch, FC, SetStateAction} from 'react';
 import {Link, NavLink} from "react-router-dom";
 
-import LogoIcon from './../../assets/img/logo.png'
-import LoginIcon from '../../assets/img/login.png';
 import scss from './Header.module.scss';
 import {DropdownMenu} from "../DropdownMenu/DropdownMenu";
 
@@ -12,12 +10,16 @@ interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = ({active, setActive}) => {
+
+    const logo = require('../../assets/img/logo.png')
+    const login = require('../../assets/img/login.png')
+
     return (
         <header className={scss.header}>
             <div className={scss.header__leftContent}>
                 <div className={scss.header__leftContent_logo}>
                     <Link to={'/'}>
-                        <img src={LogoIcon} alt="icon-logo"/>
+                        <img src={logo} alt="icon-logo"/>
                     </Link>
                 </div>
                 <DropdownMenu/>
@@ -28,7 +30,7 @@ const Header: FC<HeaderProps> = ({active, setActive}) => {
                     <div onClick={() => setActive(!active)} className={scss.header__rightContent_mobile_burgerMenu}>
                         <span></span>
                     </div>
-                    <img className={scss.header__rightContent_mobile_login} src={LoginIcon} alt="login-icon"/>
+                    <img className={scss.header__rightContent_mobile_login} src={login} alt="login-icon"/>
                 </div>
             </div>
         </header>
