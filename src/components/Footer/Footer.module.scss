@@ -20,9 +20,15 @@
     row-gap: 25px;
   }
 
-  &_icon {
-    color: #FFFFFF;
-    font-size: 50px;
+  &_logo {
+    img {
+      height: 60px;
+
+      @media (max-width: 800px) {
+        height: 40px;
+      }
+
+    }
   }
 
   &_nav {
