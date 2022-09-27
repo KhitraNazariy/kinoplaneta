@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {Link} from "react-router-dom";
 
 import scss from './Footer.module.scss';
+import logo from '../../assets/img/logo.png';
 
 const Footer: FC = () => {
 
@@ -11,7 +12,7 @@ const Footer: FC = () => {
         <footer className={scss.footer}>
             <div className={scss.footer_logo}>
                 <Link to={'/'}>
-                    <img src='https://w7.pngwing.com/pngs/725/684/png-transparent-movie-time-graphic-film-cinema-logo-film-elements-cdr-food-text.png' alt="logo-icon"/>
+                    <img src={logo} alt="logo-icon"/>
                 </Link>
             </div>
             <nav>

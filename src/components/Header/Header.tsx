@@ -1,6 +1,7 @@
 import React, {Dispatch, FC, SetStateAction} from 'react';
 import {Link, NavLink} from "react-router-dom";
 
+import logo from '../../assets/img/logo.png'
 import scss from './Header.module.scss';
 import {DropdownMenu} from "../DropdownMenu/DropdownMenu";
 
@@ -16,7 +17,7 @@ const Header: FC<HeaderProps> = ({active, setActive}) => {
             <div className={scss.header__leftContent}>
                 <div className={scss.header__leftContent_logo}>
                     <Link to={'/'}>
-                        <img src='https://w7.pngwing.com/pngs/725/684/png-transparent-movie-time-graphic-film-cinema-logo-film-elements-cdr-food-text.png' alt="icon-logo"/>
+                        <img src={logo} alt="icon-logo"/>
                     </Link>
                 </div>
                 <DropdownMenu/>
