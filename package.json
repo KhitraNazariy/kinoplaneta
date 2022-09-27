@@ -2,7 +2,6 @@
   "name": "kinoplaneta",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://khitranazariy.github.io/kinoplaneta/",
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
@@ -17,7 +16,6 @@
     "@types/react-redux": "^7.1.24",
     "@types/redux": "^3.6.0",
     "axios": "^0.27.2",
-    "gh-pages": "^4.0.0",
     "lodash": "^4.17.21",
     "lodash.sortby": "^4.7.0",
     "react": "^18.2.0",
@@ -38,9 +36,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build",
-    "predeploy": "npm run build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
