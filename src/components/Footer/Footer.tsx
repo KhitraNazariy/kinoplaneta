@@ -5,13 +5,13 @@ import scss from './Footer.module.scss';
 
 const Footer: FC = () => {
 
-    const logo = require('../../assets/img/logo.png')
+
 
     return (
         <footer className={scss.footer}>
             <div className={scss.footer_logo}>
                 <Link to={'/'}>
-                    <img src={logo} alt="logo-icon"/>
+                    <img src='https://w7.pngwing.com/pngs/725/684/png-transparent-movie-time-graphic-film-cinema-logo-film-elements-cdr-food-text.png' alt="logo-icon"/>
                 </Link>
             </div>
             <nav>

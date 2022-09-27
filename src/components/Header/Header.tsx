@@ -11,15 +11,12 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({active, setActive}) => {
 
-    const logo = require('../../assets/img/logo.png')
-    const login = require('../../assets/img/login.png')
-
     return (
         <header className={scss.header}>
             <div className={scss.header__leftContent}>
                 <div className={scss.header__leftContent_logo}>
                     <Link to={'/'}>
-                        <img src={logo} alt="icon-logo"/>
+                        <img src='https://w7.pngwing.com/pngs/725/684/png-transparent-movie-time-graphic-film-cinema-logo-film-elements-cdr-food-text.png' alt="icon-logo"/>
                     </Link>
                 </div>
                 <DropdownMenu/>
@@ -30,7 +27,7 @@ const Header: FC<HeaderProps> = ({active, setActive}) => {
                     <div onClick={() => setActive(!active)} className={scss.header__rightContent_mobile_burgerMenu}>
                         <span></span>
                     </div>
-                    <img className={scss.header__rightContent_mobile_login} src={login} alt="login-icon"/>
+                    {/*<img className={scss.header__rightContent_mobile_login} src='https://i.pinimg.com/originals/fc/eb/df/fcebdf9e34ad5d5f1d8f728f781a00ac.jpg' alt="login-icon"/>*/}
                 </div>
             </div>
         </header>
