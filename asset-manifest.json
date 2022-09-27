@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/kinoplaneta/static/css/main.72d95128.css",
-    "main.js": "/kinoplaneta/static/js/main.f4b071d8.js",
-    "static/media/bg.png": "/kinoplaneta/static/media/bg.9ad3ffadda2346d7194a.png",
-    "index.html": "/kinoplaneta/index.html",
-    "main.72d95128.css.map": "/kinoplaneta/static/css/main.72d95128.css.map",
-    "main.f4b071d8.js.map": "/kinoplaneta/static/js/main.f4b071d8.js.map"
+    "main.css": "/static/css/main.72d95128.css",
+    "main.js": "/static/js/main.48505393.js",
+    "static/media/bg.png": "/static/media/bg.9ad3ffadda2346d7194a.png",
+    "index.html": "/index.html",
+    "main.72d95128.css.map": "/static/css/main.72d95128.css.map",
+    "main.48505393.js.map": "/static/js/main.48505393.js.map"
   },
   "entrypoints": [
     "static/css/main.72d95128.css",
-    "static/js/main.f4b071d8.js"
+    "static/js/main.48505393.js"
   ]
 }
