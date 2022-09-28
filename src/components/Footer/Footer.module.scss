@@ -21,11 +21,12 @@
   }
 
   &_logo {
-    img {
-      height: 60px;
+    &_icon {
+      color: #FFFFFF;
+      font-size: 50px;
 
       @media (max-width: 800px) {
-        height: 40px;
+        font-size: 40px;
       }
 
     }

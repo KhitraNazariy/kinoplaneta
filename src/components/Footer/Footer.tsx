@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {Link} from "react-router-dom";
+import {BiMoviePlay} from "react-icons/bi";
 
 import scss from './Footer.module.scss';
-import logo from '../../assets/img/logo.png';
 
 const Footer: FC = () => {
 
@@ -12,7 +12,7 @@ const Footer: FC = () => {
         <footer className={scss.footer}>
             <div className={scss.footer_logo}>
                 <Link to={'/'}>
-                    <img src={logo} alt="logo-icon"/>
+                    <BiMoviePlay className={scss.footer_logo_icon}/>
                 </Link>
             </div>
             <nav>

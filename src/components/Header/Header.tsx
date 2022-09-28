@@ -1,7 +1,7 @@
 import React, {Dispatch, FC, SetStateAction} from 'react';
 import {Link, NavLink} from "react-router-dom";
+import {BiLogInCircle, BiMoviePlay} from "react-icons/bi";
 
-import logo from '../../assets/img/logo.png'
 import scss from './Header.module.scss';
 import {DropdownMenu} from "../DropdownMenu/DropdownMenu";
 
@@ -17,7 +17,7 @@ const Header: FC<HeaderProps> = ({active, setActive}) => {
             <div className={scss.header__leftContent}>
                 <div className={scss.header__leftContent_logo}>
                     <Link to={'/'}>
-                        <img src={logo} alt="icon-logo"/>
+                        <BiMoviePlay className={scss.header__leftContent_logo_icon}/>
                     </Link>
                 </div>
                 <DropdownMenu/>
@@ -28,7 +28,7 @@ const Header: FC<HeaderProps> = ({active, setActive}) => {
                     <div onClick={() => setActive(!active)} className={scss.header__rightContent_mobile_burgerMenu}>
                         <span></span>
                     </div>
-                    {/*<img className={scss.header__rightContent_mobile_login} src='https://i.pinimg.com/originals/fc/eb/df/fcebdf9e34ad5d5f1d8f728f781a00ac.jpg' alt="login-icon"/>*/}
+                    <BiLogInCircle className={scss.header__rightContent_mobile_login}/>
                 </div>
             </div>
         </header>
