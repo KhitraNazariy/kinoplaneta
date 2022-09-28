@@ -14,7 +14,7 @@ const MainLayout: FC = () => {
             <Header active={menuActive} setActive={setMenuActive}/>
             <main className={scss.mainContent}>
                 <Outlet/>
-                <MobileMenu active={menuActive}/>
+                <MobileMenu active={menuActive} setMenuActive={setMenuActive}/>
             </main>
             <Footer/>
         </>

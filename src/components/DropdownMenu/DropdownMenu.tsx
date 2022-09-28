@@ -61,12 +61,7 @@ const DropdownMenu: FC = () => {
                     </ul>
                 </li>
                 <li>
-                    Ще
-                    <ul>
-                        <li>Обговорення</li>
-                        <li>Лідери</li>
-                        <li>Підтримка</li>
-                    </ul>
+                    <NavLink to={''}>Обрані</NavLink>
                 </li>
             </ul>
         </nav>

@@ -25,7 +25,10 @@ const Header: FC<HeaderProps> = ({active, setActive}) => {
             <div className={scss.header__rightContent}>
                 <NavLink to={''}>Реєстрація</NavLink>
                 <div className={scss.header__rightContent_mobile}>
-                    <div onClick={() => setActive(!active)} className={scss.header__rightContent_mobile_burgerMenu}>
+                    <div
+                        onClick={() => setActive(!active)}
+                        className={scss.header__rightContent_mobile_burgerMenu}
+                    >
                         <span></span>
                     </div>
                     <BiLogInCircle className={scss.header__rightContent_mobile_login}/>
