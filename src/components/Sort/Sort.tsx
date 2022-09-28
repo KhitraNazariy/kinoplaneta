@@ -144,7 +144,7 @@ const Sort: FC<SortProps> = (
                         onClick={() => {
                             dispatch(changeSendRequest(true))
                             setIsOpenSortComponent(!isOpenSortComponent)
-                            setIsOpenContent(!isOpenContent)
+                            setIsOpenContent(true)
 
                         }}
 

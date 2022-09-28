@@ -131,7 +131,9 @@ const MovieDiscoverPage: FC = () => {
                         }
                     </div>
                 </div>
-                <Pagination totalPages={totalPages()} page={page} setPage={setPage}/>
+                {isOpenContent &&
+                    <Pagination totalPages={totalPages()} page={page} setPage={setPage}/>
+                }
             </div>
         </div>
     );
