@@ -105,6 +105,15 @@
         }
 
         &_knownAs {
+          margin-top: 10px;
+
+          h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+            width: fit-content;
+            border-bottom: 1px solid silver;
+            padding-bottom: 2px;
+          }
 
           @media (max-width: 700px) {
             display: none;

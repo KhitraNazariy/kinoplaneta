@@ -90,7 +90,10 @@ const TvDiscoverPage: FC = () => {
 
     return (
         <div className={scss.wrap}>
-            <div className={scss.container}>
+            <div
+                className={scss.container}
+                style={{minHeight: window.screen.height}}
+            >
                 <div className={scss.container_header}>
                     <div className={scss.container_header_title}>
                         <h2>Всі фільми</h2>
@@ -131,7 +134,9 @@ const TvDiscoverPage: FC = () => {
                         }
                     </div>
                 </div>
-                <Pagination totalPages={totalPages()} page={page} setPage={setPage}/>
+                {isOpenContent && responseSearchTv.total_pages !== 0 &&
+                    <Pagination totalPages={totalPages()} page={page} setPage={setPage}/>
+                }
             </div>
         </div>
     );

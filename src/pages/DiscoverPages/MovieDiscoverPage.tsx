@@ -61,7 +61,6 @@ const MovieDiscoverPage: FC = () => {
 
     }, [sendRequest, isResetBtn, page, searchValue])
 
-
     const totalPages = () => {
         for (let i in responseSearchMovie) {
             if (responseSearchMovie.hasOwnProperty(i)) {
@@ -90,7 +89,10 @@ const MovieDiscoverPage: FC = () => {
 
     return (
         <div className={scss.wrap}>
-            <div className={scss.container}>
+            <div
+                className={scss.container}
+                style={{minHeight: window.screen.height}}
+            >
                 <div className={scss.container_header}>
                     <div className={scss.container_header_title}>
                         <h2>Всі фільми</h2>
@@ -131,7 +133,7 @@ const MovieDiscoverPage: FC = () => {
                         }
                     </div>
                 </div>
-                {isOpenContent &&
+                {isOpenContent && responseSearchMovie.total_pages !== 0 &&
                     <Pagination totalPages={totalPages()} page={page} setPage={setPage}/>
                 }
             </div>

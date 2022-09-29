@@ -130,8 +130,6 @@ const Sort: FC<SortProps> = (
                         className={scss.sort_buttons_reset}
                         onClick={() => {
                             dispatch(resetBtn(true))
-                            setIsOpenSortComponent(!isOpenSortComponent)
-                            setIsOpenContent(!isOpenContent)
                         }}
                     >
                         Скинути

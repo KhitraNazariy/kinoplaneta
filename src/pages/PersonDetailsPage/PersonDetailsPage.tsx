@@ -117,7 +117,7 @@ const PersonDetailsPage: FC = () => {
                     <div className={scss.content_right_knowFor_cards}>
                         {
                             //@ts-ignore
-                            state?.map((item, index) => <KnownForCard key={index} {...item}/>)
+                            state?.map((item) => <KnownForCard key={item.id} {...item}/>)
                         }
                     </div>
                 </div>
