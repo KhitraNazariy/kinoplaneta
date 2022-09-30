@@ -23,7 +23,7 @@ const Header: FC<HeaderProps> = ({active, setActive}) => {
                 <DropdownMenu/>
             </div>
             <div className={scss.header__rightContent}>
-                <NavLink to={'login'}><BiLogInCircle className={scss.header__rightContent_register}/></NavLink>
+                <Link to={'login'}><BiLogInCircle className={scss.header__rightContent_register}/></Link>
                 <div className={scss.header__rightContent_mobile}>
                     <div
                         onClick={() => setActive(!active)}
@@ -31,7 +31,7 @@ const Header: FC<HeaderProps> = ({active, setActive}) => {
                     >
                         <span></span>
                     </div>
-                    <BiLogInCircle className={scss.header__rightContent_mobile_login}/>
+                    <Link to={'login'}><BiLogInCircle className={scss.header__rightContent_mobile_login}/></Link>
                 </div>
             </div>
         </header>
