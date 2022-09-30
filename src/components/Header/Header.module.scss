@@ -46,18 +46,18 @@
 
   &__rightContent {
 
+    display: flex;
+    flex-direction: row-reverse;
+    column-gap: 10px;
+
     &_register {
       font-size: 32px;
+      margin-top: 3px;
     }
 
     a {
       text-decoration: none;
       color: #FFFFFF;
-
-      @media (max-width: 950px) {
-        display: none;
-      }
-
     }
 
     &_mobile {

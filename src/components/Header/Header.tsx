@@ -1,5 +1,5 @@
 import React, {Dispatch, FC, SetStateAction} from 'react';
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {BiLogInCircle, BiMoviePlay} from "react-icons/bi";
 
 import scss from './Header.module.scss';
@@ -31,7 +31,6 @@ const Header: FC<HeaderProps> = ({active, setActive}) => {
                     >
                         <span></span>
                     </div>
-                    <Link to={'login'}><BiLogInCircle className={scss.header__rightContent_mobile_login}/></Link>
                 </div>
             </div>
         </header>
