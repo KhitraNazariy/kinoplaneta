@@ -1,0 +1,84 @@
+.auth {
+  width: 350px;
+  margin: 80px auto 30px;
+
+  @media (max-width: 800px) {
+    margin-top: 40px;
+  }
+
+  @media (max-width: 380px) {
+    width: 300px;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  &_topInputs {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &_label {
+    width: 165px;
+
+    @media (max-width: 380px) {
+      width: 140px;
+    }
+
+  }
+
+  label {
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  &_input {
+    padding: 12px 0 12px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    outline: none;
+    border-radius: 5px;
+    font-size: 15px;
+
+    &:focus {
+      border: 1px solid rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  input[type=submit] {
+    width: 100%;
+    padding: 14px 0;
+    background-color: #005382;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    transition: .5s;
+
+    &:hover {
+      background-color: #003f63;
+      cursor: pointer;
+    }
+  }
+
+  &_text {
+    margin-top: 20px;
+    font-weight: 300;
+    font-size: 16px;
+
+    a {
+      color: #000000;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+  }
+
+}

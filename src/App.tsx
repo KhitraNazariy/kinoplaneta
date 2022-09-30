@@ -3,8 +3,8 @@ import {Route, Routes} from "react-router-dom";
 
 import {MainLayout} from "./layouts/MainLayout/MainLayout";
 import {
-    AiringTodayTvPage, AuthPage,
-    HomePage,
+    AiringTodayTvPage,
+    HomePage, LoginPage,
     MovieDetailsPage, MovieDiscoverPage,
     NotFoundPage,
     NowPlayingMoviePage,
@@ -18,6 +18,7 @@ import {
     TvDiscoverPage,
     UpcomingMoviePage
 } from "./pages";
+import {RegisterPage} from "./pages/AuthPages/RegisterPage";
 
 const App: FC = () => {
     return (
@@ -39,7 +40,8 @@ const App: FC = () => {
                     <Route path={'tv/:id'} element={<TvDetailsPage/>}/>
                     <Route path={'person-popular'} element={<PopularPersonPage/>}/>
                     <Route path={'person/:id'} element={<PersonDetailsPage/>}/>
-                    <Route path={'auth'} element={<AuthPage/>}/>
+                    <Route path={'login'} element={<LoginPage/>}/>
+                    <Route path={'register'} element={<RegisterPage/>}/>
                     <Route path={'*'} element={<NotFoundPage/>}/>
                 </Route>
             </Routes>
