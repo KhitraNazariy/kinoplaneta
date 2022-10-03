@@ -63,9 +63,9 @@ const MobileMenu: FC<MobileMenuProps> = ({active, setMenuActive}) => {
                 </div>
 
                 <div className={scss.menu__content_block}>
-                    <Link to={'tv-discover'}><h2><MdOutlinePersonOutline/>Персони</h2></Link>
+                    <Link to={'person-popular'}><h2><MdOutlinePersonOutline/>Персони</h2></Link>
                     <div className={scss.list}>
-                        <Link to={'tv-popular'}>
+                        <Link to={'person-popular'}>
                             <div>Популярні</div>
                         </Link>
                     </div>

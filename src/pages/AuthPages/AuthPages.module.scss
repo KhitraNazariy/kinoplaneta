@@ -20,6 +20,10 @@
     justify-content: space-between;
   }
 
+  &_error {
+    color: red;
+  }
+
   &_label {
     width: 165px;
 
@@ -64,6 +68,11 @@
     &:hover {
       background-color: #003f63;
       cursor: pointer;
+    }
+
+    &:disabled {
+      background-color: #b7b5b5;
+      cursor: auto;
     }
   }
 
