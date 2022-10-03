@@ -71,7 +71,7 @@ const NowPlayingMoviePage: FC = () => {
                     <div className={scss.content_cards}>
                         {
                             Array.isArray(responseNowPlayingMovie.results) &&
-                            responseNowPlayingMovie.results.map(movie => <MovieCard key={movie.id} {...movie}/>)
+                            responseNowPlayingMovie.results.map(movie => <MovieCard key={movie.id} movie={movie}/>)
                         }
                     </div>
                 </div>

@@ -1,0 +1,55 @@
+.container {
+  padding: 20px 150px 0;
+
+  @media (max-width: 1200px) {
+    padding: 20px 40px 0;
+  }
+
+  @media (max-width: 700px) {
+    padding: 20px 20px 0;
+  }
+
+  h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+
+    @media (max-width: 700px) {
+      font-size: 22px;
+    }
+  }
+
+  .empty {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 300;
+
+    @media (max-width: 700px) {
+      font-size: 17px;
+    }
+  }
+
+  .clearBtn {
+    margin-bottom: 20px;
+    background-color: #005382;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 500;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+
+    @media (max-width: 500px) {
+      padding: 5px 10px;
+      column-gap: 7px;
+      font-size: 15px;
+    }
+
+    &:hover {
+      background-color: #003f63;
+    }
+  }
+
+}

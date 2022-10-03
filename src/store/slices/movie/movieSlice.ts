@@ -18,6 +18,7 @@ import {IRecommendationMovie} from "../../../types/IRecommendationMovie";
 import {IDiscoverMovie} from "../../../types/IDiscoverMovie";
 import {IGenres} from "../../../types/IGenres";
 import {IMovies} from "../../../types/IMovies";
+import {IMovie} from "../../../types/IMovie";
 
 
 interface MovieSliceState {
@@ -32,7 +33,8 @@ interface MovieSliceState {
     responseGenresMovie: IGenres;
     responseSearchMovie: IMovies;
     status: string;
-    error: string | null
+    error: string | null;
+    selectedMovies: IMovie[];
 }
 
 const initialState: MovieSliceState = {
@@ -47,7 +49,8 @@ const initialState: MovieSliceState = {
     responseGenresMovie: {} as IGenres,
     responseSearchMovie: {} as IMovies,
     status: '',
-    error: null
+    error: null,
+    selectedMovies: []
 }
 
 const movieSlice = createSlice({
@@ -56,6 +59,18 @@ const movieSlice = createSlice({
     reducers:{
         clearResponseSearchMovie: (state) => {
             state.responseSearchMovie = {} as IMovies
+        },
+
+        addSelectedMovie: (state, action) => {
+            state.selectedMovies.push(action.payload)
+        },
+
+        removeSelectedMovie: (state, action) => {
+            state.selectedMovies = state.selectedMovies.filter(movie => movie.id !== action.payload)
+        },
+
+        clearSelectedMovie: (state) => {
+            state.selectedMovies = []
         }
     },
     extraReducers: (builder) => {
@@ -211,7 +226,12 @@ const movieSlice = createSlice({
     }
 });
 
-export const {clearResponseSearchMovie} = movieSlice.actions;
+export const {
+    clearResponseSearchMovie,
+    addSelectedMovie,
+    removeSelectedMovie,
+    clearSelectedMovie
+} = movieSlice.actions;
 
 const movie = movieSlice.reducer;
 

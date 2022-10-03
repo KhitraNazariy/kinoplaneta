@@ -7,3 +7,4 @@ export * from './MovieAndTvPages/index';
 export * from './NotFoundPage/NotFoundPage';
 export * from './PersonDetailsPage/PersonDetailsPage';
 export * from './PopularPersonPage/PopularPersonPage';
+export * from './SelectedPages/index';

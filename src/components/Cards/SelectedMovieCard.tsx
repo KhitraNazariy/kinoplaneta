@@ -1,32 +1,18 @@
 import React, {FC} from 'react';
 import {Link} from "react-router-dom";
+import {AiFillDelete} from "react-icons/ai";
 
 import scss from './Cards.module.scss';
 import {IMovie} from "../../types/IMovie";
 import {URL_IMG} from "../../configs";
 import {getYear} from "../../utils/getYear";
 import {getColorForRating} from "../../utils/getColorForRating";
-import {MdLibraryAdd, MdLibraryAddCheck, MdOutlineBookmarkAdd, MdOutlineBookmarkAdded} from "react-icons/md";
-import {addSelectedMovie} from "../../store/slices/movie/movieSlice";
-import {RootState, useAppDispatch} from "../../store/store";
-import {useSelector} from "react-redux";
+import {useAppDispatch} from "../../store/store";
+import {removeSelectedMovie} from "../../store/slices/movie/movieSlice";
 
-interface IMovieMainCardProps {
-    movie: IMovie
-}
-
-const MovieCard: FC<IMovieMainCardProps> = ({movie}) => {
-
-    const {id, poster_path, release_date, title, overview, vote_average} = movie;
+const SelectedMovieCard: FC<IMovie> = ({poster_path, title, release_date, overview, vote_average, id}) => {
 
     const dispatch = useAppDispatch();
-
-    const {selectedMovies} = useSelector((state: RootState) => state.movie);
-
-    const isSelected = () => {
-      return !!selectedMovies.find(movie => movie.id === id);
-    }
-
 
     return (
         <div className={scss.card}>
@@ -49,20 +35,15 @@ const MovieCard: FC<IMovieMainCardProps> = ({movie}) => {
                         {vote_average}
                     </div>
                     <button
-                        className={scss.btn}
-                        onClick={() => dispatch(addSelectedMovie(movie))}
-                        disabled={isSelected()}
+                        onClick={() => dispatch(removeSelectedMovie(id))}
                     >
-                        {!isSelected() && <><MdLibraryAdd size={17}/>Буду дивитись</>}
-                        {isSelected() && <><MdLibraryAddCheck size={17}/>Буду дивитись</>}
+                        <AiFillDelete size={17}/>Видалити
                     </button>
                     <button
-                        disabled={isSelected()}
                         className={scss.mobileBtn}
-                        onClick={() => dispatch(addSelectedMovie(movie))}
+                        onClick={() => dispatch(removeSelectedMovie(id))}
                     >
-                        {!isSelected() && <MdLibraryAdd size={17}/>}
-                        {isSelected() && <MdLibraryAddCheck size={17}/>}
+                        <AiFillDelete size={17}/>
                     </button>
                 </div>
             </div>
@@ -70,4 +51,4 @@ const MovieCard: FC<IMovieMainCardProps> = ({movie}) => {
     );
 };
 
-export {MovieCard};
+export {SelectedMovieCard};

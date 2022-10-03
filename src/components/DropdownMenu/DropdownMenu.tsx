@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import scss from './DropdownMenu.module.scss'
 
@@ -7,61 +7,69 @@ const DropdownMenu: FC = () => {
     return (
         <nav className={scss.menu}>
             <ul>
-                <NavLink to={'/'}>
+                <Link to={'/'}>
                     <li>
                         Головна
                     </li>
-                </NavLink>
+                </Link>
                 <li>
                     Фільми
                     <ul>
-                        <NavLink to={'movie-discover'}>
+                        <Link to={'movie-discover'}>
                             <li>Всі фільми</li>
-                        </NavLink>
-                        <NavLink to={'movie-popular'}>
+                        </Link>
+                        <Link to={'movie-popular'}>
                             <li>Популярні</li>
-                        </NavLink>
-                        <NavLink to={'movie-now-playing'}>
+                        </Link>
+                        <Link to={'movie-now-playing'}>
                             <li>В кінотеатрах</li>
-                        </NavLink>
-                        <NavLink to={'movie-upcoming'}>
+                        </Link>
+                        <Link to={'movie-upcoming'}>
                             <li>Очікувані</li>
-                        </NavLink>
-                        <NavLink to={'movie-top-rated'}>
+                        </Link>
+                        <Link to={'movie-top-rated'}>
                             <li>Рейтингові</li>
-                        </NavLink>
+                        </Link>
                     </ul>
                 </li>
                 <li>
                     Серіали
                     <ul>
-                        <NavLink to={'tv-discover'}>
+                        <Link to={'tv-discover'}>
                             <li>Всі серіали</li>
-                        </NavLink>
-                        <NavLink to={'tv-popular'}>
+                        </Link>
+                        <Link to={'tv-popular'}>
                             <li>Популярні</li>
-                        </NavLink>
-                        <NavLink to={'tv-airing-today'}>
+                        </Link>
+                        <Link to={'tv-airing-today'}>
                             <li>Сьогодні в ефірі</li>
-                        </NavLink>
-                        <NavLink to={'tv-on-the-air'}>
+                        </Link>
+                        <Link to={'tv-on-the-air'}>
                             <li>Зараз по телевізору</li>
-                        </NavLink>
-                        <NavLink to={'tv-top-rated'}>
+                        </Link>
+                        <Link to={'tv-top-rated'}>
                             <li>Рейтингові</li>
-                        </NavLink>
+                        </Link>
                     </ul>
                 </li>
                 <li>
                     Персони
                     <ul>
-                        <NavLink to={'person-popular'}>
+                        <Link to={'person-popular'}>
                             <li>Популярні</li>
-                        </NavLink>
+                        </Link>
                     </ul>
                 </li>
                 <li>
-                    <NavLink to={''}>Обрані</NavLink>
+                    Обрані
+                    <ul>
+                        <Link to={'selected-movie'}>
+                            <li>Фільми</li>
+                        </Link>
+                        <Link to={'selected-tv'}>
+                            <li>Серіали</li>
+                        </Link>
+                    </ul>
                 </li>
             </ul>
         </nav>

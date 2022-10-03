@@ -72,7 +72,15 @@ const MobileMenu: FC<MobileMenuProps> = ({active, setMenuActive}) => {
                 </div>
 
                 <div className={scss.menu__content_block}>
-                    <Link to={''}><h2><AiOutlineHeart/>Обрані</h2></Link>
+                    <h2><AiOutlineHeart/>Обрані</h2>
+                    <div className={scss.list}>
+                        <Link to={'selected-movie'}>
+                            <div>Фільми</div>
+                        </Link>
+                        <Link to={'selected-tv'}>
+                            <div>Серіали</div>
+                        </Link>
+                    </div>
                 </div>
 
             </div>

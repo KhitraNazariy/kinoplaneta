@@ -73,7 +73,7 @@ const PopularMoviePage: FC = () => {
                     <div className={scss.content_cards}>
                         {
                             Array.isArray(responsePopularMovie.results) &&
-                            responsePopularMovie.results.map(movie => <MovieCard key={movie.id} {...movie}/>)
+                            responsePopularMovie.results.map(movie => <MovieCard key={movie.id} movie={movie}/>)
                         }
                     </div>
                 </div>

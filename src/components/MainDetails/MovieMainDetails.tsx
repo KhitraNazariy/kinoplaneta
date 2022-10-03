@@ -10,6 +10,8 @@ import {IMovieDetails} from "../../types/IMovieDetails";
 import {getDate} from "../../utils/getDate";
 import {getColorForRating} from "../../utils/getColorForRating";
 import {getYear} from "../../utils/getYear";
+import {useAppDispatch} from "../../store/store";
+import {addSelectedMovie} from "../../store/slices/movie/movieSlice";
 
 interface IMovieMainDetailsProps {
     data: IMovieDetails
@@ -18,6 +20,8 @@ interface IMovieMainDetailsProps {
 const MovieMainDetails: FC<IMovieMainDetailsProps> = ({data}) => {
 
     const navigate = useNavigate();
+
+    const dispatch = useAppDispatch();
 
     return (
         <div className={scss.details} style={{backgroundImage: `url(${URL_IMG}${data.backdrop_path})`}}>
@@ -35,9 +39,16 @@ const MovieMainDetails: FC<IMovieMainDetailsProps> = ({data}) => {
                         <p>{data.original_title}</p>
                     </div>
                     <div className={scss.content_buttons}>
-                        <button className={scss.content_buttons_watch}><BsFillPlayFill size={19}/>Дивитись трейлер
+                        <button
+                            className={scss.content_buttons_watch}
+                        >
+                            <BsFillPlayFill size={19}/>Дивитись трейлер
                         </button>
-                        <button className={scss.content_buttons_add}><MdOutlineBookmarkAdded size={19}/>Буду дивитись
+                        <button
+                            className={scss.content_buttons_add}
+                            onClick={() => dispatch(addSelectedMovie(data))}
+                        >
+                            <MdOutlineBookmarkAdded size={19}/>Буду дивитись
                         </button>
                     </div>
                     <div className={scss.content_about}>

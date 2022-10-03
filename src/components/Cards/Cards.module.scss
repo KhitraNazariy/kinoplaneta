@@ -125,13 +125,20 @@
           display: none;
           width: 34px;
           height: 34px;
+          border-radius: 5px;
+          color: rgba(0,0,0, 0.5);
+
+          &:disabled {
+            border: 1px solid #005382;
+            color: #005382;
+          }
 
           @media (max-width: 800px) {
             display: block;
           }
         }
 
-        button {
+        .btn {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -152,6 +159,17 @@
 
           &:hover {
             background-color: #E5E5E5;
+          }
+          &:disabled {
+            border: 1px solid #005382;
+            color: #005382;
+            transition: .5s;
+            font-weight: 400;
+
+            &:hover {
+              background-color: #005382;
+              color: #FFFFFF;
+            }
           }
         }
 

@@ -5,20 +5,24 @@ import {MainLayout} from "./layouts/MainLayout/MainLayout";
 import {
     AiringTodayTvPage,
     HomePage, LoginPage,
-    MovieDetailsPage, MovieDiscoverPage,
+    MovieDetailsPage,
+    MovieDiscoverPage,
+    MoviesSelectedPage,
     NotFoundPage,
     NowPlayingMoviePage,
-    OnTheAirTvPage, PersonDetailsPage,
+    OnTheAirTvPage,
+    PersonDetailsPage,
     PopularMoviePage,
     PopularPersonPage,
     PopularTvPage,
+    RegisterPage,
     TopRatedMoviePage,
     TopRatedTvPage,
     TvDetailsPage,
     TvDiscoverPage,
+    TvsSelectedPage,
     UpcomingMoviePage
 } from "./pages";
-import {RegisterPage} from "./pages/AuthPages/RegisterPage";
 
 const App: FC = () => {
     return (
@@ -40,6 +44,8 @@ const App: FC = () => {
                     <Route path={'tv/:id'} element={<TvDetailsPage/>}/>
                     <Route path={'person-popular'} element={<PopularPersonPage/>}/>
                     <Route path={'person/:id'} element={<PersonDetailsPage/>}/>
+                    <Route path={'selected-movie'} element={<MoviesSelectedPage/>}/>
+                    <Route path={'selected-tv'} element={<TvsSelectedPage/>}/>
                     <Route path={'login'} element={<LoginPage/>}/>
                     <Route path={'register'} element={<RegisterPage/>}/>
                     <Route path={'*'} element={<NotFoundPage/>}/>

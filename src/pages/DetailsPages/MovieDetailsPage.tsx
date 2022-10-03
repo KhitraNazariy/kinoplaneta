@@ -18,11 +18,14 @@ const MovieDetailsPage: FC = () => {
         error,
         responseMovieDetails,
         responseMovieRecommendations,
-        responseMovieCredits
+        responseMovieCredits,
+        selectedMovies
     } = useSelector((state: RootState) => state.movie);
     const dispatch = useAppDispatch();
 
     const {id} = useParams();
+
+    console.log(selectedMovies)
 
     useEffect(() => {
         dispatch(fetchMovieDetails({id: id}))

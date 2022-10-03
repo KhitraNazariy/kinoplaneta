@@ -81,10 +81,10 @@ const MovieDiscoverPage: FC = () => {
     const renderMovies = () => {
         for (let i in responseSearchMovie) {
             if (responseSearchMovie.hasOwnProperty(i)) {
-                return responseSearchMovie.results?.map(movie => <MovieCard key={movie.id} {...movie}/>)
+                return responseSearchMovie.results?.map(movie => <MovieCard key={movie.id} movie={movie}/>)
             }
         }
-        return responseDiscoverMovie.results?.map(movie => <MovieCard key={movie.id} {...movie}/>)
+        return responseDiscoverMovie.results?.map(movie => <MovieCard key={movie.id} movie={movie}/>)
     }
 
     return (
