@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {BsFillPlayFill} from "react-icons/bs";
-import {MdOutlineBookmarkAdded} from "react-icons/md";
+import {MdLibraryAdd, MdLibraryAddCheck} from "react-icons/md";
 import {AiOutlineArrowLeft} from "react-icons/ai";
 import {useNavigate} from "react-router-dom";
 
@@ -10,8 +10,9 @@ import {IMovieDetails} from "../../types/IMovieDetails";
 import {getDate} from "../../utils/getDate";
 import {getColorForRating} from "../../utils/getColorForRating";
 import {getYear} from "../../utils/getYear";
-import {useAppDispatch} from "../../store/store";
+import {RootState, useAppDispatch} from "../../store/store";
 import {addSelectedMovie} from "../../store/slices/movie/movieSlice";
+import {useSelector} from "react-redux";
 
 interface IMovieMainDetailsProps {
     data: IMovieDetails
@@ -22,6 +23,12 @@ const MovieMainDetails: FC<IMovieMainDetailsProps> = ({data}) => {
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
+    const {selectedMovies} = useSelector((state: RootState) => state.movie);
+
+    const isSelected = () => {
+        return !!selectedMovies.find(movie => movie.id === data.id);
+    }
+
 
     return (
         <div className={scss.details} style={{backgroundImage: `url(${URL_IMG}${data.backdrop_path})`}}>
@@ -47,8 +54,10 @@ const MovieMainDetails: FC<IMovieMainDetailsProps> = ({data}) => {
                         <button
                             className={scss.content_buttons_add}
                             onClick={() => dispatch(addSelectedMovie(data))}
+                            disabled={isSelected()}
                         >
-                            <MdOutlineBookmarkAdded size={19}/>Буду дивитись
+                            {!isSelected() && <><MdLibraryAdd size={17}/>Буду дивитись</>}
+                            {isSelected() && <><MdLibraryAddCheck size={17}/>Буду дивитись</>}
                         </button>
                     </div>
                     <div className={scss.content_about}>

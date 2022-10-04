@@ -18,6 +18,7 @@ import {ICreditsTv} from "../../../types/ICreditsTv";
 import {IDiscoverTv} from "../../../types/IDiscoverTv";
 import {IGenres} from "../../../types/IGenres";
 import {ITvs} from "../../../types/ITvs";
+import {ITv} from "../../../types/ITv";
 
 interface TvSliceState {
     responseTopRatedTv: ITopRatedTv;
@@ -32,6 +33,7 @@ interface TvSliceState {
     responseSearchTv: ITvs;
     status: string;
     error: string | null;
+    selectedTv: ITv[]
 }
 
 const initialState: TvSliceState = {
@@ -46,7 +48,8 @@ const initialState: TvSliceState = {
     responseGenresTv: {} as IGenres,
     responseSearchTv: {} as ITvs,
     status: '',
-    error: null
+    error: null,
+    selectedTv: []
 }
 
 const tvSlice = createSlice({
@@ -55,6 +58,18 @@ const tvSlice = createSlice({
     reducers: {
         clearResponseSearchTv: (state) => {
             state.responseSearchTv = {} as ITvs
+        },
+
+        addSelectedTv: (state, action) => {
+            state.selectedTv.push(action.payload)
+        },
+
+        removeSelectedTv: (state, action) => {
+            state.selectedTv = state.selectedTv.filter(tv => tv.id !== action.payload)
+        },
+
+        clearSelectedTv: (state) => {
+            state.selectedTv = []
         }
     },
     extraReducers: (builder) => {
@@ -220,7 +235,12 @@ const tvSlice = createSlice({
     }
 });
 
-export const {clearResponseSearchTv} = tvSlice.actions;
+export const {
+    clearResponseSearchTv,
+    clearSelectedTv,
+    removeSelectedTv,
+    addSelectedTv,
+} = tvSlice.actions;
 
 const tv = tvSlice.reducer
 

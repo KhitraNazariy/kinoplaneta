@@ -3,10 +3,9 @@ import {useSelector} from "react-redux";
 
 import scss from './MovieAndTvPages.module.scss';
 import {RootState, useAppDispatch} from "../../store/store";
-import {Loader, Pagination} from "../../components";
+import {Loader, Pagination, TvCard} from "../../components";
 import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
 import {fetchPopularTv} from "../../store/slices/tv/asyncActions";
-import {TvCard} from "../../components/Cards/TvCard";
 
 const PopularTvPage: FC = () => {
 
@@ -46,7 +45,7 @@ const PopularTvPage: FC = () => {
                     <div className={scss.content_cards}>
                         {
                             Array.isArray(responsePopularTv.results) &&
-                            responsePopularTv.results.map(tv => <TvCard key={tv.id} {...tv}/>)
+                            responsePopularTv.results.map(tv => <TvCard key={tv.id} tv={tv}/>)
                         }
                     </div>
                 </div>

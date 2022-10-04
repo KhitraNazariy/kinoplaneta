@@ -5,8 +5,7 @@ import {FaSortAmountDownAlt} from "react-icons/fa";
 import {RootState, useAppDispatch} from "../../store/store";
 import {changeDisabledBtn, changeSendRequest} from "../../store/slices/sort/sortSlice";
 import scss from "./DiscoverPage.module.scss";
-import {Pagination, Search, Sort} from "../../components";
-import {TvCard} from "../../components/Cards/TvCard";
+import {Pagination, Search, Sort, TvCard} from "../../components";
 import {fetchDiscoverTv, fetchSearchTv, fetchTvGenres} from "../../store/slices/tv/asyncActions";
 import {sort} from "../../utils/sortByTv";
 import {clearResponseSearchTv} from "../../store/slices/tv/tvSlice";
@@ -82,10 +81,10 @@ const TvDiscoverPage: FC = () => {
     const renderTvs = () => {
         for (let i in responseSearchTv) {
             if (responseSearchTv.hasOwnProperty(i)) {
-                return responseSearchTv.results?.map(tv => <TvCard key={tv.id} {...tv}/>)
+                return responseSearchTv.results?.map(tv => <TvCard key={tv.id} tv={tv}/>)
             }
         }
-        return responseDiscoverTv.results?.map(tv => <TvCard key={tv.id} {...tv}/>)
+        return responseDiscoverTv.results?.map(tv => <TvCard key={tv.id} tv={tv}/>)
     }
 
     return (

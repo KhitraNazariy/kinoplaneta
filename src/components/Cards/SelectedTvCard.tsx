@@ -1,30 +1,31 @@
 import React, {FC} from 'react';
+import {MdOutlineBookmarkAdded} from "react-icons/md";
 import {Link} from "react-router-dom";
-import {AiFillDelete} from "react-icons/ai";
 
 import scss from './Cards.module.scss';
-import {IMovie} from "../../types/IMovie";
 import {URL_IMG} from "../../configs";
 import {getYear} from "../../utils/getYear";
 import {getColorForRating} from "../../utils/getColorForRating";
+import {ITv} from "../../types/ITv";
 import {useAppDispatch} from "../../store/store";
-import {removeSelectedMovie} from "../../store/slices/movie/movieSlice";
+import {removeSelectedTv} from "../../store/slices/tv/tvSlice";
+import {AiFillDelete} from "react-icons/ai";
 
-const SelectedMovieCard: FC<IMovie> = ({poster_path, title, release_date, overview, vote_average, id}) => {
+const SelectedTvCard: FC<ITv> = ({poster_path, name, first_air_date, overview, vote_average,id}) => {
 
     const dispatch = useAppDispatch();
 
     return (
         <div className={scss.card}>
-            <Link to={`/movie/${id.toString()}`}>
-                <img src={`${URL_IMG}${poster_path}`} alt={title}/>
+            <Link to={`/tv/${id.toString()}`}>
+                <img src={`${URL_IMG}${poster_path}`} alt={name}/>
             </Link>
             <div className={scss.card_content}>
                 <div className={scss.card_content_description}>
-                    <Link to={`/movie/${id.toString()}`}>
-                        <h3>{title}</h3>
+                    <Link to={`/tv/${id.toString()}`}>
+                        <h3>{name}</h3>
                     </Link>
-                    <p className={scss.date}>{getYear(release_date)}</p>
+                    <p className={scss.date}>{getYear(first_air_date)}</p>
                     <p className={scss.overview}>{overview}</p>
                 </div>
                 <div className={scss.card_content_description_additional}>
@@ -36,13 +37,13 @@ const SelectedMovieCard: FC<IMovie> = ({poster_path, title, release_date, overvi
                     </div>
                     <button
                         className={scss.btn}
-                        onClick={() => dispatch(removeSelectedMovie(id))}
+                        onClick={() => dispatch(removeSelectedTv(id))}
                     >
                         <AiFillDelete size={17}/>Видалити
                     </button>
                     <button
                         className={scss.mobileBtn}
-                        onClick={() => dispatch(removeSelectedMovie(id))}
+                        onClick={() => dispatch(removeSelectedTv(id))}
                     >
                         <AiFillDelete size={17}/>
                     </button>
@@ -52,4 +53,4 @@ const SelectedMovieCard: FC<IMovie> = ({poster_path, title, release_date, overvi
     );
 };
 
-export {SelectedMovieCard};
+export {SelectedTvCard};

@@ -4,9 +4,8 @@ import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../../store/store";
 import {fetchOnTheAirTv} from "../../store/slices/tv/asyncActions";
 import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
-import {Loader, Pagination} from "../../components";
+import {Loader, Pagination, TvCard} from "../../components";
 import scss from "./MovieAndTvPages.module.scss";
-import {TvCard} from "../../components/Cards/TvCard";
 
 const OnTheAirTvPage: FC = () => {
 
@@ -46,7 +45,7 @@ const OnTheAirTvPage: FC = () => {
                     <div className={scss.content_cards}>
                         {
                             Array.isArray(responseOnTheAirTv.results) &&
-                            responseOnTheAirTv.results.map(tv => <TvCard key={tv.id} {...tv}/>)
+                            responseOnTheAirTv.results.map(tv => <TvCard key={tv.id} tv={tv}/>)
                         }
                     </div>
                 </div>

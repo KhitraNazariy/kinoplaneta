@@ -6,7 +6,7 @@ import {IMovie} from "../../types/IMovie";
 import {URL_IMG} from "../../configs";
 import {getYear} from "../../utils/getYear";
 import {getColorForRating} from "../../utils/getColorForRating";
-import {MdLibraryAdd, MdLibraryAddCheck, MdOutlineBookmarkAdd, MdOutlineBookmarkAdded} from "react-icons/md";
+import {MdLibraryAdd, MdLibraryAddCheck} from "react-icons/md";
 import {addSelectedMovie} from "../../store/slices/movie/movieSlice";
 import {RootState, useAppDispatch} from "../../store/store";
 import {useSelector} from "react-redux";

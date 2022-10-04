@@ -189,6 +189,18 @@
             background-color: #b7b5b5;
           }
 
+          &:disabled {
+            border: 1px solid #005382;
+            color: #005382;
+            transition: .5s;
+            font-weight: 400;
+
+            &:hover {
+              background-color: #005382;
+              color: #FFFFFF;
+            }
+          }
+
         }
 
       }

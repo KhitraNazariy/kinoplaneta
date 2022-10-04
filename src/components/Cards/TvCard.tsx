@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {MdOutlineBookmarkAdded} from "react-icons/md";
+import {MdLibraryAdd, MdLibraryAddCheck, MdOutlineBookmarkAdded} from "react-icons/md";
 import {Link} from "react-router-dom";
 
 import scss from './Cards.module.scss';
@@ -7,8 +7,26 @@ import {URL_IMG} from "../../configs";
 import {getYear} from "../../utils/getYear";
 import {getColorForRating} from "../../utils/getColorForRating";
 import {ITv} from "../../types/ITv";
+import {RootState, useAppDispatch} from "../../store/store";
+import {addSelectedTv} from "../../store/slices/tv/tvSlice";
+import {addSelectedMovie} from "../../store/slices/movie/movieSlice";
+import {useSelector} from "react-redux";
 
-const TvCard: FC<ITv> = ({poster_path, name, first_air_date, overview, vote_average,id}) => {
+interface ITvMainCardProps {
+    tv: ITv
+}
+
+const TvCard: FC<ITvMainCardProps> = ({tv}) => {
+
+    const {id, poster_path,name, first_air_date, overview, vote_average} = tv;
+
+    const dispatch = useAppDispatch();
+
+    const {selectedTv} = useSelector((state: RootState) => state.tv);
+
+    const isSelected = () => {
+        return !!selectedTv.find(tv => tv.id === id);
+    }
 
     return (
         <div className={scss.card}>
@@ -30,8 +48,22 @@ const TvCard: FC<ITv> = ({poster_path, name, first_air_date, overview, vote_aver
                     >
                         {vote_average}
                     </div>
-                    <button><MdOutlineBookmarkAdded size={17}/>Буду дивитись</button>
-                    <button className={scss.mobileBtn}><MdOutlineBookmarkAdded size={17}/></button>
+                    <button
+                        className={scss.btn}
+                        onClick={() => dispatch(addSelectedTv(tv))}
+                        disabled={isSelected()}
+                    >
+                        {!isSelected() && <><MdLibraryAdd size={17}/>Буду дивитись</>}
+                        {isSelected() && <><MdLibraryAddCheck size={17}/>Буду дивитись</>}
+                    </button>
+                    <button
+                        disabled={isSelected()}
+                        className={scss.mobileBtn}
+                        onClick={() => dispatch(addSelectedTv(tv))}
+                    >
+                        {!isSelected() && <MdLibraryAdd size={17}/>}
+                        {isSelected() && <MdLibraryAddCheck size={17}/>}
+                    </button>
                 </div>
             </div>
         </div>

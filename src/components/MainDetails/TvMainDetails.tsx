@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {BsFillPlayFill} from "react-icons/bs";
-import {MdOutlineBookmarkAdded} from "react-icons/md";
+import {MdLibraryAdd, MdLibraryAddCheck, MdOutlineBookmarkAdded} from "react-icons/md";
 
 import {ITvDetails} from "../../types/ITvDetails";
 import scss from "./MainDetails.module.scss";
@@ -8,12 +8,23 @@ import {URL_IMG} from "../../configs";
 import {getYear} from "../../utils/getYear";
 import {getDate} from "../../utils/getDate";
 import {getColorForRating} from "../../utils/getColorForRating";
+import {RootState, useAppDispatch} from "../../store/store";
+import {addSelectedTv} from "../../store/slices/tv/tvSlice";
+import {useSelector} from "react-redux";
 
 interface ITvMainDetailsProps {
     data: ITvDetails;
 }
 
 const TvMainDetails: FC<ITvMainDetailsProps> = ({data}) => {
+
+    const dispatch = useAppDispatch();
+
+    const {selectedTv} = useSelector((state: RootState) => state.tv);
+
+    const isSelected = () => {
+        return !!selectedTv.find(tv => tv.id === data.id);
+    }
 
     return (
         <div className={scss.details} style={{backgroundImage: `url(${URL_IMG}${data.backdrop_path})`}}>
@@ -27,7 +38,13 @@ const TvMainDetails: FC<ITvMainDetailsProps> = ({data}) => {
                     <div className={scss.content_buttons}>
                         <button className={scss.content_buttons_watch}><BsFillPlayFill size={19}/>Дивитись трейлер
                         </button>
-                        <button className={scss.content_buttons_add}><MdOutlineBookmarkAdded size={19}/>Буду дивитись
+                        <button
+                            disabled={isSelected()}
+                            className={scss.content_buttons_add}
+                            onClick={() => dispatch(addSelectedTv(data))}
+                        >
+                            {!isSelected() && <><MdLibraryAdd size={17}/>Буду дивитись</>}
+                            {isSelected() && <><MdLibraryAddCheck size={17}/>Буду дивитись</>}
                         </button>
                     </div>
                     <div className={scss.content_about}>
