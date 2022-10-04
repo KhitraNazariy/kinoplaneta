@@ -11,6 +11,7 @@ import {RootState} from "../../store/store";
 import {PersonForSlider} from "../PersonForSlider/PersonForSlider";
 import {ICast} from "../../types/ICreditsMovie";
 import {ICastTv} from "../../types/ICreditsTv";
+import YouTube from "react-youtube";
 
 interface ITabsComponentProps {
     id: number;

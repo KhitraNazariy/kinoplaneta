@@ -10,6 +10,7 @@ import {BadRequestPage} from "../BadRequestPage/BadRequestPage";
 import Slider from "react-slick";
 import {settings} from "../../utils/SettingForSlider";
 import {IMovie} from "../../types/IMovie";
+import YouTube from "react-youtube";
 
 const MovieDetailsPage: FC = () => {
 

@@ -1,8 +1,9 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {BsFillPlayFill} from "react-icons/bs";
 import {MdLibraryAdd, MdLibraryAddCheck} from "react-icons/md";
 import {AiOutlineArrowLeft} from "react-icons/ai";
 import {useNavigate} from "react-router-dom";
+import YouTube from 'react-youtube';
 
 import scss from './MainDetails.module.scss';
 import {URL_IMG} from "../../configs";
@@ -21,7 +22,6 @@ interface IMovieMainDetailsProps {
 const MovieMainDetails: FC<IMovieMainDetailsProps> = ({data}) => {
 
     const navigate = useNavigate();
-
     const dispatch = useAppDispatch();
     const {selectedMovies} = useSelector((state: RootState) => state.movie);
 
@@ -46,11 +46,6 @@ const MovieMainDetails: FC<IMovieMainDetailsProps> = ({data}) => {
                         <p>{data.original_title}</p>
                     </div>
                     <div className={scss.content_buttons}>
-                        <button
-                            className={scss.content_buttons_watch}
-                        >
-                            <BsFillPlayFill size={19}/>Дивитись трейлер
-                        </button>
                         <button
                             className={scss.content_buttons_add}
                             onClick={() => dispatch(addSelectedMovie(data))}

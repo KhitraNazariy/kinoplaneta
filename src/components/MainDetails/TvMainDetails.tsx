@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {BsFillPlayFill} from "react-icons/bs";
-import {MdLibraryAdd, MdLibraryAddCheck, MdOutlineBookmarkAdded} from "react-icons/md";
+import {MdLibraryAdd, MdLibraryAddCheck} from "react-icons/md";
 
 import {ITvDetails} from "../../types/ITvDetails";
 import scss from "./MainDetails.module.scss";
