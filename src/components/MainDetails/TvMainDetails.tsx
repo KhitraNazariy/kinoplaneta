@@ -1,5 +1,4 @@
 import React, {FC} from 'react';
-import {BsFillPlayFill} from "react-icons/bs";
 import {MdLibraryAdd, MdLibraryAddCheck} from "react-icons/md";
 
 import {ITvDetails} from "../../types/ITvDetails";
@@ -36,8 +35,6 @@ const TvMainDetails: FC<ITvMainDetailsProps> = ({data}) => {
                         <p>{data.original_name}</p>
                     </div>
                     <div className={scss.content_buttons}>
-                        <button className={scss.content_buttons_watch}><BsFillPlayFill size={19}/>Дивитись трейлер
-                        </button>
                         <button
                             disabled={isSelected()}
                             className={scss.content_buttons_add}
